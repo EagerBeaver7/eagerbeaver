@@ -7,3 +7,5 @@ npm install next@latest
 npm install eslint-config-naver
 
 ```
+
+https://tech.kakaopay.com/post/react-query-1/
