@@ -1,4 +1,4 @@
-# hadoop ecoSystem
+# Hadoop ecoSystem
 
 ## 빅데이터 처리 과정
 
@@ -26,8 +26,6 @@
 # Hadoop
 
 [https://spidyweb.tistory.com/239](https://spidyweb.tistory.com/239)
-
-![Untitled](hadoop%20ecoSystem%200e0c959554614f16b5769b6f8ff74144/Untitled.png)
 
 ## 하둡의 코어 프로젝트
 
