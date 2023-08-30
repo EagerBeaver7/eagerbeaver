@@ -1,3 +1,6 @@
+## 파이썬 데이터 전처리 학습
+
+```python
 test2010 = pd.read_csv('C:/Users/SSAFY/Desktop/code/t2020.csv')
 
 name_split = test2010["시군구"].str.split(" ")
@@ -34,3 +37,28 @@ for file_name in file_list:
     
     print(file_name)
 merge_outer.drop(labels="useNum", axis=1, inplace = True)
+```
+
+```python
+from matplotlib import rc
+import matplotlib.font_manager as fm
+
+fm._rebuild()
+fm.get_fontconfig_fonts()
+
+# 디렉토리 및 파일 이름에 맞추어 변경
+font_location = './NanumGothic.ttf'
+
+font_name = fm.FontProperties(fname=font_location).get_name()
+rc('font', family=font_name)
+
+df2.transpose().plot(kind='line')
+
+plt.xlabel('Columns')
+plt.ylabel('Values')
+plt.title('Line Plot with Index as Y-Axis')
+
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+```
