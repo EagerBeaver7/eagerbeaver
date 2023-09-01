@@ -21,10 +21,19 @@ https://tech.kakaopay.com/post/react-query-1/
 
 
 docker, jenkins CI/CD
+
 https://velog.io/@rnqhstlr2297/Docker%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-Jenkins-CICD-%EA%B5%AC%ED%98%84
 
 https://hyeinisfree.tistory.com/23
 
+
+
+Typescript
+https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
+
+
+AWS
+https://opentutorials.org/course/2717
 
 
 
