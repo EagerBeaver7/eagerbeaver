@@ -8,6 +8,7 @@ npm run dev
 
 ```
 
+! 사용자와 상호작용을 하지 않을 경우 server component로 사용자와 상호작용을 하면 client component로 작성
 
 
 next.js 13에서 변경된 것
