@@ -1,0 +1,30 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://localhost:3306/ssahome
+    username: root
+    password: ssafy
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: validate
+
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+    defer-datasource-initialization: true   #-> data.sql을 사용하기 위해 추가
+
+  redis:
+    host: localhost
+    port: 6380
+    password: root
+logging:
+  level:
+    com.ground.sswm : INFO
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO
+
