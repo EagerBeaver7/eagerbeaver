@@ -1,13 +1,5 @@
-import React from 'react'
+import ProfileImg from 'src/containers/profileimg/page';
 
-type Props = {}
+const ProfileImgPage = async() => <ProfileImg />;
 
-function profileimg({}: Props) {
-  return(
-    <div>
-      profileimg
-    </div>
-  )
-}
-
-export default profileimg
+export default ProfileImgPage;

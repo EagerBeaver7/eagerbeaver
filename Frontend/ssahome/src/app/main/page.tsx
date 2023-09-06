@@ -1,13 +1,5 @@
-import React from 'react'
+import Main from 'src/containers/main/page';
 
-type Props = {}
+const MainPage = async() => <Main />;
 
-function main({}: Props) {
-  return(
-    <div>
-      main
-    </div>
-  )
-}
-
-export default main
+export default MainPage;

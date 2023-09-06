@@ -1,13 +1,5 @@
-import React from 'react'
+import Game from 'src/containers/Game/page';
 
-type Props = {}
+const GamePage = async() => <Game />;
 
-function game({}: Props) {
-  return(
-    <div>
-      game
-    </div>
-  )
-}
-
-export default game
+export default GamePage;

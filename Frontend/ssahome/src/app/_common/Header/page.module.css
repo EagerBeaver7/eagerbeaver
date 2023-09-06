@@ -1,0 +1,18 @@
+.appHeader {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.menu {
+  background-color: rgb(207, 195, 195);
+  display: flex;
+  justify-content: space-between;
+  height: var(--h-nav-m);
+}
+
+.linkWithoutUnderline {
+  text-decoration: none;
+  padding: 5px 14px;
+}
