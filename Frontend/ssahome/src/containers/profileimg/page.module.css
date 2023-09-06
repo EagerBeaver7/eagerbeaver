@@ -1,0 +1,30 @@
+.pro_title{
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;
+}
+
+.pic_ava{
+    width: 100px;
+    height: 200px;
+}
+
+.main{
+    margin-top: 5%;
+    position: relative;
+}
+
+.start{
+    
+    position: absolute;
+    right: 20%;
+    height: 40px;
+    width: 80px;
+}
+
+.pic{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 10%;
+}
