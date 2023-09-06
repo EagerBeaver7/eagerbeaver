@@ -1,13 +1,5 @@
-import React from 'react'
+import Result from 'src/containers/result/page';
 
-type Props = {}
+const ResultPage = async() => <Result />;
 
-function result({}: Props) {
-  return(
-    <div>
-      result
-    </div>
-  )
-}
-
-export default result
+export default ResultPage;

@@ -1,22 +1,5 @@
-import React from 'react'
-import Link from 'next/link'
+import NickName from 'src/containers/nickname/page';
 
-type Props = {}
+const NickNamePage = async() => <NickName />;
 
-function nickname({}: Props) {
-  return(
-    <div>
-      <Link href="/">
-        Home
-      </Link>
-      <br/>
-      <Link href="/nickname">
-        닉네임설정
-      </Link>
-      <br/>
-      nickname
-    </div>
-  )
-}
-
-export default nickname
+export default NickNamePage;
