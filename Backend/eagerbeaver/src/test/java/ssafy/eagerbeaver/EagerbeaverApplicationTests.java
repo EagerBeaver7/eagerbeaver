@@ -1,10 +1,10 @@
-package ssafy.ssahome;
+package ssafy.eagerbeaver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SsahomeApplicationTests {
+class EagerbeaverApplicationTests {
 
 	@Test
 	void contextLoads() {

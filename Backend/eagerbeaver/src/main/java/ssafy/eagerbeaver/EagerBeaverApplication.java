@@ -1,13 +1,13 @@
-package ssafy.ssahome;
+package ssafy.eagerbeaver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SsahomeApplication {
+public class EagerBeaverApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SsahomeApplication.class, args);
+		SpringApplication.run(EagerBeaverApplication.class, args);
 	}
 
 }
