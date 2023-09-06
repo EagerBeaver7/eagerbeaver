@@ -1,0 +1,42 @@
+.nickname {
+  width: 100%;
+  min-height: 90dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  overflow: hidden;
+}
+.centering {
+  width: 600px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  font-size: 30px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content {
+  width: 400px;
+  height: 100px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content > p > span {
+  font-size: 15px;
+}
+.message {
+  font-size: 30px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
