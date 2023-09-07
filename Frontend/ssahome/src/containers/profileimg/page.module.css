@@ -1,30 +1,38 @@
-.pro_title{
-    font-weight: bold;
-    font-size: 50px;
-    text-align: center;
-}
 
-.pic_ava{
-    width: 100px;
-    height: 200px;
-}
 
 .main{
-    margin-top: 5%;
+    margin-top: 3%;
     position: relative;
-}
 
-.start{
     
-    position: absolute;
-    right: 20%;
-    height: 40px;
-    width: 80px;
+        .pro_title{
+            font-weight: bold;
+            font-size: 50px;
+            text-align: center;
+        }
+        
+        .pic_ava{
+            width: 100px;
+            height: 200px;
+        }
+
+        .start{    
+            position: absolute;
+            right: 21%;
+            margin-top: 2%;
+            height: 40px;
+            width: 80px;
+        }
+        
+        .pic{
+            align-content: center;
+            text-align: center;
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-top: 5%;
+            width: 300;
+            height: 350;
+        }
 }
 
-.pic{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: 10%;
-}
+
