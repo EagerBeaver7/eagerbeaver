@@ -1,0 +1,12 @@
+#여기서부터 설정파일
+server:
+  sevlet:
+    context-path: /api
+  port:
+    9000
+
+spring:
+  profiles:
+    default: local
+
+
