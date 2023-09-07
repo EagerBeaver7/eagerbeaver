@@ -30,6 +30,10 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.1.2'
+	// swagger
+	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
+	implementation 'io.springfox:springfox-boot-starter:3.1.5' // 현재 버전에 맞게 업데이트
+
 }
 
 tasks.named('test') {
