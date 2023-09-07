@@ -2,6 +2,7 @@
 
 import React, { useState, ChangeEvent } from 'react';
 import styles from './page.module.css';
+import { Button } from '@mui/material';
 
 const NickNamePage: React.FC = () => {
   const [inputCount, setInputCount] = useState<number>(0);
@@ -22,16 +23,23 @@ const NickNamePage: React.FC = () => {
           닉네임을 설정하세요.
         </div>
         <div className={styles.content}>
-          <input value={inputValue} onChange={onInputHandler} />
-          <p>
+          <div className={styles.inputGroup}>
+            <input
+              type="text"
+              value={inputValue}
+              onChange={onInputHandler}
+            />
+          </div>
+          <div className={styles.counting}>
             <span>{inputCount}</span>
-            <span>/10 자</span>
-          </p>
+            <span>/10</span>
+          </div>
         </div>
         <div className={styles.message}>
-          확인메세지
+          * 중복된 닉네임 입니다.
         </div>
       </div>
+      <Button className={styles.start}>다음</Button>
     </main>
   );
 };
