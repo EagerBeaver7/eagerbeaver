@@ -1,12 +1,11 @@
 import React from "react";
 import Link from "next/link";
-
 import { ROUTES } from './constants';
-
 import Session from "./Session";
 import styles from './page.module.css';
 
 const Header = () => {
+
   return (
     <header className={styles.appHeader}>
       <div className={styles.menu}>

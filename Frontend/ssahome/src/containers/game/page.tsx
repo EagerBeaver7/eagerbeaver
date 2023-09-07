@@ -1,13 +1,14 @@
-'use client';
-
-import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
+import React from 'react';
+import styles from '@/containers/game/page.module.css';
+import LeftSideBar from '@/containers/game/LeftSideBar/page';
+import RightSideBar from '@/containers/game/RightSideBar/page';
 
 const GamePage = () => {
   return (
-    <Suspense>
-      게임 페이지
-    </Suspense>
+    <div className={styles.game}>
+      <LeftSideBar />
+      <RightSideBar />
+    </div>
   );
 };
 
