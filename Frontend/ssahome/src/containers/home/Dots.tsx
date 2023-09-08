@@ -50,7 +50,7 @@ export const Dots: React.FC<TDots> = ({ limit, currentIndex, onDotClick }) => {
     const boxHeight = 15 * limit + 20 * (limit - 1); // 각 Dot의 높이(15px)와 간격(20px)을 고려하여 계산
   
     return (
-      <div style={{ position: "fixed", top: "50%", right: 100, transform: "translateY(-50%)", height: "100%" }}>
+      <div style={{ position: "fixed", top: "50%", right: "2%", transform: "translateY(-50%)", height: "100%" }}>
         {/* 연한 회색 박스 */}
         <div
           style={{
