@@ -1,10 +1,18 @@
 import React from 'react';
 import styles from './page.module.css'
 
+import Purchase from './Purchase/page';
+import PurchaseList from './PurchaseList/page';
+
 const RightSideBar = () => {
   return (
-    <div>
-      오른쪽 사이드바
+    <div className={styles.RightSideBar}>
+      <div>
+        <Purchase/>
+      </div>
+      <div>
+        <PurchaseList/>
+      </div>
     </div>
   );
 };
