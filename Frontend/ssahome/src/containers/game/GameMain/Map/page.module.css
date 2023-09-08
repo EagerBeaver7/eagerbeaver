@@ -1,0 +1,80 @@
+.Map {
+  width: inherit;
+  height: 90vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.wrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.hex {
+  width: 15vw;
+  height: calc(17.5vw*1.7430);
+  margin: .2vw;
+  position: relative;
+  overflow: hidden !important;
+  transform: rotate(60deg);
+}
+.hex_inner {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(60deg);
+  overflow: hidden;
+}
+.hex_inner_in {
+  display: flex;
+  width: inherit;
+  height: inherit;
+  background-size: cover !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-120deg);
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background-color: #D1AB7D;
+}
+.hex:nth-of-type(n+5) {
+  margin-top: -17.3vw;
+}
+.hex_inner_in p {
+  color: #fff;
+  padding: 10px;
+  font: normal 3vw "TmonMonsori";
+  text-shadow: 3px 5px 0 rgb(235, 120, 120);
+}
+.button_location {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+}
+.button {
+  border: none;
+  user-select: none;
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  background-color: #0873bd;
+  box-shadow: #cacaca 2px 2px 10px 1px;
+  border-radius: 12px;
+  height: 60px;
+  line-height: 60px;
+  width: 155px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.button:active {
+  transition: all 0.001s ease;
+  background-color: #5d9fcd;
+  box-shadow: #97989a 0 0 0 0;
+  transform: translateX(1px) translateY(1px);
+}
