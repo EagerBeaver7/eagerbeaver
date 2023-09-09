@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import ssafy.eagerbeaver.dto.GameOverDto;
 import ssafy.eagerbeaver.dto.GameStartDto;
 import ssafy.eagerbeaver.service.GameService;
+import ssafy.eagerbeaver.service.GameServiceImpl;
 
 @RestController
 @RequiredArgsConstructor
