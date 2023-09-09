@@ -3,13 +3,7 @@ package ssafy.eagerbeaver.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,10 +24,12 @@ public class Region {
 	@Column(name = "region_name", columnDefinition = "varchar(20)")
 	private String name;
 
-	@OneToMany(mappedBy = "region")
+	//fetch 타입 eager 로 수정
+	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
 	private List<News> newsList;
 
-	@OneToMany(mappedBy = "region")
+	//fetch 타입 eager 로 수정
+	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
 	private List<Property> propertyList;
 
 	public Region(String name) {
