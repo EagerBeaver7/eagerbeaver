@@ -1,6 +1,11 @@
 package ssafy.eagerbeaver.service;
 
-import org.springframework.stereotype.Service;
+import ssafy.eagerbeaver.dto.GameStartDto;
 
-public interface GameService {
+import java.util.List;
+
+public interface GamedddService {
+
+    List<GameStartDto> gameStart() throws Exception;
+    void gameOver() throws Exception;
 }
