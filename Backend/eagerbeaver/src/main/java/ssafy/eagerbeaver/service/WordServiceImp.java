@@ -1,17 +1,9 @@
 package ssafy.eagerbeaver.service;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ssafy.eagerbeaver.domain.Word;
 import ssafy.eagerbeaver.dto.WordDto;
 import ssafy.eagerbeaver.repository.WordRepository;
 
@@ -31,9 +23,6 @@ public class WordServiceImp implements WordService{
 
 
 	// 랜덤으로 용어 3개 생성하기
-	// @Scheduled(cron = "0 0 0 * * ?") // 매일 자정마다 해당 메소드 실행
-	// 매일 랜덤으로 3개를 뽑는데 그 뽑은 것을 하루동안 변화없이 가지고 있는 방법을 모르겠어요...
-	// @Scheduled(fixedRate = 86400000) // 시연용으로 메소드 실행하고나서 하루씩 갱신
 	public void choiceRandomWord(){
 
 		// 굳이 용어 다 가져오지 않고
