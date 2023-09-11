@@ -3,9 +3,9 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:mysql://localhost:3306/eagerbeaver
+    url: jdbc:mysql://localhost:3426/eagerbeaver
     username: root
-    password: ssafy
+    password: kbsw2jEB!
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
@@ -15,9 +15,9 @@ spring:
         format_sql: true
         show_sql: true
   redis:
-    host: localhost
-    port: 6380
-    password: root
+    redishost: localhost
+    redisport: 4805
+    redisPassword: EBroot
 
 logging:
   level:
