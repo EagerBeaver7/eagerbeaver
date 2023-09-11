@@ -14,11 +14,8 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "word")
-@Setter
 @Getter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
 public class Word {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +27,13 @@ public class Word {
 
 	@Column(name = "word_meaning", columnDefinition = "text")
 	private String meaning;
+
+	public Word(String content, String meaning) {
+		this.content = content;
+		this.meaning = meaning;
+	}
+
+	public Word(){
+
+	}
 }
