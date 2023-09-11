@@ -16,7 +16,6 @@ import ssafy.eagerbeaver.service.WordService;
 @RequestMapping("/word")
 public class WordController {
 
-	@Autowired
 	private final WordService wordService;
 
 	@GetMapping

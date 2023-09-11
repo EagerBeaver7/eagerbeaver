@@ -16,6 +16,7 @@ import lombok.ToString;
 @Table(name = "word")
 @Getter
 @ToString
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Word {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +32,5 @@ public class Word {
 	public Word(String content, String meaning) {
 		this.content = content;
 		this.meaning = meaning;
-	}
-
-	public Word(){
-
 	}
 }

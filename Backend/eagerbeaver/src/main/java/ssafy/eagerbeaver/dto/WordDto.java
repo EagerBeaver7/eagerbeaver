@@ -10,19 +10,10 @@ import ssafy.eagerbeaver.domain.Word;
 
 @Builder
 @Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class WordDto {
 	private short id;
 	private String content;
 	private String meaning;
-
-	public WordDto(Word entity){
-		this.id = entity.getId();
-		this.content = entity.getContent();
-		this.meaning = entity.getMeaning();
-	}
-
 }
