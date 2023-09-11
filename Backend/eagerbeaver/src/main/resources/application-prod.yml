@@ -22,9 +22,9 @@ spring:
     host: localhost
     port: 6380
     password: root
+
 logging:
   level:
-    com.ground.sswm : INFO
+    com.ground.swm : INFO
     org.hibernate.SQL: INFO
     org.hibernate.type.descriptor.sql.BasicBinder: INFO
-

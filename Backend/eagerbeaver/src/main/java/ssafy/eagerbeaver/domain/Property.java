@@ -10,15 +10,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+import ssafy.eagerbeaver.dto.PropertyDto;
 
 @Entity
 @Table(name = "property")
 @Getter
 @ToString
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Property {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,5 +42,12 @@ public class Property {
 		this.region = region;
 		this.price = price;
 		this.period = period;
+	}
+
+	public PropertyDto convertToDto() {
+		return PropertyDto.builder()
+			.price(this.price)
+			.period(this.period)
+			.build();
 	}
 }

@@ -12,15 +12,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
 @Table(name = "users")
 @Getter
 @ToString
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
 	@Id
@@ -39,4 +41,10 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private ArrayList<Result> resultList;
+
+	public User(String email, String nickname, String profileImg) {
+		this.email = email;
+		this.nickname = nickname;
+		this.profileImg = profileImg;
+	}
 }

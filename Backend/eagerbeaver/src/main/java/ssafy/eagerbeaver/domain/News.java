@@ -16,15 +16,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+import ssafy.eagerbeaver.dto.NewsDto;
+import ssafy.eagerbeaver.dto.PropertyDto;
 
 @Entity
 @Table(name = "news")
 @Getter
 @ToString
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class News {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,5 +67,16 @@ public class News {
 		this.summary3 = summary3;
 		this.publishedDt = publishedDt;
 		this.category = category;
+	}
+
+	public NewsDto convertToDto() {
+		return NewsDto.builder()
+			.title(this.title)
+			.summary1(this.summary1)
+			.summary2(this.summary2)
+			.summary3(this.summary3)
+			.publishedDt(this.publishedDt)
+			.category(this.category)
+			.build();
 	}
 }
