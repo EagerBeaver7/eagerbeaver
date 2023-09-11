@@ -13,7 +13,7 @@ import ssafy.eagerbeaver.service.WordService;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/info/word")
+@RequestMapping("/word")
 public class WordController {
 
 	@Autowired
