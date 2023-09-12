@@ -23,6 +23,9 @@ public class WordServiceImp implements WordService{
 
 
 	// 랜덤으로 용어 3개 생성하기
+	// @Scheduled(cron = "0 0 0 * * ?") // 매일 자정마다 해당 메소드 실행
+	// 매일 랜덤으로 3개를 뽑는데 그 뽑은 것을 하루동안 변화없이 가지고 있는 방법을 모르겠어요...
+	@Scheduled(fixedRate = 86400000) // 시연용으로 메소드 실행하고나서 하루씩 갱신
 	public void choiceRandomWord(){
 
 		// 굳이 용어 다 가져오지 않고
@@ -73,7 +76,6 @@ public class WordServiceImp implements WordService{
 
 	@Override
 	public WordDto[] getRandomWord() {
-		this.choiceRandomWord(); // 일단 요청 들어올 때마다 랜덤으로 주는 걸로 할게요...
 		return result;
 	}
 }
