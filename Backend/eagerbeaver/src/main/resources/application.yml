@@ -9,9 +9,14 @@ spring:
   profiles:
     default: local
 
-springfox:
-  documentation:
-    enabled: true
+#springdoc:
+#  api-docs:
+#    packages:
+#      base: ssafy.eagerbeaver.controller
+
+#springfox:
+#  documentation:
+#    enabled: true
 
 ## swagger
 #springdoc:
