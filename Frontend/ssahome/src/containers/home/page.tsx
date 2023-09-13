@@ -20,11 +20,11 @@ function HomePage ()  {
   return (
 		<div>
 			<FullPageScroll>
-        <Section1 />
+        		<Section1 />
 				<Section2 />
-        <Section3 />
-        <Section4 />
-        <Section5 />
+       		 	<Section3 />
+        		<Section4 />
+        		<Section5 />
 			</FullPageScroll>
 		</div>
 	);
