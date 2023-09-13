@@ -25,7 +25,8 @@ class PropertyRepositoryTest {
 	public void saveProperty() {
 		//given
 		String region = "역삼";
-		Region yeoksam = new Region(region);
+		String city = "서울";
+		Region yeoksam = new Region(region, city);
 
 		int price = 100_000_000;
 		String period = "202309";
