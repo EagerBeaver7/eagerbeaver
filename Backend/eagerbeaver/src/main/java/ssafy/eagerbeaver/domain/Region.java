@@ -27,6 +27,7 @@ public class Region {
 	@Column(name = "region_id", columnDefinition = "smallint")
 	private short id;
 
+	@Column(name = "region_city", columnDefinition = "varchar(20)")
 	private String city;
 
 	@Column(name = "region_name", columnDefinition = "varchar(20)")
