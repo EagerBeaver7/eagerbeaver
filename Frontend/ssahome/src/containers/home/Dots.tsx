@@ -11,10 +11,9 @@ const Dot: React.FC<PDot> = ({ index, currentIndex, onClick }) => {
 	return (
 		<div
 			style={{
-				width: 11,
-				height: 11,
-				border: "3px solid" + (selected ? " black" : " rgba(0, 0, 0, 0)"),
-                //backgroundColor: selected ? " black" : " rgba(0, 0, 0, 0)",
+				width: 13,
+				height: 13,
+				border: "3px solid" + (selected ? " #6C5B5B" : " rgba(192, 192, 192, 0.5)"),
 				borderRadius: 9999,
 				margin: "10px 0",
 				display: "flex",
@@ -28,10 +27,10 @@ const Dot: React.FC<PDot> = ({ index, currentIndex, onClick }) => {
 			<div
 				style={{
 					position: "relative",
-					width: 11,
-					height: 11,
+					width: 13,
+					height: 13,
 					borderRadius: 9999,
-					backgroundColor: "#666666",
+					backgroundColor: "#D9D9D9",
 					cursor: "pointer",
 				}}
 			></div>
@@ -60,7 +59,7 @@ export const Dots: React.FC<TDots> = ({ limit, currentIndex, onDotClick }) => {
             transform: "translateY(-50%)", // 세로 중앙 정렬을 위한 스타일
             height: boxHeight, // 연한 회색 박스의 높이 설정
             width: 30, // 연한 회색 박스의 너비 설정
-            backgroundColor: "rgba(192, 192, 192, 0.5)", // 연한 회색 설정
+            backgroundColor: "rgba(255, 0, 0, 0.0)", // 연한 회색 설정
             borderRadius: "10px", // 모서리를 둥글게 만듦
           }}
         >
