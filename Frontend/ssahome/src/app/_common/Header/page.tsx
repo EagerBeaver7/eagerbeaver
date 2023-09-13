@@ -3,29 +3,21 @@ import Link from "next/link";
 import { ROUTES } from './constants';
 import Session from "./Session";
 import styles from './page.module.css';
+import Image from 'next/image'
+import Logo from '../../../../public/img/Logo.png'
 
 const Header = () => {
 
   return (
     <header className={styles.appHeader}>
       <div className={styles.menu}>
-        <Link href={ROUTES[0].href} className={styles.linkWithoutUnderline}>
-          HOME
-        </Link>
-        <Link href={ROUTES[1].href} className={styles.linkWithoutUnderline}>
-          NICKNAME
-        </Link>
-        <Link href={ROUTES[2].href} className={styles.linkWithoutUnderline}>
-          PROFILEIMG
-        </Link>
-        <Link href={ROUTES[3].href} className={styles.linkWithoutUnderline}>
-          MAIN
-        </Link>
-        <Link href={ROUTES[4].href} className={styles.linkWithoutUnderline}> 
-          GAME
-        </Link>
-        <Link href={ROUTES[5].href} className={styles.linkWithoutUnderline}>
-          RESULT
+        <Link href={ROUTES[0].href} className={styles.Logo}>
+          <Image
+            src={Logo}
+            alt="Logo"
+            width={150}
+            height={50}
+          />
         </Link>
         <Session />
       </div>

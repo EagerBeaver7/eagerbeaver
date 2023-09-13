@@ -116,7 +116,7 @@ export const FullPageScroll: React.FC<PFullPageScroll> = ({
 		<>
 			<div
 				ref={outerDivRef}
-				style={{ height: "100vh", width: "100%", overflowY: "hidden" }}
+				style={{ height: "92vh", width: "100%", overflowY: "hidden" }}
 			>
 				{children}
 			</div>
