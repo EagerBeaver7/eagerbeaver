@@ -13,7 +13,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        show_sql: true
+#        show_sql: true
   redis:
     redishost: localhost
     redisport: 4805
@@ -30,7 +30,3 @@ server:
     context-path: /api
   port:
     8080
-
-
-
-
