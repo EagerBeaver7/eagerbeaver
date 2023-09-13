@@ -3,9 +3,9 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: jdbc:mysql://localhost:3306/eagerbeaver
+    url: jdbc:mysql://j9a507.p.ssafy.io:3426/eagerbeaver
     username: root
-    password: ssafy
+    password: kbsw2jEB!
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
@@ -19,10 +19,9 @@ spring:
     defer-datasource-initialization: true   #-> data.sql을 사용하기 위해 추가
 
   redis:
-    host: localhost
-    port: 6380
-    password: root
-
+    redishost: localhost
+    redisport: 4805
+    redisPassword: EBroot
 logging:
   level:
     com.ground.swm : INFO
