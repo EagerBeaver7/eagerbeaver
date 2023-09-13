@@ -1,13 +1,21 @@
 'use client';
-
-import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
+import React from 'react';
+import StartBar from '@/containers/main/startBar';
+import WordPage from '@/containers/main/words';
+import RankingPage from '@/containers/main/ranking';
+import styles from "./page.module.css";
 
 const MainPage = () => {
   return (
-    <Suspense>
-      메인 페이지
-    </Suspense>
+  <div className={styles.gridContainer}>
+    <div className={styles.leftContent}>
+        <WordPage/>
+        <RankingPage/>
+    </div>
+    <div className={styles.rightContent}>
+        <StartBar/>
+    </div>
+  </div>
   );
 };
 

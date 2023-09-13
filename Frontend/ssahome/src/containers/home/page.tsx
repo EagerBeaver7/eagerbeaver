@@ -20,7 +20,7 @@ function HomePage ()  {
   return (
 		<div>
 			<FullPageScroll>
-        <Section1 />
+        		<Section1 />
 				<Section2 />
         <Section4 />
         <Section3 />
