@@ -1,5 +1,4 @@
-//
-// package ssafy.eagerbeaver.domain;
-//
-// public  GameLimitTime {
-// }
+package ssafy.eagerbeaver.domain;
+
+public class GameLimitTime {
+}
