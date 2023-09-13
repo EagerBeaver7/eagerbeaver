@@ -13,9 +13,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class GameStartDto {
-	private String region;
-	private String city;
-	private List<NewsDto> news;
-	private List<PropertyDto> property;
+public class ResultDto {
+	private int turn;
+	private List<RankDto> rankList;
 }

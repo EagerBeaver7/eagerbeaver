@@ -16,15 +16,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+import ssafy.eagerbeaver.dto.NewsDto;
+import ssafy.eagerbeaver.dto.PropertyDto;
 
 @Entity
 @Table(name = "news")
 @Getter
 @ToString
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class News {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,14 +42,8 @@ public class News {
 	@Column(name = "news_title", columnDefinition = "text")
 	private String title;
 
-	@Column(name = "news_summary1", columnDefinition = "text")
-	private String summary1;
-
-	@Column(name = "news_summary2", columnDefinition = "text")
-	private String summary2;
-
-	@Column(name = "news_summary3", columnDefinition = "text")
-	private String summary3;
+	@Column(name = "news_summary", columnDefinition = "text")
+	private String summary;
 
 	@Column(name = "published_dt", columnDefinition = "char(8)")
 	private String publishedDt;
@@ -54,14 +52,20 @@ public class News {
 	@Column(name = "news_category", length = 20)
 	private NewsCategory category;
 
-	public News(Region region, String title, String summary1, String summary2, String summary3, String publishedDt,
-		NewsCategory category) {
+	public News(Region region, String title, String summary, String publishedDt, NewsCategory category) {
 		this.region = region;
 		this.title = title;
-		this.summary1 = summary1;
-		this.summary2 = summary2;
-		this.summary3 = summary3;
+		this.summary = summary;
 		this.publishedDt = publishedDt;
 		this.category = category;
+	}
+
+	public NewsDto convertToDto() {
+		return NewsDto.builder()
+			.title(this.title)
+			.summary(this.summary)
+			.publishedDt(this.publishedDt)
+			.category(this.category)
+			.build();
 	}
 }
