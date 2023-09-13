@@ -27,17 +27,16 @@ class NewsRepositoryTest {
 	public void testSaveNews() {
 		// Given
 		String region = "역삼";
+		String city = "서울";
 
-		Region yeoksam = new Region(region);
+		Region yeoksam = new Region(region, city);
 
 		String title = "싸피 건물 증발";
-		String summary1 = "쌤쏭에서 운영하는 멀티캠퍼스 역삼점이 증발했다고 알려져 화제이다.";
-		String summary2 = "쌤쏭에서 운영하는 멀티캠퍼스 역삼점이 증발했다고 알려져 화제이다.";
-		String summary3 = "쌤쏭에서 운영하는 멀티캠퍼스 역삼점이 증발했다고 알려져 화제이다.";
+		String summary = "쌤쏭에서 운영하는 멀티캠퍼스 역삼점이 증발했다고 알려져 화제이다.";
 		String publishedDt = "20230906";
 		NewsCategory category = NewsCategory.ETC;
 
-		News news = new News(yeoksam, title, summary1, summary2, summary3, publishedDt, category);
+		News news = new News(yeoksam, title, summary, publishedDt, category);
 
 		// When
 		entityManager.persist(yeoksam);

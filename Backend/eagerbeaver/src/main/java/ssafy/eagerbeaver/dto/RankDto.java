@@ -1,7 +1,6 @@
 package ssafy.eagerbeaver.dto;
 
-import java.util.List;
-
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,9 +12,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class GameStartDto {
-	private String region;
-	private String city;
-	private List<NewsDto> news;
-	private List<PropertyDto> property;
+public class RankDto {
+	private String userName;
+	private double rate;
 }
