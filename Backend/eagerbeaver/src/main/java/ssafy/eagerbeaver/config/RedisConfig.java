@@ -7,7 +7,10 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import ssafy.eagerbeaver.domain.GameLog;
 
 @Configuration
 public class RedisConfig {
@@ -31,7 +34,6 @@ public class RedisConfig {
 			return lettuceConnectionFactory;
 		}
 
-
 		@Bean
 		public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
 			RedisTemplate<String, Object> template = new RedisTemplate<>();
@@ -42,8 +44,24 @@ public class RedisConfig {
 			template.setHashValueSerializer(new StringRedisSerializer());
 			template.setEnableDefaultSerializer(false);
 			template.setEnableTransactionSupport(true);
+
 			return template;
 		}
 
-	}
+		@Bean
+		public RedisTemplate<String, GameLog> redisEventTemplate(
+			RedisConnectionFactory redisConnectionFactory) {
+			RedisTemplate<String, GameLog> template = new RedisTemplate<>();
+			template.setConnectionFactory(redisConnectionFactory);
+			template.setKeySerializer(new StringRedisSerializer());
+			template.setValueSerializer(new StringRedisSerializer());
+			template.setHashKeySerializer(new StringRedisSerializer());
+			template.setHashValueSerializer(new StringRedisSerializer());
+			template.setEnableDefaultSerializer(false);
+			template.setEnableTransactionSupport(true);
+
+			return template;
+		}
+
+}
 

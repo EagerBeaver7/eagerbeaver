@@ -1,17 +1,24 @@
-package ssafy.eagerbeaver.dto;
+package ssafy.eagerbeaver.domain;
 
-import lombok.AllArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@RedisHash("logs")
 @ToString
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class GameLogDto {
+public class GameLog {
+	@Id
+	private short id;
+	@Indexed
 	private short userId;
 	private String cityName;
 	private int price;
@@ -19,7 +26,8 @@ public class GameLogDto {
 	private double rate;
 	private int turn;
 
-	public GameLogDto (short userId, String cityName, int price, int num, double rate, int turn){
+	@Builder
+	public GameLog (short userId, String cityName, int price, int num, double rate, int turn){
 		this.userId = userId;
 		this.cityName = cityName;
 		this.price = price;
