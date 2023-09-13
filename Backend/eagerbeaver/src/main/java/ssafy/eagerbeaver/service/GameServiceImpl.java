@@ -1,36 +1,27 @@
 package ssafy.eagerbeaver.service;
 
-import com.querydsl.core.types.Expression;
-import com.querydsl.core.types.OrderSpecifier;
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import ssafy.eagerbeaver.domain.News;
-import ssafy.eagerbeaver.domain.Property;
-import ssafy.eagerbeaver.domain.QRegion;
 import ssafy.eagerbeaver.domain.Region;
 import ssafy.eagerbeaver.domain.Result;
 import ssafy.eagerbeaver.domain.User;
 import ssafy.eagerbeaver.dto.GameStartDto;
-import ssafy.eagerbeaver.dto.NewsDto;
-import ssafy.eagerbeaver.dto.PropertyDto;
-import ssafy.eagerbeaver.repository.NewsRepository;
-import ssafy.eagerbeaver.repository.PropertyRepository;
 import ssafy.eagerbeaver.repository.RegionRepository;
 import ssafy.eagerbeaver.repository.ResultRepository;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class GameServiceImpl implements GameService {
+public class GameServiceImpl implements GameService{
 
+    @Autowired
     private final ResultRepository resultRepository;
+
+    @Autowired
     private final RegionRepository regionRepository;
 
     /**
@@ -58,7 +49,6 @@ public class GameServiceImpl implements GameService {
      */
     @Override
     public void gameOver(User user, int turn, double rate) throws Exception {
-        new BigDecimal(rate);
         if(isRightTurn(turn)) {
             resultRepository.save(new Result(user, rate, turn));
         }

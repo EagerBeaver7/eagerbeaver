@@ -18,7 +18,7 @@ import ssafy.eagerbeaver.dto.PropertyDto;
 @Entity
 @Table(name = "region")
 @Getter
-@ToString
+@ToString(exclude = {"newsList", "propertyList"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Region {
 
@@ -27,19 +27,23 @@ public class Region {
 	@Column(name = "region_id", columnDefinition = "smallint")
 	private short id;
 
+	private String city;
+
 	@Column(name = "region_name", columnDefinition = "varchar(20)")
 	private String name;
 
 	//fetch 타입 eager 로 수정
 	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
-	private List<News> newsList;
+	private List<News> newsList = new ArrayList<>();
+
 
 	//fetch 타입 eager 로 수정
 	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
-	private List<Property> propertyList;
+	private List<Property> propertyList = new ArrayList<>();
 
-	public Region(String name) {
+	public Region(String name, String city) {
 		this.name = name;
+		this.city = city;
 	}
 
 	public GameStartDto convertToGameStartDto() {
@@ -48,9 +52,9 @@ public class Region {
 
 		return GameStartDto.builder()
 			.region(this.name)
+			.city(this.city)
 			.news(newsDtoStream)
 			.property(propertyDtoStream)
 			.build();
 	}
-
 }

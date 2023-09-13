@@ -6,23 +6,27 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import ssafy.eagerbeaver.domain.Result;
 import ssafy.eagerbeaver.domain.User;
 import ssafy.eagerbeaver.repository.ResultRepository;
 
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@SpringBootTest
+@Transactional
 class RankServiceImplTest {
+
+	@Autowired
+	private RankService rankService;
+
+	@Autowired
+	private EntityManager entityManager;
 
 	@Autowired
 	private ResultRepository resultRepository;
 
-	@Autowired
-	private TestEntityManager entityManager;
 
 	@Test
 	public void findTop10ByTurn() {

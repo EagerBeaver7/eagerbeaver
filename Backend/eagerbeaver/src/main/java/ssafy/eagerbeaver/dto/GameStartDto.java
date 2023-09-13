@@ -15,6 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class GameStartDto {
 	private String region;
+	private String city;
 	private List<NewsDto> news;
 	private List<PropertyDto> property;
 }

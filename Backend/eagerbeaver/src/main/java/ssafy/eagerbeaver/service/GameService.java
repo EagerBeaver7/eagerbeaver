@@ -8,5 +8,6 @@ import java.util.List;
 public interface GameService {
 
     List<GameStartDto> gameStart() throws Exception;
+
     void gameOver(User user, int turn, double rate) throws Exception;
 }

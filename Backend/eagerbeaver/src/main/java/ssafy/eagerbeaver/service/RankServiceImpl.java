@@ -28,6 +28,7 @@ public class RankServiceImpl implements RankService{
 				.stream()
 				.map(Result::convertToRankDto)
 				.toList();
+
 			resultDtoList.add(ResultDto.builder()
 				.turn(turn).rankList(rankDtoList).build());
 		}

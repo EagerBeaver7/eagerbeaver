@@ -44,27 +44,8 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-// Querydsl 설정부
+// Querydsl 설정
 def generated = 'src/main/generated'
-
-//querydsl {
-//    jpa = true
-//    querydslSourcesDir = generated
-//}
-//sourceSets {
-//    main.java.srcDir generated
-//}
-//
-//compileQuerydsl{
-//    options.annotationProcessorPath = configurations.querydsl
-//}
-//
-//configurations {
-//    compileOnly {
-//        extendsFrom annotationProcessor
-//    }
-//    querydsl.extendsFrom compileClasspath
-//}
 
 clean {
     delete file('src/main/generated')

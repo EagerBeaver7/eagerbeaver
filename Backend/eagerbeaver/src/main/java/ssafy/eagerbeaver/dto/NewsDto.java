@@ -14,9 +14,7 @@ import ssafy.eagerbeaver.domain.NewsCategory;
 @AllArgsConstructor
 public class NewsDto {
 	private String title;
-	private String summary1;
-	private String summary2;
-	private String summary3;
+	private String summary;
 	private String publishedDt;
 	private NewsCategory category;
 }
