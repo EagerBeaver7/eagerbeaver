@@ -48,20 +48,5 @@ public class RedisConfig {
 			return template;
 		}
 
-		@Bean
-		public RedisTemplate<String, GameLog> redisEventTemplate(
-			RedisConnectionFactory redisConnectionFactory) {
-			RedisTemplate<String, GameLog> template = new RedisTemplate<>();
-			template.setConnectionFactory(redisConnectionFactory);
-			template.setKeySerializer(new StringRedisSerializer());
-			template.setValueSerializer(new StringRedisSerializer());
-			template.setHashKeySerializer(new StringRedisSerializer());
-			template.setHashValueSerializer(new StringRedisSerializer());
-			template.setEnableDefaultSerializer(false);
-			template.setEnableTransactionSupport(true);
-
-			return template;
-		}
-
 }
 

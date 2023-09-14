@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@RedisHash("logs")
+@RedisHash("gameLogs")
 @ToString
 @Getter
 @Setter
@@ -34,5 +34,11 @@ public class GameLog {
 		this.num = num;
 		this.rate = rate;
 		this.turn = turn;
+	}
+
+	public static GameLog from (GameLog gameLog){
+		return GameLog.builder().userId(gameLog.getUserId()).cityName(gameLog.getCityName())
+			.price(gameLog.getPrice()).num(gameLog.getNum()).rate(gameLog.getRate()).turn(gameLog.getTurn()).build();
+
 	}
 }
