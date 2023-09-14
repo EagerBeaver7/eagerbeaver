@@ -4,12 +4,14 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -34,6 +36,15 @@ public class JwtUtil {
 			.setExpiration(expirationDate)
 			.signWith(SIGNATURE_ALGORITHM, secretKey)
 			.compact();
+	}
+
+	public String getJwtFromHeader(HttpServletRequest request) {
+		String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
+
+		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
+			return bearerToken.substring(7);
+		}
+		return null;
 	}
 
 	public boolean validateJwt(String jwt) {
