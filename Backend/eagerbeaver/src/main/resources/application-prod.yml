@@ -23,10 +23,13 @@ spring:
     port: 4805
     password: EBroot
 
-
-
 logging:
   level:
     com.ground.swm : INFO
     org.hibernate.SQL: INFO
     org.hibernate.type.descriptor.sql.BasicBinder: INFO
+
+# kakao login 관련
+jwt:
+  secretKey:
+    eagerbeaversecretkeyhihellochillout

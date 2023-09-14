@@ -30,3 +30,8 @@ server:
     context-path: /api
   port:
     8080
+
+# kakao login 관련
+jwt:
+  secretKey:
+    eagerbeaversecretkeyhihellochillout
