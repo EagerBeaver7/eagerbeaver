@@ -1,38 +1,35 @@
-
-
-.main{
-    margin-top: 3%;
-    position: relative;
-
-    
-        .pro_title{
-            font-weight: bold;
-            font-size: 50px;
-            text-align: center;
-        }
-        
-        .pic_ava{
-            width: 100px;
-            height: 200px;
-        }
-
-        .start{    
-            position: absolute;
-            right: 21%;
-            margin-top: 2%;
-            height: 40px;
-            width: 80px;
-        }
-        
-        .pic{
-            align-content: center;
-            text-align: center;
-            margin-left: 20%;
-            margin-right: 20%;
-            margin-top: 5%;
-            width: 300;
-            height: 350;
-        }
+.pro_title{
+    font-weight: bold;
+    font-size: 35px;
+    text-align: center;
+    font-family: 'netmarbleB';
 }
+
+.pro_subtitle{
+    font-size: 15px;
+    text-align: center;
+    font-family: '116angduk_honesty15';
+}
+
+.pic{
+    width: auto;
+    margin-top: 1%;
+    margin-left: 21%;
+}
+
+.picList{
+    position: relative;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 4%;
+}
+
+.name{
+    text-align: center;
+    font-family: 'ONE-Mobile-POP';
+    background-color: #6B99C3;
+    opacity: 0.4;
+}
+
 
 

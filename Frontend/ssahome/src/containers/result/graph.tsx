@@ -32,10 +32,6 @@ export const options = {
         legend: {
             position: 'top' as const,
         },
-        title: {
-            display: true,
-            text: 'Chart.js Line Chart',
-        },
     },
 };
 
@@ -46,7 +42,7 @@ export const data = {
     labels,
     datasets: [
         {
-            label: 'Dataset 1',
+            label: '자산(씨드)',
             data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',

@@ -1,24 +1,42 @@
 import * as React from 'react';
-import { ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
+import { Button, ButtonGroup, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 import styles from './page.module.css';
 import Image from 'next/image';
+import beaver1 from "../../../public/img/IMG_0706.png";
+import beaver2 from "../../../public/img/IMG_0707.png";
+import beaver3 from "../../../public/img/IMG_0708.png";
+import beaver4 from "../../../public/img/IMG_0709.png";
+import beaver5 from "../../../public/img/IMG_0710.png";
+import beaver6 from "../../../public/img/IMG_0711.png";
+import Link from 'next/link';
+
 
 const BeaverAvata = () => {
+  const buttonClick = () => {
+
+  }
+
   return (
-    <ImageList className={styles.pic} cols={3} rowHeight={200}>
-      {itemData.map((item) => (
-        <ImageListItem key={item.img}>
-          <Image
-            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-            alt={item.title}
-            width={200}
-            height={150}
-            loading="lazy"
-          />
-          <ImageListItemBar position="below" title={item.author} />
-        </ImageListItem>
-      ))}
-    </ImageList>
+    <ButtonGroup className={styles.pic} >
+      <ImageList cols={3} rowHeight={280}>
+        {itemData.map((item) => (
+          <ImageListItem key={item.img} className={styles.picList}>
+            <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={buttonClick}>
+              <Link href="/main">
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  width={260}
+                  height={260}
+                  loading="lazy"
+                />
+                <ImageListItemBar className={styles.name} position="bottom" title={item.author} />
+              </Link>
+            </Button>
+          </ImageListItem>
+        ))}
+      </ImageList>
+    </ButtonGroup>
 
 
   );
@@ -26,34 +44,34 @@ const BeaverAvata = () => {
 
 const itemData = [
   {
-    img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
-    title: 'Bed',
-    author: '오늘도 열정적으로 집을 짓는 저스틴',
+    img: beaver1,
+    title: 'beaver1',
+    author: '제이미 올비버',
   },
   {
-    img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-    title: 'Books',
-    author: 'Pavel Nekoranec',
+    img: beaver2,
+    title: 'beaver2',
+    author: '구민석',
   },
   {
-    img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
-    title: 'Sink',
-    author: 'Charles Deluvio',
+    img: beaver3,
+    title: 'beaver3',
+    author: '뜨또',
   },
   {
-    img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
-    title: 'Kitchen',
-    author: 'Christian Mackie',
+    img: beaver4,
+    title: 'beaver4',
+    author: '저스틴',
   },
   {
-    img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
-    title: 'Blinds',
-    author: 'Darren Richardson',
+    img: beaver5,
+    title: 'beaver5',
+    author: '신입비버',
   },
   {
-    img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
-    title: 'Chairs',
-    author: 'Taylor Simpson',
+    img: beaver6,
+    title: 'beaver6',
+    author: 'なるほど',
   },
 ];
 
