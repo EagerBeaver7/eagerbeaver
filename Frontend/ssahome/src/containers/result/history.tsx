@@ -1,15 +1,15 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, styled } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import * as React from 'react';
 import styles from './page.module.css';
 
 function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
+    region: string,
+    num: number,
+    buy: number,
+    sell: number,
+    profit: number,
 ) {
-    return { name, calories, fat, carbs, protein };
+    return { region, num, buy, sell, profit };
 }
 
 const rows = [
@@ -26,27 +26,29 @@ const History = () => {
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
-                        <TableRow>
-                            <TableCell>Dessert (100g serving)</TableCell>
-                            <TableCell align="right">Calories</TableCell>
-                            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableRow sx={{ backgroundColor: '#C2C3C5', opacity: 0.5 }}>
+                            <TableCell align="center">No</TableCell>
+                            <TableCell align="center">지역</TableCell>
+                            <TableCell align="center">수량</TableCell>
+                            <TableCell align="center">매입가</TableCell>
+                            <TableCell align="center">매매가</TableCell>
+                            <TableCell align="center">수익률</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => (
                             <TableRow
-                                key={row.name}
+                                key={row.region}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell component="th" scope="row">
-                                    {row.name}
+                                <TableCell align="center">1</TableCell>
+                                <TableCell align="center" component="th" scope="row">
+                                    {row.region}
                                 </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
+                                <TableCell align="center">{row.num}</TableCell>
+                                <TableCell align="center">{row.buy}</TableCell>
+                                <TableCell align="center">{row.sell}</TableCell>
+                                <TableCell align="center">{row.profit}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
