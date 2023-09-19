@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
-import cardimg1 from "../../../public/img/card_img1.png"
+import cardimg1 from "../../../public/images/card_img1.png"
 
 const Section4: React.FC = () => (
   <div className={`${styles.bg} ${styles.section4} ${styles.background4}`}>
@@ -26,7 +26,7 @@ const Section4: React.FC = () => (
               />
             </div>
           </div>
-          <div className={styles.cards_text}> 
+          <div className={styles.cards_text}>
             <div className={styles.text_title}>
               무료 플레이
             </div>
@@ -47,7 +47,7 @@ const Section4: React.FC = () => (
               />
             </div>
           </div>
-          <div className={styles.cards_text}> 
+          <div className={styles.cards_text}>
             <div className={styles.text_title}>
               무료 플레이
             </div>
@@ -68,7 +68,7 @@ const Section4: React.FC = () => (
               />
             </div>
           </div>
-          <div className={styles.cards_text}> 
+          <div className={styles.cards_text}>
             <div className={styles.text_title}>
               무료 플레이
             </div>
@@ -89,7 +89,7 @@ const Section4: React.FC = () => (
               />
             </div>
           </div>
-          <div className={styles.cards_text}> 
+          <div className={styles.cards_text}>
             <div className={styles.text_title}>
               무료 플레이
             </div>
@@ -98,7 +98,7 @@ const Section4: React.FC = () => (
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
