@@ -53,7 +53,7 @@ public class JwtUtil {
 	 	return null;
 	 }
 
-	 public boolean validateJwt(String jwt) {
+	 public boolean validateToken(String jwt) {
 	 	try {
 	 		Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody();
 	 		return true;

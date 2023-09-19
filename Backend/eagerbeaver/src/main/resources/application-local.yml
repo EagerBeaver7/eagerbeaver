@@ -4,8 +4,8 @@ spring:
       on-profile: local
   datasource:
     url: jdbc:mysql://localhost:3306/eagerbeaver
-    username: root
-    password: ssafy
+    username: EB
+    password: kbsw2jEB!
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
@@ -31,6 +31,11 @@ server:
   port:
     8080
 
-# kakao login 관련
+# kakao 관련
+kakao:
+  rest-api-key: 7ea82d8a610fe51bcf3eca267069b264 # 이전 플젝꺼 임시로 가져옴
+  redirect-uri: http://localhost:9000/api/auth/login # 프론트 연결 시 url은 다름
+
+# 자체 jwt 관련
 jwt:
   secret: eagerbeaversecretkeyhihellochillout
