@@ -1,0 +1,35 @@
+.pro_title{
+    font-weight: bold;
+    font-size: 35px;
+    text-align: center;
+    font-family: 'netmarbleB';
+}
+
+.pro_subtitle{
+    font-size: 15px;
+    text-align: center;
+    font-family: '116angduk_honesty15';
+}
+
+.pic{
+    width: auto;
+    margin-top: 1%;
+    margin-left: 21%;
+}
+
+.picList{
+    position: relative;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 4%;
+}
+
+.name{
+    text-align: center;
+    font-family: 'ONE-Mobile-POP';
+    background-color: #6B99C3;
+    opacity: 0.4;
+}
+
+
+

@@ -1,0 +1,18 @@
+.GameMain {
+  position: absolute;
+  top: 0;
+  left: 18%;
+  width: 64%;
+  height: 100%;
+  background-color: white;
+
+  .GameHeader {
+    display: flex;
+    justify-content: space-between;
+    height: 7%; 
+  }
+
+  .GameMap {
+    height: 93%;
+  }
+}

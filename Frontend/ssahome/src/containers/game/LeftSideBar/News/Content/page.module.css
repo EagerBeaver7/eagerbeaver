@@ -1,0 +1,8 @@
+.Content {
+  padding: 1vh;  
+  .wrap {
+    width: 100%;
+    height: 1vh;
+    background-color: #FFF;
+  }
+}
