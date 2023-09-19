@@ -8,7 +8,7 @@ pipeline {
 	stages {
 		stage('React Build') {
 			steps {
-				dir('Frontend') {
+				dir('Frontend/ssahome') {
 					sh 'npm install'
 					sh 'npm run build'
 				}
