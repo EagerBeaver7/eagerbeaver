@@ -1,0 +1,66 @@
+.party{
+    transform: scaleX(-1);
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.table{
+    margin: 20px;
+    height: 370px;
+    width: 700px;
+}
+
+.main{
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.pic{
+    width: 650px;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.footer{
+    margin-top: 0.5%;
+    margin-left: 16%;
+}
+
+.finish{
+    position: absolute;
+    width: auto;
+    bottom: 6%;
+    right: 23%;
+}
+
+.graph{
+    margin: 20px;
+    height: 370px;
+    width: 700px;
+}
+
+.rankTitle{
+    display: flex;
+    justify-content: center;
+}
+
+.rank{
+    display: flex;  
+    flex-direction: row;
+    height: 405px;
+    width: 300px;
+}
+
+.profile{
+    width: 100px;
+    height: 120px;
+    margin: 0;
+}

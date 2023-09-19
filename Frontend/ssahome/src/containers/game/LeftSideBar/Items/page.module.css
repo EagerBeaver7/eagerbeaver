@@ -1,0 +1,50 @@
+.Items {
+  .wrap {
+    width: 90%;
+    height: 43vh;
+    background-color: #6B99C3;
+    border-radius: 20px;
+    padding-top: 1vh;
+  }
+  .button {
+    width: 100%;
+    height: 10vh;
+  }
+
+  .PriceWrap {
+    width: 95%;
+    height: 42vh;
+    border-radius: 20px;
+    background-color: white;
+    text-align: center;
+  }
+
+  .NewsWrap {
+    text-align: center;
+    .NewsContent {
+      width: 95%;
+      height: 20vh;
+      border-radius: 20px;
+      background-color: white;
+      margin-bottom: 2vh;
+    }
+  }
+
+  .SearchWrap {
+    text-align: center;
+    .SearchButton {
+      width: 95%; 
+      height: 5vh;
+      border-radius: 20px;
+      background-color: white;
+      margin-bottom: 1vh;
+    }
+    .SearchContent {
+      width: 95%;
+      height: 36vh;
+      border-radius: 20px;
+      background-color: white;
+    }
+  }
+
+}
