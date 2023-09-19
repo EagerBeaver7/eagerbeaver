@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import { Button } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import HomeImge from "../../../public/img/HomeImg1.png"
+import HomeImge from "../../../public/images/HomeImg1.png"
 
 const Section1: React.FC = () => (
 	<div className={`${styles.bg} ${styles.section1} `} >
