@@ -2,10 +2,10 @@
 import React from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
-import cardimg1 from "../../../public/img/card_img1.png"
-import cardimg2 from "../../../public/img/card_img2.png"
-import cardimg3 from "../../../public/img/card_img3.png"
-import cardimg4 from "../../../public/img/card_img4.png"
+import cardimg1 from "../../../public/images/card_img1.png"
+import cardimg2 from "../../../public/images/card_img2.png"
+import cardimg3 from "../../../public/images/card_img3.png"
+import cardimg4 from "../../../public/images/card_img4.png"
 
 
 const Section2: React.FC = () => (
