@@ -52,7 +52,7 @@
     width: 120vh; /* 이미지의 가로 크기 대비 비율로 설정 (예: 80%) */
     height: 5h; /* 이미지의 가로 크기 대비 비율로 설정 (예: 80%) */
     padding-top: 30%; /* 이미지의 세로 크기 대비 비율로 설정 (예: 30%) */
-    background:  url('../../../public/img/blackboard.png'); /* public 폴더 내의 이미지 경로 */
+    background:  url('../../../public/images/blackboard.png'); /* public 폴더 내의 이미지 경로 */
     background-size: 100% 100%; /* 배경 이미지를 100% 너비, 100% 높이로 설정 */
     background-repeat: no-repeat; /* 이미지 반복 표시 방지 */
 }
