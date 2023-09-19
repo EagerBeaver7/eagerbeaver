@@ -1,3 +1,6 @@
+'use client';
+
+
 import * as React from 'react';
 import { Button, ButtonGroup, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 import styles from './page.module.css';
