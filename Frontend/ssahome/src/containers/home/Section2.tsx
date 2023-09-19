@@ -12,10 +12,10 @@ const Section2: React.FC = () => (
   <div className={`${styles.bg} ${styles.section2} ${styles.background2}`}>
     <div className={styles.centerText1}>
       <div className={styles.center}>
-       어려운 부동산 
+        어려운 부동산
       </div>
       <div className={styles.center}>
-       게임으로 쉽고 재밌게 
+        게임으로 쉽고 재밌게
       </div>
     </div>
 
@@ -32,7 +32,7 @@ const Section2: React.FC = () => (
             />
           </div>
         </div>
-        <div className={styles.cards_text}> 
+        <div className={styles.cards_text}>
           <div className={styles.text_title}>
             무료 플레이
           </div>
@@ -53,7 +53,7 @@ const Section2: React.FC = () => (
             />
           </div>
         </div>
-        <div className={styles.cards_text}> 
+        <div className={styles.cards_text}>
           <div className={styles.text_title}>
             부동산 용어
           </div>
@@ -74,7 +74,7 @@ const Section2: React.FC = () => (
             />
           </div>
         </div>
-        <div className={styles.cards_text}> 
+        <div className={styles.cards_text}>
           <div className={styles.text_title}>
             실제 뉴스와 가격 정보
           </div>
@@ -95,7 +95,7 @@ const Section2: React.FC = () => (
             />
           </div>
         </div>
-        <div className={styles.cards_text}> 
+        <div className={styles.cards_text}>
           <div className={styles.text_title}>
             랭킹 시스템
           </div>
