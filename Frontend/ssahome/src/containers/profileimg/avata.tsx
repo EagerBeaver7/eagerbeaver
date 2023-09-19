@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Button, ButtonGroup, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 import styles from './page.module.css';
 import Image from 'next/image';
-import beaver1 from "C:\Users\SSAFY\eagerbeaver\Frontend\ssahome\public\img\IMG_0706.PNG";
-import beaver2 from "C:\Users\SSAFY\eagerbeaver\Frontend\ssahome\public\img\IMG_0707.PNG";
-import beaver3 from "C:\Users\SSAFY\eagerbeaver\Frontend\ssahome\public\img\IMG_0708.PNG";
-import beaver4 from "C:\Users\SSAFY\eagerbeaver\Frontend\ssahome\public\img\IMG_0709.PNG";
-import beaver5 from "C:\Users\SSAFY\eagerbeaver\Frontend\ssahome\public\img\IMG_0710.PNG";
-import beaver6 from "C:\Users\SSAFY\eagerbeaver\Frontend\ssahome\public\img\IMG_0711.PNG";
+import beaver1 from "../../../public/img/IMG_0706.png";
+import beaver2 from "../../../public/img/IMG_0707.png";
+import beaver3 from "../../../public/img/IMG_0708.png";
+import beaver4 from "../../../public/img/IMG_0709.png";
+import beaver5 from "../../../public/img/IMG_0710.png";
+import beaver6 from "../../../public/img/IMG_0711.png";
 import Link from 'next/link';
 
 
