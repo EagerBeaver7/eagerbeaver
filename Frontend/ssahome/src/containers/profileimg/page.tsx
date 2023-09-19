@@ -1,8 +1,7 @@
-'use client';
 
 import * as React from 'react';
 import styles from './page.module.css';
-import { Typography, Button } from '@mui/material';
+import { Typography } from '@mui/material';
 import BeaverAvata from './avata';
 
 const ProfileImgPage = () => {
