@@ -1,5 +1,3 @@
-'use client';
-
 
 import * as React from 'react';
 import { Button, ButtonGroup, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
@@ -23,7 +21,7 @@ const BeaverAvata = () => {
     <ButtonGroup className={styles.pic} >
       <ImageList cols={3} rowHeight={280}>
         {itemData.map((item) => (
-          <ImageListItem key={item.img} className={styles.picList}>
+          <ImageListItem key={'item.img'} className={styles.picList}>
             <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={buttonClick}>
               <Link href="/main">
                 <Image
