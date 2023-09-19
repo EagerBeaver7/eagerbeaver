@@ -3,12 +3,12 @@ import * as React from 'react';
 import { Button, ButtonGroup, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 import styles from './page.module.css';
 import Image from 'next/image';
-import beaver1 from "src/img/IMG_0706.png";
-import beaver2 from "src/img/IMG_0707.png";
-import beaver3 from "src/img/IMG_0708.png";
-import beaver4 from "src/img/IMG_0709.png";
-import beaver5 from "src/img/IMG_0710.png";
-import beaver6 from "src/img/IMG_0711.png";
+import beaver1 from "../../../public/images/IMG_0706.png";
+import beaver2 from "../../../public/images/IMG_0707.png";
+import beaver3 from "../../../public/images/IMG_0708.png";
+import beaver4 from "../../../public/images/IMG_0709.png";
+import beaver5 from "../../../public/images/IMG_0710.png";
+import beaver6 from "../../../public/images/IMG_0711.png";
 import Link from 'next/link';
 
 
