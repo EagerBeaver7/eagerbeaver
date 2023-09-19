@@ -3,12 +3,12 @@ import * as React from 'react';
 import { Button, ButtonGroup, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 import styles from './page.module.css';
 import Image from 'next/image';
-import beaver1 from "../../../public/img/IMG_0706.png";
-import beaver2 from "../../../public/img/IMG_0707.png";
-import beaver3 from "../../../public/img/IMG_0708.png";
-import beaver4 from "../../../public/img/IMG_0709.png";
-import beaver5 from "../../../public/img/IMG_0710.png";
-import beaver6 from "../../../public/img/IMG_0711.png";
+import beaver1 from "/public/img/IMG_0706.png";
+import beaver2 from "/public/img/IMG_0707.png";
+import beaver3 from "/public/img/IMG_0708.png";
+import beaver4 from "/public/img/IMG_0709.png";
+import beaver5 from "/public/img/IMG_0710.png";
+import beaver6 from "/public/img/IMG_0711.png";
 import Link from 'next/link';
 
 
@@ -21,7 +21,7 @@ const BeaverAvata = () => {
     <ButtonGroup className={styles.pic} >
       <ImageList cols={3} rowHeight={280}>
         {itemData.map((item) => (
-          <ImageListItem key={'${process.env.PUBLIC_URL}' + item.img} className={styles.picList}>
+          <ImageListItem key={'${process.env.PUBLIC_URL} + item.img'} className={styles.picList}>
             <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={buttonClick}>
               <Link href="/main">
                 <Image
