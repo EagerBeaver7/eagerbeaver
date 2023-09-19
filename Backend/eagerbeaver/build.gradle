@@ -50,3 +50,5 @@ def generated = 'src/main/generated'
 clean {
     delete file('src/main/generated')
 }
+
+jar.enabled = false
