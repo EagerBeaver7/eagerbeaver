@@ -18,7 +18,7 @@ pipeline {
 		stage('Docker Build') {
 			steps {
 				dir('Frontend') {
-					sh 'docker build -t [여러분의 서비스 이름]:latest .'
+					sh 'docker build -t eagerbeaver:latest .'
 				}
 			}
 		}
@@ -27,7 +27,7 @@ pipeline {
 			steps{
 				sh 'docker rm -f front'
 				sh 'docker run -d --name front -p 3126:3126 -u root
-					[여러분의 서비스 이름]:latest'
+					eagerbeaver:latest'
 				}
 		}
 
