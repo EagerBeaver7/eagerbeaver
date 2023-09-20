@@ -1,0 +1,32 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://j9a507.p.ssafy.io:3426/eagerbeaver
+    username: EB
+    password: kbsw2jEB!
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: create
+
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+    defer-datasource-initialization: true   #-> data.sql을 사용하기 위해 추가
+
+  redis:
+    host: j9a507.p.ssafy.io
+    port: 4805
+    password: EBroot
+
+
+
+logging:
+  level:
+    com.ground.swm : INFO
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO

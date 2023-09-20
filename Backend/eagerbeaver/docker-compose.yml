@@ -1,0 +1,51 @@
+version: "3.8"
+services:
+  mysql:   # MySql Container
+    image: mysql:8.0
+    container_name: eagerbeaver-mysql
+    restart: always
+    ports:
+      - 3426:3306 # HOST:CONTAINER
+    environment:
+      MYSQL_ROOT_PASSWORD: kbsw2jEB!
+      MYSQL_DATABASE: eagerbeaver
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+
+  jenkins:  # Jenkins Container
+    image: jenkins/jenkins:lts
+    container_name: eagerbeaver-jenkins
+    volumes:
+      - /usr/bin/docker:/usr/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/jenkins_home:/var/jenkins_home
+    ports:
+      - 8859:8080
+    privileged: true
+    user: root
+    restart: unless-stopped
+
+  redis:  # Redis Container
+    image: redis:latest
+    container_name: eagerbeaver-redis
+    ports:
+      - 4805:6379
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    volumes:
+      - redis/data:/data
+    restart: unless-stopped
+
+  nginx:  # Nginx Container
+    image: nginx
+    container_name: eagerbeaver-nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/nginx/conf.d:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt
+    restart: unless-stopped

@@ -14,13 +14,12 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
 const steps = [
   {
-    label: 'Select campaign settings',
-    description: `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions,
-              For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions,
-              For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, `,
+    label: '수인분당선 2026년 개통 ',
+    description: `디씨알이는 사업비 491억원과 학익역 운영 시 예상되는 영업손실 보전금 연 4억5000만원을 부담한다. 국가철도공단(KR)과 한국철도공사(korail, 코레일)은 사업 시행과 운영을 맡고 인천시는 학익역 건설에 행정지원을 하기로 했다.
+
+    코레일과 KR은 올해 하반기 2단계 사업을 위한 기본·실시 설계를 완료한 후 내년 상반기 착공할 계획이다. 이르면 2026년 상반기 개통하는 게 목표다.
+    
+    `,
   },
   {
     label: 'Create an ad group',
@@ -63,10 +62,15 @@ const Content = () => {
               alignItems: 'center',
               height: 25,
               pl: 2,
-              bgcolor: '#6B99C3',
+              bgcolor: '#fff',
             }}
           >
-            <Typography>{steps[activeStep].label}</Typography>
+            <Typography
+            sx={{
+              fontFamily:'Dovemayo_gothic',
+              fontSize: 20,
+            }}
+            >{steps[activeStep].label}</Typography>
           </Paper>
           <Box sx={{ height: 180, maxWidth: 180, width: '100%', p: 2, overflowY: 'auto'}}>
             {steps[activeStep].description}
@@ -77,13 +81,16 @@ const Content = () => {
             position="static"
             activeStep={activeStep}
             sx={{
-              bgcolor: '#6B99C3',
+              bgcolor: '#fff',
             }}
             nextButton={
               <Button
                 size="small"
                 onClick={handleNext}
                 disabled={activeStep === maxSteps - 1}
+                sx={{
+                  fontFamily:'Dovemayo_gothic',
+                }}
               >
                 Next
                 {theme.direction === 'rtl' ? (
@@ -94,7 +101,9 @@ const Content = () => {
               </Button>
             }
             backButton={
-              <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+              <Button size="small" onClick={handleBack} disabled={activeStep === 0} sx={{
+                fontFamily:'Dovemayo_gothic',
+              }}>
                 {theme.direction === 'rtl' ? (
                   <KeyboardArrowRight />
                 ) : (

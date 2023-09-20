@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./page.module.css";
-import  {Button}  from "@mui/material";
+import { Button } from "@mui/material";
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
