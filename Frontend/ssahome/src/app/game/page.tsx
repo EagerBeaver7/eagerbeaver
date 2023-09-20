@@ -1,5 +1,5 @@
-import Game from 'src/containers/Game/page';
+import GamePage from 'src/containers/game/page';
 
-const GamePage = async () => <Game />;
+const GamePage = async () => <GamePage />;
 
 export default GamePage;
