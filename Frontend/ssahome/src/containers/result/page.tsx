@@ -9,8 +9,8 @@ import RankList from './rank';
 import Image from 'next/image';
 import Graph from './graph';
 import History from './history';
-import winner from '../../../public/img/free-icon-confetti-4525694.png';
-import party from '../../../public/img/free-icon-championship-award-4798145.png';
+import winner from '../../../public/images/free-icon-confetti-4525694.png';
+import party from '../../../public/images/free-icon-championship-award-4798145.png';
 
 const ResultPage = () => {
   const [report, setReport] = React.useState(true);
