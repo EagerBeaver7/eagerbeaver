@@ -39,9 +39,5 @@ pipeline {
             }
         }
 
-        // 완료 스테이지: 더이상 사용되지 않는 Docker 이미지를 제거합니다.
-        stage('Finish') {
-
-        }
     }
 }
