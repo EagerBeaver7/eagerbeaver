@@ -5,7 +5,7 @@ import GameMain from '@/containers/game/GameMain/page';
 import RightSideBar from '@/containers/game/RightSideBar/page';
 
 
-const GamePage = () => {
+const Game = () => {
   return (
     <div className={styles.game}>
       <LeftSideBar />
@@ -15,4 +15,4 @@ const GamePage = () => {
   );
 };
 
-export default GamePage;
+export default Game;
