@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import styles from "./page.module.css";
 
 function createData(
   ranking: number,
@@ -25,19 +26,19 @@ const rows = [
 export default function BasicTable() {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ width: '10%', height:'10%',spacing: 10}} aria-label="simple table">
+      <Table sx={{ width: '100%', height:'20%',spacing: 10}} aria-label="simple table">
         <TableBody>
           {rows.map((row) => (
             <TableRow
               key={row.ranking}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className={styles.check2}>
                 {row.ranking}
               </TableCell>
-              <TableCell align="right">{row.profile}</TableCell>
-              <TableCell align="right">{row.nickname}&nbsp;(님)</TableCell>
-              <TableCell align="right">{row.earningRate}&nbsp;(%)</TableCell>
+              <TableCell align="right" className={styles.check2}>{row.profile}</TableCell>
+              <TableCell align="right" className={styles.check2}>{row.nickname}&nbsp;(님)</TableCell>
+              <TableCell align="right" className={styles.check2}>{row.earningRate}&nbsp;(%)</TableCell>
             </TableRow>
           ))}
         </TableBody>
