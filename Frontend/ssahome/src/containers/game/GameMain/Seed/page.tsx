@@ -4,7 +4,9 @@ import styles from './page.module.css'
 const Seed = () => {
   return (
     <div className={styles.Seed}>
-      100,000
+      <button type="button" className={styles.button}>
+        100,000
+      </button>
     </div>
   );
 };

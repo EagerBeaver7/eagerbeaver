@@ -4,6 +4,7 @@ import LeftSideBar from '@/containers/game/LeftSideBar/page';
 import GameMain from '@/containers/game/GameMain/page';
 import RightSideBar from '@/containers/game/RightSideBar/page';
 
+
 const GamePage = () => {
   return (
     <div className={styles.game}>

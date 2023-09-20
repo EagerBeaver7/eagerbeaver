@@ -3,15 +3,18 @@
   .wrap {
     width: 90%;
     height: 30vh;
-    background-color: #6B99C3;
-    border-radius: 20px;
-    margin: 3vh auto;
+    background-color: #fff;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 10px;
+    margin: 1.5vh auto;
     padding-top: 1vh;
+    font-family: 'Dovemayo_gothic';
+    font-size: 20px;
 
     .RegionDetail{
       width: 95%; 
       height: 20vh;
-      border-radius: 20px;
+      border-radius: 10px;
       background-color: white;
       margin-bottom: 1vh;
     }
@@ -19,9 +22,35 @@
     .ButtonWrap {
       width: 95%; 
       height: 8vh;
-      border-radius: 20px;
+      border-radius: 10px;
       background-color: white;
       margin-bottom: 1vh;
+      display: flex;
+
+      .button {
+        color: black;
+        background-color: #fff;
+        font-weight: 600;
+        border-radius: 2rem;
+        font-size: 1rem;
+        line-height: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        border: none;
+        border: 2px solid #222;
+      }
+    }
+    .IconButtonWrap {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      left: 12vh;
+      top: 23vh;
     }
   }
 }
