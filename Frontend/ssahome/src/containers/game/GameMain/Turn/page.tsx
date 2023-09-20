@@ -4,7 +4,9 @@ import styles from './page.module.css'
 const Turn = () => {
   return (
     <div className={styles.TurnWrap}>
-      1 / 10
+      <button type="button" className={styles.button}>
+        1 / 10
+      </button>
     </div>
   );
 };

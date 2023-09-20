@@ -12,13 +12,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 const startBar = () => {
   return (
     <div className={styles.StartBar1}>
-      <div className={styles.cont}>
-        <div>
-          <img src="images/beaver.gif" style={{ width: '100%', height: '100%', margin: '0', padding: '0' }} />
-        </div>
+      <div>
+
+      </div>
+      <div>
         <div className={styles.turn}>
           <FormControl>
-            <FormLabel id="demo-row-radio-buttons-group-label">턴수</FormLabel>
+            <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check}>턴수</FormLabel>
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
@@ -33,21 +33,31 @@ const startBar = () => {
         <br></br>
         <div className={styles.time}>
           <FormControl>
-            <FormLabel id="demo-row-radio-buttons-group-label">제한시간</FormLabel>
-            <RadioGroup
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-            >
-              <FormControlLabel value="90" control={<Radio />} label="90초" />
-              <FormControlLabel value="180" control={<Radio />} label="180초" />
-              <FormControlLabel value="300" control={<Radio />} label="300초" />
-            </RadioGroup>
-          </FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check} >제한시간</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel value="90" control={<Radio />} label="90초" />
+                <FormControlLabel value="180" control={<Radio />} label="180초" />
+                <FormControlLabel value="300" control={<Radio />} label="300초" />
+              </RadioGroup>
+            </FormControl>
         </div>
+        <br></br>
         <div className={styles.bb}>
-          <Button variant="outlined" className={`${styles.bnt} `} >시작</Button>
+          <Button variant="outlined"  className={`${styles.stbnt} `} >시작</Button>
         </div>
+      </div>
+      <div>
+
+      </div>
+      <div>
+          <img src="img/beaver.gif" style={{ width: '300px', height: '300px%', margin: '0',padding:'0'}}/>
+      </div>
+      <div>
+        
       </div>
     </div>
   );

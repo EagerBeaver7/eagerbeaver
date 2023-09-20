@@ -2,9 +2,12 @@
   .wrap {
     width: 90%;
     height: 40vh;
-    background-color: #6B99C3;
-    border-radius: 20px;
-    margin: 3vh auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
+    margin: 1.5vh auto;
+    font-family: 'Dovemayo_gothic';
+    font-size: 20px;
   }
   .content{
     width: 100%;
