@@ -10,6 +10,8 @@ pipeline {
 			steps {
 				dir('Frontend/ssahome') {
 					sh 'npm install'
+					sh 'npm i react-chartjs-2'
+					sh 'npm i @faker-js/faker'
 					sh 'npm run build'
 				}
 			}
