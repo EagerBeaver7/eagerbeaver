@@ -8,16 +8,16 @@ pipeline {
 	stages {
 		stage('React Build') {
 			steps {
-				dir('Frontend') {
+				dir('Frontend/ssahome') {
 					sh 'npm install'
-					sh 'npm run dev'
+					sh 'npm run build'
 				}
 			}
 		}
 
 		stage('Docker Build') {
 			steps {
-				dir('Frontend') {
+				dir('Frontend/ssahome') {
 					sh 'docker build -t eagerbeaver:latest .'
 				}
 			}
