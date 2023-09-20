@@ -1,10 +1,6 @@
 pipeline {
 	agent any
 
-	tools {
-		nodejs "nodejs-18.17.1"
-	}
-
 	stages {
 		stage('React Build') {
 			steps {
