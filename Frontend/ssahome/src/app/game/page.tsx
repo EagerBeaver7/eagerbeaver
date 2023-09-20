@@ -1,4 +1,4 @@
-import Game from 'src/containers/game/page';
+import Game from 'src/containers/Game/page';
 
 const GamePage = async () => <Game />;
 

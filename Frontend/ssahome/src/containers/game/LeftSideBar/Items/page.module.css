@@ -2,9 +2,12 @@
   .wrap {
     width: 90%;
     height: 43vh;
-    background-color: #6B99C3;
-    border-radius: 20px;
+    background-color: #fff;
+    border-radius: 10px;
     padding-top: 1vh;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
+    font-family: 'Dovemayo_gothic';
+    font-size: 20px;
   }
   .button {
     width: 100%;
@@ -14,8 +17,8 @@
   .PriceWrap {
     width: 95%;
     height: 42vh;
-    border-radius: 20px;
-    background-color: white;
+    border-radius: 10px;
+    background-color: rgba(217, 217, 217, 0.58);
     text-align: center;
   }
 
@@ -24,8 +27,8 @@
     .NewsContent {
       width: 95%;
       height: 20vh;
-      border-radius: 20px;
-      background-color: white;
+      border-radius: 10px;
+      background-color: rgba(217, 217, 217, 0.58);
       margin-bottom: 2vh;
     }
   }
@@ -35,15 +38,15 @@
     .SearchButton {
       width: 95%; 
       height: 5vh;
-      border-radius: 20px;
-      background-color: white;
+      border-radius: 10px;
+      background-color: rgba(217, 217, 217, 0.58);
       margin-bottom: 1vh;
     }
     .SearchContent {
       width: 95%;
       height: 36vh;
-      border-radius: 20px;
-      background-color: white;
+      border-radius: 10px;
+      background-color: rgba(217, 217, 217, 0.58);
     }
   }
 
