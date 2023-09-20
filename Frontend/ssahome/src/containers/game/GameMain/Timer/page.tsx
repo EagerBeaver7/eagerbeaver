@@ -29,7 +29,7 @@ const Timer = () => {
     }
   }, [timeSecond]);
 
-  function formatTime(second) {
+  function formatTime(second: number) {
     const min = Math.floor(second / 60);
     const sec = second % 60;
     return `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
