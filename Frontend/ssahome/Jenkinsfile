@@ -1,10 +1,6 @@
 pipeline {
 	agent any
 
-	tools {
-		nodejs "nodejs"
-	}
-
 	stages {
 		stage('React Build') {
 			steps {
@@ -26,8 +22,7 @@ pipeline {
 		stage('Deploy') {
 			steps{
 				sh 'docker rm -f front'
-				sh 'docker run -d --name front -p 3126:3126 -u root
-					eagerbeaver:latest'
+				sh 'docker run -d --name front -p 3126:3126 eagerbeaver:latest'
 				}
 		}
 
