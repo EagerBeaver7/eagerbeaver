@@ -1,7 +1,4 @@
 'use client';
-
-import CelebrationIcon from '@mui/icons-material/Celebration';
-
 import * as React from 'react';
 import styles from './page.module.css';
 import { Button, ButtonGroup, Card, CardContent, Typography } from '@mui/material';
