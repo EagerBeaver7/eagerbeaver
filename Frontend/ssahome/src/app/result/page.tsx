@@ -1,5 +1,5 @@
-import Result from 'src/containers/result/page';
+import Result from '@/containers/result/page';
 
-const ResultPage = async() => <Result />;
+const ResultPage = async () => <Result />;
 
 export default ResultPage;

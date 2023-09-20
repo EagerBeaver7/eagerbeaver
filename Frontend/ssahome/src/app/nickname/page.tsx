@@ -1,5 +1,5 @@
-import NickName from 'src/containers/nickname/page';
+import NickName from '@/containers/nickname/page';
 
-const NickNamePage = async() => <NickName />;
+const NickNamePage = async () => <NickName />;
 
 export default NickNamePage;
