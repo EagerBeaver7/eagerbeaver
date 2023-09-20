@@ -6,7 +6,7 @@ import  {Button}  from "@mui/material";
 
 const rankingPage = () => {
   return (
-    <div>
+    <div className={styles.rankbar}>
         <div className={styles.rankContainerTxt}>
             누가누가 잘하나
         </div>
@@ -15,18 +15,21 @@ const rankingPage = () => {
                 <div className={styles.rankCenter}>
                     10턴
                 </div>
+                <br></br>
                 <RankingTable></RankingTable>
             </div>
             <div className={styles.rankmidleContent}>
                 <div className={styles.rankCenter}>
                     15턴
                 </div>
+                <br></br>
                 <RankingTable></RankingTable>
             </div>
             <div className={styles.rankrightContent}>
                 <div className={styles.rankCenter}>
                     20턴
                 </div>
+                <br></br>
                 <RankingTable></RankingTable>
             </div>
         </div>
