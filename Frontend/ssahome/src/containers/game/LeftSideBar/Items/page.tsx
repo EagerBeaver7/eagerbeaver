@@ -101,6 +101,7 @@ const Items = () => {
           onOpen={handleOpen}
           open={open}
           direction={direction}
+          sx={{ '& .MuiFab-primary': { backgroundColor: 'rgba(150, 120, 120, 0.58)', color: 'white', '&:hover': {backgroundColor: 'rgba(150, 120, 120, 0.58)'}  } }}
         >
           {actions.map((action) => (
             <SpeedDialAction
