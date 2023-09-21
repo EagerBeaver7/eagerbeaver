@@ -29,4 +29,15 @@ server:
   servlet:
     context-path: /api
   port:
-    8080
+    9000
+
+# kakao 관련
+kakao:
+  rest-api-key: 45ea23576846eddff5204386c19df7b2
+  redirect-uri: http://localhost:8080/api/auth/login # 백 테스트 전용
+#  redirect-uri: http://localhost:3000/nickname # application-local 전용
+#  redirect-uri: http://j9a507.p.ssafy.io/nickname # application-prod 전용
+
+# 자체 jwt 관련
+jwt:
+  secret: eagerbeaversecretkeyhihellochillout
