@@ -1,0 +1,43 @@
+* {
+  margin: auto;
+  padding: auto;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+p {
+  font-size: 30px;
+}
+
+@font-face {   /* 원스토어 모바일POP체 */
+  font-family: 'ONE-Mobile-POP';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {   /* 둘기마요 */
+  font-family: 'Dovemayo_gothic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {    /* 넷마블체 */
+  font-family: 'netmarbleB';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {    /* 앵덕정직 */
+  font-family: '116angduk_honesty15';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/116angduk_honesty15.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+

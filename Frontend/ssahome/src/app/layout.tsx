@@ -1,4 +1,6 @@
+import React from 'react';
 import './globals.css'
+import Header from './_common/Header/page';
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -13,7 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <head />
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   )
 }

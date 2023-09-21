@@ -1,0 +1,27 @@
+.Purchase {
+  text-align: center;
+  .wrap {
+    width: 90%;
+    height: 30vh;
+    background-color: #6B99C3;
+    border-radius: 20px;
+    margin: 3vh auto;
+    padding-top: 1vh;
+
+    .RegionDetail{
+      width: 95%; 
+      height: 20vh;
+      border-radius: 20px;
+      background-color: white;
+      margin-bottom: 1vh;
+    }
+    
+    .ButtonWrap {
+      width: 95%; 
+      height: 8vh;
+      border-radius: 20px;
+      background-color: white;
+      margin-bottom: 1vh;
+    }
+  }
+}
