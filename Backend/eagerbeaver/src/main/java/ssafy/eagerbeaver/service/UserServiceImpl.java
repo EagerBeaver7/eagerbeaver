@@ -109,6 +109,15 @@ public class UserServiceImpl implements UserService {
         return userInfo;
     }
 
+    @Override
+    public boolean checkNickname(String nickname) {
+        Optional<User> user = userRepository.findByNickname(nickname);
+        if (!user.isPresent()) {
+            return false;
+        }
+        return true;
+    }
+
     private User join(User user) {
         return userRepository.save(user);
     }
@@ -117,7 +126,7 @@ public class UserServiceImpl implements UserService {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder(16);
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 10; i++) {
             sb.append(characters.charAt(random.nextInt(characters.length())));
         }
         return sb.toString();

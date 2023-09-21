@@ -9,4 +9,5 @@ import ssafy.eagerbeaver.domain.User;
 public interface UserRepository extends JpaRepository<User, Short> {
 
     Optional<User> findByEmail(String email);
+    Optional<User> findByNickname(String nickname);
 }

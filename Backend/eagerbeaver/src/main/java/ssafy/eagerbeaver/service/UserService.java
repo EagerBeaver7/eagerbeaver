@@ -9,5 +9,7 @@ public interface UserService {
     public String getKakaoMemberInfo(String token);
     public Map<String, Object> login(String email);
 
-//    void modifyNickname(String nickname);
+	boolean checkNickname(String nickname);
+
+	//    void modifyNickname(String nickname);
 }
