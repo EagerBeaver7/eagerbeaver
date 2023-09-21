@@ -65,7 +65,7 @@ public class WordServiceImp implements WordService{
 		// 이제 남은 것은?
 		// 해당되는 word.class를 wordDto에 넣어주고
 		for(int idx2 = 0; idx2 < 3; idx2++){
-			result[idx2] = new WordDto(wordRepository.findById(randomId[idx2]).get());
+			result[idx2] = WordDto.builder().id(wordRepository.findById(randomId[idx2]).get().getId()).content(wordRepository.findById(randomId[idx2]).get().getContent()).meaning(wordRepository.findById(randomId[idx2]).get().getMeaning()).build();
 		}
 
 	}
