@@ -21,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import ssafy.eagerbeaver.domain.User;
 import ssafy.eagerbeaver.repository.UserRepository;
+import ssafy.eagerbeaver.util.JwtUtil;
 
 @Slf4j
 @Service
@@ -42,6 +43,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String getKakaoAccessToken(String code) {
+        System.out.println("kakaoApiKey:" + kakaoApiKey);
+        System.out.println("kakaoRedirectUri: " + kakaoRedirectUri);
+
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
@@ -88,8 +92,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Map<String, Object> login(String email) {
         Map<String, Object> userInfo = new HashMap<>();
+        JwtUtil jwtUtil = new JwtUtil();
 
         Optional<User> user = userRepository.findByEmail(email);
+        System.out.println(user.toString());
         if (!user.isPresent()) {
             User newUser = new User(email, generateRandomNickname());
             userInfo.put("user", join(newUser));
@@ -98,6 +104,7 @@ public class UserServiceImpl implements UserService {
             userInfo.put("user", user);
             userInfo.put("isNew", false);
         }
+        userInfo.put("jwt", jwtUtil.generateJwt(email));
 
         return userInfo;
     }

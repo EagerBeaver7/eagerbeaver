@@ -11,10 +11,9 @@ import ssafy.eagerbeaver.util.JwtUtil;
 
 @Component
 @Slf4j
-@RequiredArgsConstructor
 public class ValidTokenInterceptor implements HandlerInterceptor {
 
-    private final JwtUtil jwtUtil;
+    private JwtUtil jwtUtil = new JwtUtil();
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object Handler) throws Exception {

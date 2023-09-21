@@ -40,7 +40,7 @@ public class User {
 	private String profileImg;
 
 	@OneToMany(mappedBy = "user")
-	private ArrayList<Result> resultList;
+	private List<Result> resultList = new ArrayList<>();
 
 	public User(String email, String nickname) {
 		this.email = email;
