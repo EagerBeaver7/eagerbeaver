@@ -24,14 +24,8 @@ public class WordServiceImp implements WordService{
 
 
 	// 랜덤으로 용어 3개 생성하기
-	// 매일 랜덤으로 3개를 뽑는데 그 뽑은 것을 하루동안 변화없이 가지고 있는 방법을 모르겠어요...
 	@Scheduled(fixedRate = 86400000) // 시연용으로 메소드 실행하고나서 하루씩 갱신
 	public void choiceRandomWord(){
-
-		// 굳이 용어 다 가져오지 않고
-		// random으로 id 값 3개 구해서
-		// 해당되는 word.class를 wordDto에 넣어주고
-		// list로 묶어서 controller에 보내주기
 
 		// 먼저 용어 table의 전체 데이터 개수
 		wordId = wordRepository.findAll().size()-1;
@@ -68,8 +62,10 @@ public class WordServiceImp implements WordService{
 
 		// 이제 남은 것은?
 		// 해당되는 word.class를 wordDto에 넣어주고
+		// 이제 남은 것은?
+		// 해당되는 word.class를 wordDto에 넣어주고
 		for(int idx2 = 0; idx2 < 3; idx2++){
-			result[idx2] = WordDto.builder().id(wordRepository.findById(randomId[idx2]).get().getId()).content(wordRepository.findById(randomId[idx2]).get().getContent()).meaning(wordRepository.findById(randomId[idx2]).get().getMeaning()).build();
+			result[idx2] = new WordDto(wordRepository.findById(randomId[idx2]).get());
 		}
 
 	}
