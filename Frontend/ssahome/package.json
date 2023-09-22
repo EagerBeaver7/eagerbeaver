@@ -14,10 +14,7 @@
     "@faker-js/faker": "^8.1.0",
     "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.10",
-<<<<<<< HEAD
-=======
     "@types/axios": "^0.14.0",
->>>>>>> 09531ad0f3a05161a859ce8113a7838fee34cb97
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
