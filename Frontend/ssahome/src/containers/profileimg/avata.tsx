@@ -13,8 +13,9 @@ import Link from 'next/link';
 
 
 const BeaverAvata = () => {
-  const buttonClick = () => {
-
+  const nickname = localStorage.getItem("nickname");
+  const buttonClick = async(imgUrl: string) => {
+    
   }
 
   return (
@@ -22,7 +23,7 @@ const BeaverAvata = () => {
       <ImageList cols={3} rowHeight={280}>
         {itemData.map((item) => (
           <ImageListItem key={item.author} className={styles.picList}>
-            <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={buttonClick}>
+            <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={()=>buttonClick(item.title)}>
               <Link href="/main">
                 <Image
                   src={item.img}
