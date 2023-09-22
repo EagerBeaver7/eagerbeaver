@@ -1,22 +1,41 @@
 'use client'
 
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import styles from './page.module.css';
 import { Button } from '@mui/material';
 import axios from "axios";
 import Link from 'next/link';
+import {debounce} from "lodash";
+
+// debounce 쓸거지롱
 
 const NickNamePage: React.FC = () => {
   const [inputCount, setInputCount] = useState<number>(0);
   const [inputValue, setInputValue] = useState<string>('');
+  const [inputUserId, setInputUserId] = useState<String>(''); // BE에서 userId 받아오기
+  const [isDuplicate, setIsDuplcate] = useState<boolean>(false); // 중복여부상태추가
+
+  // debounce 함수를 사용하여 GET 요청을 보내는 함수
+  const debounceSearch = debounce(async (value: string) => {
+    const response = await axios.get('http://localhost:8200/api/${value}');
+    setIsDuplcate(response.data); // 백에서 받은 데이터를 상태에 설정
+  }, 100);
 
   const onInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value.length <= 10) {
       setInputValue(value);
       setInputCount(value.length);
+
+      // debounce 함수 호출
+      debounceSearch(value);
     }
   };
+
+  // 입력 값이 변경될 때([inputValue]) 중복 여부 초기화
+  useEffect(() => {
+    setIsDuplcate(false);
+  },[inputValue]);
 
   return (
     <main className={styles.nickname}>
@@ -37,7 +56,7 @@ const NickNamePage: React.FC = () => {
             <span>/10</span>
           </div>
         </div>
-        {inputValue.length > 0 && (
+        {inputValue.length > 0 && isDuplicate && (
           <div className={styles.message}>
             * 중복된 닉네임입니다.
           </div>
