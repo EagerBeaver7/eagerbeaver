@@ -11,6 +11,7 @@ pipeline {
 				dir('Frontend/ssahome') {
 					sh 'npm install'
 					sh 'npm run build'
+					sh 'npm run start'
 				}
 			}
 		}
