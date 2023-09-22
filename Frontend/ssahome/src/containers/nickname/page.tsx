@@ -4,20 +4,20 @@ import React, { useState, ChangeEvent, useEffect } from 'react';
 import styles from './page.module.css';
 import { Button } from '@mui/material';
 import axios from "axios";
-import Link from 'next/link';
 import { debounce } from "lodash";
+import { useRouter } from 'next/navigation';
 
 // debounce 쓸거지롱
 
 const NickNamePage: React.FC = () => {
   const [inputCount, setInputCount] = useState<number>(0);
   const [inputValue, setInputValue] = useState<string>('');
-  const [inputUserId, setInputUserId] = useState<String>(''); // BE에서 userId 받아오기
-  const [isDuplicate, setIsDuplcate] = useState<boolean>(false); // 중복여부상태추가
+  const [isDuplicate, setIsDuplcate] = useState<boolean>(false); // 중복 여부 상태 추가
+  const router = useRouter();
 
   // debounce 함수를 사용하여 GET 요청을 보내는 함수
   const debounceSearch = debounce(async (value: string) => {
-    const response = await axios.get('http://localhost:9000/api/${value}');
+    const response = await axios.get(`http://localhost:9000/api/nickname/${value}`);
     setIsDuplcate(response.data); // 백에서 받은 데이터를 상태에 설정
   }, 100);
 
@@ -29,6 +29,7 @@ const NickNamePage: React.FC = () => {
 
       // debounce 함수 호출
       debounceSearch(value);
+      
     }
   };
 
@@ -36,6 +37,23 @@ const NickNamePage: React.FC = () => {
   useEffect(() => {
     setIsDuplcate(false);
   },[inputValue]);
+
+ 
+  // 다음 버튼 누르면 닉네임이 프로필 화면으로 넘어간다.
+  const handleDetailPost = () => {
+
+    if(inputCount === 0 || inputValue.trim() === ''){
+      alert("닉네임 설정이 필요합니다.");
+    } else if(isDuplicate){
+      alert("중복된 닉네임이 있습니다. 변경해주세요");
+    } else {
+    localStorage.setItem(
+      "nickname",
+      JSON.stringify(inputValue)
+    );
+    router.push('/profileimg');
+    }
+  };
 
   return (
     <main className={styles.nickname}>
@@ -58,13 +76,11 @@ const NickNamePage: React.FC = () => {
         </div>
         {inputValue.length > 0 && isDuplicate && (
           <div className={styles.message}>
-            * 중복된 닉네임입니다.
+            * 중복된 닉네임입니다. *
           </div>
         )}
       </div>
-      <Link href="/profileimg" className={styles.btnLink}>
-        <Button className={styles.start}>다음</Button>
-      </Link>
+        <Button className={styles.start} onClick={() => handleDetailPost()}>다음</Button>
     </main>
   );
 };
