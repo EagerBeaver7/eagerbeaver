@@ -17,7 +17,7 @@ const BeaverAvata = () => {
   const buttonClick = (i) => {
     const num = i + 1;
     // 사진을 선택했을 때 userId, NickName, profileimg가 같이 넘어가게! JSON 형식으로 주자
-    axios.put('http://j9a507.p.ssafy.io/profileimg/' , {num: num});
+    axios.put('http://jlocalhost:8200/api/profileimg/' , {num: num});
   }
 
   return (
