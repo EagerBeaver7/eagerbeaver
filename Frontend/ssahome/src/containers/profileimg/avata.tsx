@@ -17,15 +17,21 @@ const BeaverAvata = () => {
   const buttonClick = (i) => {
     const num = i + 1;
     // 사진을 선택했을 때 userId, NickName, profileimg가 같이 넘어가게! JSON 형식으로 주자
-    axios.put('http://jlocalhost:8200/api/profileimg/' , {num: num});
+    axios.put('http://localhost:9000/api/profileimg/' , {num: num});
   }
 
   return (
     <ButtonGroup className={styles.pic} >
       <ImageList cols={3} rowHeight={280}>
+<<<<<<< HEAD
         {itemData.map((item, i) => (
           <ImageListItem key={item.author} className={styles.picList}>
             <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={()=>{buttonClick(i)}}>
+=======
+        {itemData.map((item) => (
+          <ImageListItem key={item.author} className={styles.picList}>
+            <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={buttonClick}>
+>>>>>>> 09531ad0f3a05161a859ce8113a7838fee34cb97
               <Link href="/main">
                 <Image
                   src={item.img}

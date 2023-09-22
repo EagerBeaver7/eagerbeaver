@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import Link from "next/link";
 import { ROUTES } from './constants';
@@ -7,6 +8,7 @@ import Image from 'next/image';
 import Logo from '../../../../public/images/Logo.png';
 
 const Header = () => {
+  
 
   return (
     <header className={styles.appHeader}>

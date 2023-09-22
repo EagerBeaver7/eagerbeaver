@@ -1,14 +1,18 @@
 'use client';
-import React , { useState }from 'react';
+
+import React , { useState, useEffect }from 'react';
 import  {Button}  from "@mui/material";
 import styles from "./page.module.css";
 import StartBar from "./startBar";
 import Ranking from '@/containers/main/ranking';
+import axios from 'axios';
+
 
 const MainPage = () => {
   const [isOpen, setMenu] = useState(true); // 메뉴의 초기값을 false로 설정
   const [isOpen2, setMenu2] = useState(true); // 메뉴의 초기값을 false로 설정
-
+  const [word, setWord] = useState("");
+  const [content, setContent] = useState("");
 
   const toggleMenu = () => {
     console.log(isOpen);
@@ -20,6 +24,15 @@ const MainPage = () => {
     setMenu2((isOpen2) => !isOpen2); // on, off 개념 boolean
   };
 
+  useEffect(() =>{
+    axios.get('http://localhost:9000/api/word')
+    .then(response =>{
+      setWord(response.data[1].content);
+      setContent(response.data[1].meaning);
+      }
+    )
+    .catch(error => console.log(error))
+  },)
 
   return (
     
@@ -36,11 +49,11 @@ const MainPage = () => {
           <img src="img/sweethome.png" style={{ width: '500px', height: '400px', margin: '0',padding:'0'}}/>
         </div>
         <div className={styles.wordTitle}>
-          랄랄랄
+          {word}
         </div>
         <br></br>
         <div className={styles.wordContents}>
-          신날때 쓰는 표현으로 가나다라마바사 에이비씨디이에프지
+          {content}
         </div>
       </div>
       <div className={styles.GridItemL}>
