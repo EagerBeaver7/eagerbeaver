@@ -5,7 +5,7 @@ import styles from './page.module.css';
 import { Button } from '@mui/material';
 import axios from "axios";
 import Link from 'next/link';
-import {debounce} from "lodash";
+import { debounce } from "lodash";
 
 // debounce 쓸거지롱
 
