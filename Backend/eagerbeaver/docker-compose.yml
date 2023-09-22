@@ -19,9 +19,9 @@ services:
     image: jenkins/jenkins:lts
     container_name: eagerbeaver-jenkins
     volumes:
-      - /usr/bin/docker:/usr/bin/docker
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker      
       - /var/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 8859:8080
     privileged: true

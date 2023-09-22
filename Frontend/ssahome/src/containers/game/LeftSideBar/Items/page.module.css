@@ -19,34 +19,175 @@
     height: 42vh;
     border-radius: 10px;
     background-color: rgba(217, 217, 217, 0.58);
-    text-align: center;
+    
+    .PriceTitle {
+      font-size: 25px;
+      font-weight: bold;
+      padding-top: 1vh;
+      padding-left: 1vh;
+    }
+    .PriceContent {
+      font-size: 20px;
+      padding-top: 1vh;
+      padding-left: 1vh;
+    }
+    .ButtonWrap{
+      position: relative;
+      top: 19vh;
+      left: 17vh;
+      .Button{
+        color: black;
+        background-color: #fff;
+        font-weight: 600;
+        border-radius: 2rem;
+        font-size: 1rem;
+        line-height: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        border: none;
+        border: 2px solid #222;
+      }
+    }
   }
 
   .NewsWrap {
-    text-align: center;
+    
     .NewsContent {
       width: 95%;
       height: 20vh;
       border-radius: 10px;
       background-color: rgba(217, 217, 217, 0.58);
       margin-bottom: 2vh;
+
+      .NewsTitle1 {
+        font-size: 25px;
+        font-weight: bold;
+        padding-top: 1vh;
+        padding-left: 1vh;
+      }
+
+      .NewsTitle2 {
+        font-size: 18px;
+        padding-left: 1vh;
+      }
+      .NewsButtonWrap2{
+        position: relative;
+        left: 17vh;
+        bottom: 1vh;
+        .NewsButton {
+          color: black;
+          background-color: #fff;
+          font-weight: 600;
+          border-radius: 2rem;
+          font-size: 1rem;
+          line-height: 1rem;
+          padding-left: 2rem;
+          padding-right: 2rem;
+          padding-top: 0.7rem;
+          padding-bottom: 0.7rem;
+          text-align: center;
+          display: inline-flex;
+          align-items: center;
+          border: none;
+          border: 2px solid #222;
+        }
+
+      }
+      .NewsButtonWrap{
+        position: relative;
+        left: 17vh;
+        top: 2vh;
+
+        .NewsButton {
+          color: black;
+          background-color: #fff;
+          font-weight: 600;
+          border-radius: 2rem;
+          font-size: 1rem;
+          line-height: 1rem;
+          padding-left: 2rem;
+          padding-right: 2rem;
+          padding-top: 0.7rem;
+          padding-bottom: 0.7rem;
+          text-align: center;
+          display: inline-flex;
+          align-items: center;
+          border: none;
+          border: 2px solid #222;
+        }
+      }
     }
   }
 
   .SearchWrap {
-    text-align: center;
     .SearchButton {
-      width: 95%; 
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      width: 93%; 
       height: 5vh;
       border-radius: 10px;
-      background-color: rgba(217, 217, 217, 0.58);
       margin-bottom: 1vh;
+      padding-left: 1vh;
+      
+      .search_input {
+        font-family: inherit;
+        font-size: inherit;
+        background-color: rgba(217, 217, 217, 0.58);
+        border: none;
+        width: 93%;
+        padding: 0.5rem 0.7rem;
+        color: #646464;
+        border-radius: 10px;
+        transition: all ease-in-out .5s;
+        margin-left: -0.4rem;
+      }
+      .search_input:hover, .search_input:focus {
+        box-shadow: 0 0 1em #00000013;
+      }
+      .search_input:focus {
+        outline: none;
+        background-color: #f0eeee;
+      }
+      
+      .search_input::-webkit-input-placeholder {
+        font-weight: 100;
+        color: #ccc;
+      }
+      
+      .search_input:focus + .search_button {
+        background-color: #f0eeee;
+      }
+      
+      .search_button {
+        border: none;
+        border-radius: 50px;
+        background-color: rgba(217, 217, 217, 0.58);
+      }
+      
+      .search_button:hover {
+        cursor: pointer;
+      }
+      
+      .search_icon {
+        height: 2.5em;
+        width: 1.8em;
+        fill: #b4b4b4;
+      }
     }
     .SearchContent {
-      width: 95%;
-      height: 36vh;
+      width: 93%;
+      height: 35vh;
       border-radius: 10px;
       background-color: rgba(217, 217, 217, 0.58);
+      padding-left: 1vh;
+      padding-top: 1vh;
     }
   }
 

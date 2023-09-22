@@ -1,11 +1,15 @@
 import React from 'react';
 import styles from './page.module.css'
+interface TurnProps {
+  currentTurn: number;
+}
 
-const Turn = () => {
+function Turn({ currentTurn }: TurnProps) {
+
   return (
     <div className={styles.TurnWrap}>
       <button type="button" className={styles.button}>
-        1 / 10
+        3 / 10
       </button>
     </div>
   );
