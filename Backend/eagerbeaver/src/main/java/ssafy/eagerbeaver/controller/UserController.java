@@ -28,6 +28,7 @@ public class UserController {
         String email = userService.getKakaoMemberInfo(accessToken);
         Map<String, Object> userInfo = userService.login(email);
 
+
         return new ResponseEntity<>(userInfo, HttpStatus.OK);
 
     }
