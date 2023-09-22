@@ -20,6 +20,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import ssafy.eagerbeaver.domain.User;
+import ssafy.eagerbeaver.dto.NicknameSetReq;
 import ssafy.eagerbeaver.repository.UserRepository;
 import ssafy.eagerbeaver.util.JwtUtil;
 
@@ -93,18 +94,17 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> login(String email) {
         Map<String, Object> userInfo = new HashMap<>();
         JwtUtil jwtUtil = new JwtUtil();
-
+        Short id = -1;
         Optional<User> user = userRepository.findByEmail(email);
-        System.out.println(user.toString());
         if (!user.isPresent()) {
-            User newUser = new User(email, generateRandomNickname());
+            User newUser = new User(email, null);
             userInfo.put("user", join(newUser));
             userInfo.put("isNew", true);
         } else {
             userInfo.put("user", user);
             userInfo.put("isNew", false);
         }
-        userInfo.put("jwt", jwtUtil.generateJwt(email));
+        userInfo.put("jwt", jwtUtil.generateJwt(email, id));
 
         return userInfo;
     }
@@ -118,6 +118,12 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Override
+    public boolean setNickname(Short id, String nickname) {
+        boolean result = userRepository.updateNickname(id, nickname);
+        return result;
+    }
+
     private User join(User user) {
         return userRepository.save(user);
     }
@@ -125,7 +131,7 @@ public class UserServiceImpl implements UserService {
     private String generateRandomNickname() {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder(16);
+        StringBuilder sb = new StringBuilder(10);
         for (int i = 0; i < 10; i++) {
             sb.append(characters.charAt(random.nextInt(characters.length())));
         }
