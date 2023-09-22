@@ -23,15 +23,9 @@ const BeaverAvata = () => {
   return (
     <ButtonGroup className={styles.pic} >
       <ImageList cols={3} rowHeight={280}>
-<<<<<<< HEAD
         {itemData.map((item, i) => (
           <ImageListItem key={item.author} className={styles.picList}>
             <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={()=>{buttonClick(i)}}>
-=======
-        {itemData.map((item) => (
-          <ImageListItem key={item.author} className={styles.picList}>
-            <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={buttonClick}>
->>>>>>> 09531ad0f3a05161a859ce8113a7838fee34cb97
               <Link href="/main">
                 <Image
                   src={item.img}
