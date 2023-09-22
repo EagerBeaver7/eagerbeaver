@@ -6,12 +6,12 @@ import StartBar from "./startBar";
 import Ranking from '@/containers/main/ranking';
 import axios from 'axios';
 
-
 const MainPage = () => {
   const [isOpen, setMenu] = useState(true); // 메뉴의 초기값을 false로 설정
   const [isOpen2, setMenu2] = useState(true); // 메뉴의 초기값을 false로 설정
   const [word, setWord] = useState("");
   const [content, setContent] = useState("");
+
 
   const toggleMenu = () => {
     console.log(isOpen);

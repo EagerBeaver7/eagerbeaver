@@ -5,7 +5,7 @@ import { ROUTES } from './constants';
 import Session from "./Session";
 import styles from './page.module.css';
 import Image from 'next/image';
-import Logo from '../../../../public/images/Logo.png';
+import Logo from '../../../../public/images/Logo.png'
 
 const Header = () => {
   
