@@ -54,7 +54,7 @@ const startBar = () => {
 
       </div>
       <div>
-          <img src="img/beaver.gif" style={{ width: '300px', height: '300px%', margin: '0',padding:'0'}}/>
+          {/* <img src="img/beaver.gif" style={{ width: '300px', height: '300px%', margin: '0',padding:'0'}}/> */}
       </div>
       <div>
         
