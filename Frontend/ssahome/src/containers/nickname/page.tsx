@@ -17,7 +17,7 @@ const NickNamePage: React.FC = () => {
 
   // debounce 함수를 사용하여 GET 요청을 보내는 함수
   const debounceSearch = debounce(async (value: string) => {
-    const response = await axios.get('http://localhost:8200/api/${value}');
+    const response = await axios.get('http://localhost:9000/api/${value}');
     setIsDuplcate(response.data); // 백에서 받은 데이터를 상태에 설정
   }, 100);
 
