@@ -4,6 +4,7 @@
   justify-content: center;
   width: 20%;
   font-size: 30px;
+  margin-top: 2vh;
 
   .Timer {
     display: flex;

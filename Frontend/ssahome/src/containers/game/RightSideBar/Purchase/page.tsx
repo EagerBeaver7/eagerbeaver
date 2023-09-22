@@ -18,7 +18,7 @@ const Item = muistyled(Paper)(({ theme }) => ({
 }));
 
 const Purchase = () => {
-  const [maxPuerchaseNum, setMaxPurchaseNum] = useState(0);
+  const [maxPuerchaseNum, setMaxPurchaseNum] = useState(1);
 
   // maxPuerchaseNum 값 변경
   const handleMaxUserNumChange = (value: number) => {
@@ -31,7 +31,15 @@ const Purchase = () => {
     <div className={styles.Purchase}>
       <div className={styles.wrap}>
         <div className={styles.RegionDetail}>
-          지역 상세정보
+          <div className={styles.RegionTitle}>
+            지역 상세정보
+          </div>
+          <div className={styles.RegionName}>
+            지역명 : 강남구
+          </div>
+          <div className={styles.RegionPrice}>
+            구매가 : 70,000
+          </div>
         </div>
         <div className={styles.ButtonWrap}>
           <Item>{maxPuerchaseNum}</Item>
