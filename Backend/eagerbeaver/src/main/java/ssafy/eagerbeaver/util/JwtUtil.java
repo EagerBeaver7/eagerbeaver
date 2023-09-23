@@ -32,7 +32,7 @@ public class JwtUtil {
 
 	public String generateJwt(String email, Short id) {
 		Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
-		Map<String, Object> claims = new HashMap<>();z
+		Map<String, Object> claims = new HashMap<>();
 		claims.put("email", email);
 		claims.put("id", id);
 
