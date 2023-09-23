@@ -38,6 +38,12 @@ public class ExControllerAdvice {
     }
 
     @ExceptionHandler
+    public ResponseEntity<ErrorResult> argExHandle(IllegalArgumentException e) {
+        ErrorResult errorResult = new ErrorResult("ARG-EX", e.getMessage());
+        return new ResponseEntity<>(errorResult, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
     public ResponseEntity<ErrorResult> exHandle(Exception e) {
         ErrorResult errorResult = new ErrorResult("EX",e.getMessage());
         return new ResponseEntity<>(errorResult, HttpStatus.INTERNAL_SERVER_ERROR);
