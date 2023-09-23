@@ -17,19 +17,20 @@ const NickNamePage: React.FC = () => {
 
   // debounce 함수를 사용하여 GET 요청을 보내는 함수
   const debounceSearch = debounce(async (value: string) => {
-    const response = await axios.get(`http://localhost:9000/api/nickname/${value}`);
-    setIsDuplcate(response.data); // 백에서 받은 데이터를 상태에 설정
+    
+    if(value.length > 0){
+      const response = await axios.get(`http://localhost:9000/api/nickname/${value}`);
+      setIsDuplcate(response.data); // 백에서 받은 데이터를 상태에 설정
+    }
   }, 100);
 
   const onInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (value.length <= 10) {
+    if (value.length >= 0 && value.length <= 10) {
       setInputValue(value);
       setInputCount(value.length);
-
       // debounce 함수 호출
       debounceSearch(value);
-      
     }
   };
 
