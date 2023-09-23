@@ -11,7 +11,7 @@ public interface UserService {
     public String getKakaoMemberInfo(String token);
     public Map<String, Object> login(String email);
 	boolean checkNickname(String nickname);
-	boolean setNickname(Short id, String nickname);
+	int setUserInfo(Short id, String nickname, int imgNum);
 
 	//    void modifyNickname(String nickname);
 }

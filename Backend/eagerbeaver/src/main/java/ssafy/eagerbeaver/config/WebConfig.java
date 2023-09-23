@@ -13,7 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
 //     public void addInterceptors(InterceptorRegistry registry) {
 //         registry.addInterceptor(new ValidTokenInterceptor())
 //             .addPathPatterns("/**")
-//             .excludePathPatterns("/api/auth/**");
+//             .excludePathPatterns("/api/auth/**", "/api/nickname/**/{*}");
 // //            .excludePathPatterns("/swagger-resources/**", "/swagger-ui/**", "/v3/api-docs", "/swagger-ui/index.html") // swagger 사용 미정
 //     }
 
@@ -26,5 +26,4 @@ public class WebConfig implements WebMvcConfigurer {
             .allowCredentials(true)
             .maxAge(3600);
     }
-
 }

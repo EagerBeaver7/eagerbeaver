@@ -20,7 +20,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import ssafy.eagerbeaver.domain.User;
-import ssafy.eagerbeaver.dto.NicknameSetReq;
 import ssafy.eagerbeaver.repository.UserRepository;
 import ssafy.eagerbeaver.util.JwtUtil;
 
@@ -119,9 +118,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean setNickname(Short id, String nickname) {
-        boolean result = userRepository.updateNickname(id, nickname);
-        return result;
+    public int setUserInfo(Short id, String nickname, int imgNum) {
+        int setUserInfoResult = userRepository.updateUserInfo(id, nickname, imgNum);
+        return setUserInfoResult;
     }
 
     private User join(User user) {

@@ -8,13 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ssafy.eagerbeaver.domain.User;
-import ssafy.eagerbeaver.dto.NicknameSetReq;
+import ssafy.eagerbeaver.dto.UserInfoSetReq;
 import ssafy.eagerbeaver.service.UserService;
 import ssafy.eagerbeaver.util.JwtUtil;
 import ssafy.eagerbeaver.util.UserContextHolder;
@@ -48,16 +47,10 @@ public class UserController {
     /*
     닉네임 설정
      */
-    @PostMapping("/nickname")
-    public ResponseEntity<?> setNickname(@RequestBody NicknameSetReq nicknameSetReq) {
+    @PutMapping("/user")
+    public ResponseEntity<?> setNickname(@RequestBody UserInfoSetReq req) {
         Short id = UserContextHolder.userIdHolder.get();
-        boolean result = userService.setNickname(id, nicknameSetReq.getNickname());
+        int result = userService.setUserInfo(id, req.getNickname(), req.getImgNum());
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-
-    // /*
-    // 프로필 이미지 설정
-    //  */
-    // @PostMapping("/profileimg/{imgnumber}")
-
 }
