@@ -51,6 +51,10 @@ public class UserController {
     public ResponseEntity<?> setNickname(@RequestBody UserInfoSetReq req) {
         Short id = UserContextHolder.userIdHolder.get();
         int result = userService.setUserInfo(id, req.getNickname(), req.getImgNum());
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
+        if (result == 0) {
+            return new ResponseEntity<>("유저 정보를 등록할 수 없습니다.", HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>("유저 정보 등록 성공", HttpStatus.CREATED);
+        }
     }
 }

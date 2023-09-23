@@ -30,7 +30,7 @@ public class GameController {
 
 	@PostMapping("/gameover")
 	public ResponseEntity<Void> gameOver(@RequestParam double rate, @RequestParam int turn) throws Exception {
-		User tmpUser = new User("이것은 임시 유저입니다.", "임시유저", "임시유저");
+		User tmpUser = new User("이것은 임시 유저입니다.", "임시유저", 1);
 		gameService.gameOver(tmpUser, turn, rate);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

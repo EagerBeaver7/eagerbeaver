@@ -93,7 +93,6 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> login(String email) {
         Map<String, Object> userInfo = new HashMap<>();
         JwtUtil jwtUtil = new JwtUtil();
-        Short id = -1;
         Optional<User> user = userRepository.findByEmail(email);
         if (!user.isPresent()) {
             User newUser = new User(email, null);
@@ -103,6 +102,7 @@ public class UserServiceImpl implements UserService {
             userInfo.put("user", user);
             userInfo.put("isNew", false);
         }
+        Short id = user.get().getId();
         userInfo.put("jwt", jwtUtil.generateJwt(email, id));
 
         return userInfo;
