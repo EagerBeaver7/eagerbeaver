@@ -15,6 +15,11 @@
     align-items: center;
     justify-content: center;
   }
+
+  .btnLink {
+    text-decoration: none;
+  }
+  
   .title {
     font-weight: bold;
     font-size: 50px;
