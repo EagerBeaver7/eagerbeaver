@@ -1,7 +1,7 @@
 FROM nginx:stable-alpine
 WORKDIR /app
 RUN mkdir ./.next
-ADD ./.next ./build
+ADD ./.next ./.next
 RUN rm /etc/nginx/conf.d/default.conf
 COPY ./front.conf /etc/nginx/conf.d
 EXPOSE 3126
