@@ -48,11 +48,16 @@ public class News {
 	@Column(name = "published_dt", columnDefinition = "char(8)")
 	private String publishedDt;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "news_category", length = 20)
+	private NewsCategory category;
+
 	public News(Region region, String title, String summary, String publishedDt, NewsCategory category) {
 		this.region = region;
 		this.title = title;
 		this.summary = summary;
 		this.publishedDt = publishedDt;
+		this.category = category;
 	}
 
 	public NewsDto convertToDto() {
@@ -60,6 +65,7 @@ public class News {
 			.title(this.title)
 			.summary(this.summary)
 			.publishedDt(this.publishedDt)
+			.category(this.category)
 			.build();
 	}
 }
