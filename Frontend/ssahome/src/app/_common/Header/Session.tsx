@@ -58,6 +58,7 @@ const Session = () => {
             );
             router.push('/nickname');
           }
+          alert("가입해주셔서 감사합니다. 닉네임 설정을 부탁드립니다.");
           console.log(jwtToken.data);
           
         })

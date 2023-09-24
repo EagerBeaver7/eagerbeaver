@@ -5,6 +5,8 @@ import styles from "./page.module.css";
 import StartBar from "./startBar";
 import Ranking from '@/containers/main/ranking';
 import axios from 'axios';
+import home from "../../../public/img/sweethome.png"
+import Image from "next/image";
 
 const MainPage = () => {
   const [isOpen, setMenu] = useState(true); // 메뉴의 초기값을 false로 설정
@@ -46,7 +48,7 @@ const MainPage = () => {
       </div>
       <div>
         <div>
-          <img src="img/sweethome.png" style={{ width: '500px', height: '400px', margin: '0',padding:'0'}}/>
+          <Image src={home} alt="slide" width={500} height={400}></Image>
         </div>
         <div className={styles.wordTitle}>
           {word}
@@ -68,7 +70,7 @@ const MainPage = () => {
       <div className={isOpen ? styles['show-menu3'] : styles['hide-menu3']}>
         <StartBar></StartBar>
       </div>
-      <div className={isOpen2 ? styles['show-menu3'] : styles['hide-menu3']}>
+      <div className={isOpen2 ? styles['show-menu2'] : styles['hide-menu2']}>
         <Ranking></Ranking>
       </div>
 

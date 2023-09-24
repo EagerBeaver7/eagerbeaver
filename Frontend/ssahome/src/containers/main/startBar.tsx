@@ -6,6 +6,8 @@ import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import beavor from "../../../public/images/beaver.gif"
+import Image from "next/image";
 
 
 
@@ -54,7 +56,7 @@ const startBar = () => {
 
       </div>
       <div>
-          {/* <img src="img/beaver.gif" style={{ width: '300px', height: '300px%', margin: '0',padding:'0'}}/> */}
+          <Image src={beavor} alt="slide" width={300} height={300}></Image>
       </div>
       <div>
         
