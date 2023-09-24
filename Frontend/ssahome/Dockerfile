@@ -1,5 +1,6 @@
 FROM nginx:stable-alpine
 WORKDIR /app
+RUN mkdir ./.next
 COPY ./.next ./.next
 RUN rm /etc/nginx/conf.d/default.conf
 COPY ./front.conf /etc/nginx/conf.d
