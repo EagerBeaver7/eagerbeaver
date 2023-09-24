@@ -10,19 +10,30 @@ import beaver4 from "../../../public/images/IMG_0709.png";
 import beaver5 from "../../../public/images/IMG_0710.png";
 import beaver6 from "../../../public/images/IMG_0711.png";
 import Link from 'next/link';
+import axios from "axios";
 
 
 const BeaverAvata = () => {
-  const buttonClick = () => {
+  const buttonClick = (i) => {
+    const nickName = localStorage.getItem("nickname");
+    const imgNum = i + 1;
+    const data = {
+      "nickName": nickName,
+      "imgNum": imgNum
+    }
 
+    console.log(data);
+    
+    // 사진을 선택했을 때 userId, NickName, profileimg가 같이 넘어가게! JSON 형식으로 주자
+    axios.put('http://localhost:9000/api/user' , data);
   }
 
   return (
     <ButtonGroup className={styles.pic} >
       <ImageList cols={3} rowHeight={280}>
-        {itemData.map((item) => (
+        {itemData.map((item, i) => (
           <ImageListItem key={item.author} className={styles.picList}>
-            <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={buttonClick}>
+            <Button sx={{ boxShadow: 5, outlineColor: '#6B99C3' }} onClick={()=>{buttonClick(i)}}>
               <Link href="/main">
                 <Image
                   src={item.img}
