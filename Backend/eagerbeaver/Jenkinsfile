@@ -7,7 +7,7 @@ pipeline {
             steps {
                 // 'Backend' 디렉터리 내에서 작업을 실행합니다.
                 dir('Backend/eagerbeaver') {
-                    sh 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64'
+                    // sh 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64'
 
                     // gradlew 실행 권한 부여
                     sh 'chmod +x gradlew'
