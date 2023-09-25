@@ -9,10 +9,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import beavor from "../../../public/images/beaver.gif"
 import Image from "next/image";
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 
 
 const startBar = () => {
+  const router = useRouter();
 
   const [timer, setTimer] = useState<string>('90'); // 초기 선택 값을 설정
   const [turns, setTurns] = useState<string>('10'); // 초기 선택 값을 설정
@@ -40,6 +42,7 @@ const startBar = () => {
     console.log( turns +" "+timer);
     localStorage.setItem('Time', timer);;
     localStorage.setItem('Turns', turns);
+    router.push('/game');
   }
 
   return (
