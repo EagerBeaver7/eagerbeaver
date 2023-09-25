@@ -1,19 +1,19 @@
 package ssafy.eagerbeaver.exception.user;
 
-public class UserException extends RuntimeException {
-    public UserException() {
+public class UserNotFoundException extends RuntimeException {
+    public UserNotFoundException() {
         super();
     }
 
-    public UserException(String message) {
+    public UserNotFoundException(String message) {
         super(message);
     }
 
-    public UserException(String message, Throwable cause) {
+    public UserNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public UserException(Throwable cause) {
+    public UserNotFoundException(Throwable cause) {
         super(cause);
     }
 
@@ -24,7 +24,7 @@ public class UserException extends RuntimeException {
      * @param enableSuppression 예외 무시 여부 (true 설정시 예외 무시 가능)
      * @param writableStackTrace 스택 트레이스 정보 생성 여부 (예외 발생 위치, 호출 스택 정보)
      */
-    public UserException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public UserNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

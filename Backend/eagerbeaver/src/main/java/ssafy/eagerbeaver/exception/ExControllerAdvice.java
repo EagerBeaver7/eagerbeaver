@@ -8,7 +8,7 @@ import ssafy.eagerbeaver.exception.game.GameDataNotFoundException;
 import ssafy.eagerbeaver.exception.game.GameErrorCode;
 import ssafy.eagerbeaver.exception.game.GameResultArgumentException;
 import ssafy.eagerbeaver.exception.game.GameResultSaveFailedException;
-import ssafy.eagerbeaver.exception.user.UserException;
+import ssafy.eagerbeaver.exception.user.UserNotFoundException;
 
 @RestControllerAdvice
 public class ExControllerAdvice {
@@ -32,7 +32,7 @@ public class ExControllerAdvice {
     }
 
     @ExceptionHandler
-    public ResponseEntity<ErrorResult> userExHandle(UserException e) {
+    public ResponseEntity<ErrorResult> userExHandle(UserNotFoundException e) {
         ErrorResult errorResult = new ErrorResult("USER-EX",e.getMessage());
         return new ResponseEntity<>(errorResult, HttpStatus.BAD_REQUEST);
     }
