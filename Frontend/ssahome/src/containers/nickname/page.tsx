@@ -6,7 +6,6 @@ import { Button } from '@mui/material';
 import axios from "axios";
 import { debounce } from "lodash";
 import { useRouter } from 'next/navigation';
-
 // debounce 쓸거지롱
 
 const NickNamePage: React.FC = () => {
