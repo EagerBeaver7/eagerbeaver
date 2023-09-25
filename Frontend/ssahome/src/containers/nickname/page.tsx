@@ -49,7 +49,7 @@ const NickNamePage: React.FC = () => {
     } else {
     localStorage.setItem(
       "nickname",
-      JSON.stringify(inputValue)
+      inputValue
     );
     router.push('/profileimg');
     }
