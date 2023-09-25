@@ -5,7 +5,13 @@ import styles from './page.module.css'
 import axios from 'axios';
 
 const Map = () => {
-  const [turn, setTurn] = useState(localStorage.getItem('turn') || 1);
+  const [turn, setTurn] = useState(() => {
+    if (typeof localStorage !== 'undefined') {
+      return localStorage.getItem('turn') || 1;
+    } else {
+      
+    }
+  });
 
   const handleNextTurn = () => {
     if (Number(turn) < 10) {
