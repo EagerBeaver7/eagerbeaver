@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        gradle "Gradle_8.2.1"
-    }
 
     stages {
         // Gradle 빌드 스테이지: Spring Boot 프로젝트를 빌드합니다.
