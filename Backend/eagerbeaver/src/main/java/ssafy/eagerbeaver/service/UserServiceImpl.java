@@ -5,6 +5,7 @@ import com.google.gson.JsonParser;
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,28 +48,28 @@ public class UserServiceImpl implements UserService {
     public String getKakaoAccessToken(String code) {
         System.out.println("kakaoApiKey:" + kakaoApiKey);
         System.out.println("kakaoRedirectUri: " + kakaoRedirectUri);
-
-        RestTemplate restTemplate = new RestTemplate();
+        
+        //HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
+        //HTTP Body 생성
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
-        params.add("client_id", kakaoApiKey);
-        params.add("redirect_uri", kakaoRedirectUri);
+        params.add("client_id", kakaoApiKey); //카카오에서 받은 REST API 키
+        params.add("redirect_uri", kakaoRedirectUri); //카카오에 등록한 callback url
         params.add("code", code);
 
+        //HTTP 요청 보내기
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
-
+        RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Map> response = restTemplate.exchange(
             KAKAO_TOKEN_URL,
             HttpMethod.POST,
             kakaoTokenRequest,
             Map.class
         );
-
-        String accessToken = (String) response.getBody().get("access_token");
-        return accessToken;
+        return Objects.requireNonNull(response.getBody()).get("access_token").toString();
     }
 
     @Override
@@ -82,50 +83,38 @@ public class UserServiceImpl implements UserService {
             .bodyToMono(String.class)
             .block();
 
-        JsonParser parser = new JsonParser();
-        JsonElement element = parser.parse(response);
-
+        assert response != null;
+        JsonElement element = JsonParser.parseString(response);
         JsonElement kakaoAccount = element.getAsJsonObject().get("kakao_account");
-        String email = kakaoAccount.getAsJsonObject().get("email").getAsString();
-
-        return email;
+        return kakaoAccount.getAsJsonObject().get("email").getAsString();
     }
 
     @Override
     public Map<String, Object> login(String email) {
-        Map<String, Object> userInfo = new HashMap<>();
-        JwtUtil jwtUtil = new JwtUtil();
-        Optional<User> user = userRepository.findByEmail(email);
-        Short id = -1;
-        if (!user.isPresent() || user.get().getNickname() == null || user.get().getProfileImg() == 0) {
-            User newUser = new User(email, null, 0);
-            join(newUser);
-            userInfo.put("user", newUser);
-            userInfo.put("isNew", true);
-            id = userRepository.findByEmail(email).get().getId();
-        } else {
-            userInfo.put("user", user);
-            userInfo.put("isNew", false);
-            id = user.get().getId();
-        }
-        userInfo.put("jwt", jwtUtil.generateJwt(email, id));
+        User user = userRepository.findByEmail(email)
+                .orElse(join(new User(email)));
 
+        JwtUtil jwtUtil = new JwtUtil();
+        Map<String, Object> userInfo = new HashMap<>();
+
+        userInfo.put("user", user);
+        userInfo.put("jwt", jwtUtil.generateJwt(email, user.getId()));
+        userInfo.put("isNew", false);
+        if(user.getNickname() == null || user.getProfileImg() == 0) {
+            userInfo.put("isNew", true);
+        }
         return userInfo;
     }
 
     @Override
     public boolean checkNickname(String nickname) {
         Optional<User> user = userRepository.findByNickname(nickname);
-        if (!user.isPresent()) {
-            return false;
-        }
-        return true;
+        return user.isPresent();
     }
 
     @Override
     public int setUserInfo(Short id, String nickname, int imgNum) {
-        int setUserInfoResult = userRepository.updateUserInfo(id, nickname, imgNum);
-        return setUserInfoResult;
+        return userRepository.updateUserInfo(id, nickname, imgNum);
     }
 
     private User join(User user) {

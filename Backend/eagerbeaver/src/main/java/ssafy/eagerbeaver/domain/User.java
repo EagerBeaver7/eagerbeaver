@@ -42,6 +42,11 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Result> resultList = new ArrayList<>();
 
+	public User(String email) {
+		this.email = email;
+		this.profileImg = 0;
+	}
+
 	public User(String email, String nickname) {
 		this.email = email;
 		this.nickname = nickname;
