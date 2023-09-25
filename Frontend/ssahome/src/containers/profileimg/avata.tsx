@@ -18,22 +18,29 @@ const BeaverAvata = () => {
     const nickName = localStorage.getItem("nickname");
     // 현재 토큰이 localStorage에 담겨있는 상태이니까
     // localStorage에서 빼자
-    const accessToken = "Bearer " + localStorage.getItem("tmpAccessToken")
+    let tmp = localStorage.getItem("tmpAccessToken");
+    if(tmp){
+      tmp = JSON.parse(tmp)
+    }
+    console.log("tmp:" , tmp);
+    const accessToken = tmp;
     const imgNum = i + 1;
     const data = {
-      "nickName": nickName,
+      "nickname": nickName,
       "imgNum": imgNum
     }
-
+    
+    console.log(localStorage.getItem("tmpAccessToken"));
+    
     console.log(data);
-    console.log(accessToken);
+    console.log("acc: ",accessToken);
     
     // 사진을 선택했을 때 userId, NickName, profileimg가 같이 넘어가게! JSON 형식으로 주자
     axios.put('http://localhost:9000/api/user' ,
               data,
-              {
-                headers: {Authorization: accessToken,},
-              }
+              
+              {headers: {Authorization: `Bearer ${accessToken}`}}
+              
             );
   }
 
