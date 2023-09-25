@@ -22,18 +22,12 @@ const BeaverAvata = () => {
     if(tmp){
       tmp = JSON.parse(tmp)
     }
-    console.log("tmp:" , tmp);
     const accessToken = tmp;
     const imgNum = i + 1;
     const data = {
       "nickname": nickName,
       "imgNum": imgNum
     }
-    
-    console.log(localStorage.getItem("tmpAccessToken"));
-    
-    console.log(data);
-    console.log("acc: ",accessToken);
     
     // 사진을 선택했을 때 userId, NickName, profileimg가 같이 넘어가게! JSON 형식으로 주자
     axios.put('http://localhost:9000/api/user' ,
