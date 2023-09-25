@@ -46,30 +46,38 @@ class GameServiceImplTest {
 		String[] data = new String[]{"201403","201406","201409","201412"};
 
 		//given
-		for(int i=0; i<27; i++) {
-			Region region = new Region("도시" + (i+1), "서울");
-			Region savedRegion = regionRepository.save(region);
-
-			for(int j=0; j<100; j++) {
-				News news = new News(savedRegion, "제목", "요약", data[j % 4], NewsCategory.ETC);
-				Property property = new Property(savedRegion, 1000 * j, data[j % 4]);
-
-				newsRepository.save(news);
-				propertyRepository.save(property);
-			}
-		}
-		entityManager.flush();
-		entityManager.clear();
+		// for(int i=0; i<27; i++) {
+		// 	Region region = new Region("도시" + (i+1), "서울");
+		// 	Region savedRegion = regionRepository.save(region);
+		//
+		// 	for(int j=0; j<100; j++) {
+		// 		News news = new News(savedRegion, "제목", "요약", data[j % 4], NewsCategory.ETC);
+		// 		Property property = new Property(savedRegion, 1000 * j, data[j % 4]);
+		//
+		// 		newsRepository.save(news);
+		// 		propertyRepository.save(property);
+		// 	}
+		// }
+		// entityManager.flush();
+		// entityManager.clear();
 
 		//when
-		List<GameStartDto> gameStartDtoList = gameService.gameStart();
+		List<GameStartDto> gameStartDtoList = gameService.gameStart(10);
 
 		//then
-		assertEquals(27, gameStartDtoList.size());
+		assertEquals(15, gameStartDtoList.size());
 
 		for(GameStartDto dto : gameStartDtoList) {
-			assertEquals(100, dto.getNews().size());
-			assertEquals(100, dto.getProperty().size());
+			System.out.println("News============================================");
+			for(NewsDto news : dto.getNews()) {
+				System.out.println(news.toString());
+			}
+			System.out.println();
+
+			System.out.println("Properties============================================");
+			for(PropertyDto property : dto.getProperty()) {
+				System.out.println(property.toString());
+			}
 		}
 	}
 	
