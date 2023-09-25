@@ -12,6 +12,7 @@ public interface UserService {
     public Map<String, Object> login(String email);
 	boolean checkNickname(String nickname);
 	int setUserInfo(Short id, String nickname, int imgNum);
+	User findUserById(short userId);
 
 	//    void modifyNickname(String nickname);
 }

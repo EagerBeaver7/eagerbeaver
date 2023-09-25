@@ -18,19 +18,21 @@ import ssafy.eagerbeaver.dto.GameStartDto;
 import ssafy.eagerbeaver.exception.game.GameErrorCode;
 import ssafy.eagerbeaver.exception.game.GameResultArgumentException;
 import ssafy.eagerbeaver.service.GameService;
+import ssafy.eagerbeaver.service.UserService;
 import ssafy.eagerbeaver.util.JwtUtil;
+import ssafy.eagerbeaver.util.UserContextHolder;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/games")
 public class GameController {
 
-	private final JwtUtil jwtUtil;
+	private final UserService userService;
 	private final GameService gameService;
 
 	@GetMapping
-	public ResponseEntity<List<GameStartDto>> gameStart(){
-		List<GameStartDto> gameStartDtoList = gameService.gameStart();
+	public ResponseEntity<List<GameStartDto>> gameStart(@RequestParam int turn){
+		List<GameStartDto> gameStartDtoList = gameService.gameStart(turn);
 		return new ResponseEntity<>(gameStartDtoList, HttpStatus.OK);
 	}
 
@@ -39,8 +41,10 @@ public class GameController {
 		if (turn != 10 && turn != 15 && turn != 20) {
 			throw new GameResultArgumentException(GameErrorCode.GAME_RESULT_ARGUMENT_ERROR.getMessage());
 		}
-		User tmpUser = new User("이것은 임시 유저입니다.", "임시유저", 1);
-		gameService.gameOver(tmpUser, turn, rate);
+		Short userId = UserContextHolder.userIdHolder.get();
+		User findUser = userService.findUserById(userId);
+
+		gameService.gameOver(findUser, turn, rate);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

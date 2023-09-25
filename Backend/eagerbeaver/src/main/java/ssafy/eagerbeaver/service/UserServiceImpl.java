@@ -20,6 +20,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import ssafy.eagerbeaver.domain.User;
+import ssafy.eagerbeaver.exception.user.UserErrorCode;
+import ssafy.eagerbeaver.exception.user.UserNotFoundException;
 import ssafy.eagerbeaver.repository.UserRepository;
 import ssafy.eagerbeaver.util.JwtUtil;
 
@@ -140,4 +142,10 @@ public class UserServiceImpl implements UserService {
         }
         return sb.toString();
     }
+
+    public User findUserById(short userId) {
+        return userRepository.findById(userId).orElseThrow(() ->
+            new UserNotFoundException(UserErrorCode.USER_NOT_FOUND.getMessage()));
+    }
+
 }
