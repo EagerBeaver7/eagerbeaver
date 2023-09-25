@@ -42,7 +42,7 @@ const Session = () => {
           `http://localhost:9000/api/auth/login?code=${tmpcode}`)
         .then((jwtToken) => {
           
-          if(jwtToken.data.isNew){
+          if(!jwtToken.data.isNew){
             console.log(jwtToken.data);
             localStorage.setItem(
               "accessToken",
@@ -56,9 +56,9 @@ const Session = () => {
               "tmpAccessToken",
               JSON.stringify(jwtToken.data.jwt)
             );
+            alert("가입해주셔서 감사합니다. 닉네임 설정을 부탁드립니다.");
             router.push('/nickname');
           }
-          alert("가입해주셔서 감사합니다. 닉네임 설정을 부탁드립니다.");
           console.log(jwtToken.data);
           
         })
