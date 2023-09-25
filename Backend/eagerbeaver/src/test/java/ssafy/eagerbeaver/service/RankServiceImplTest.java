@@ -31,7 +31,7 @@ class RankServiceImplTest {
 	@Test
 	public void findTop10ByTurn() {
 		//given
-		User user = new User("th@naver.com", "태희", "nothing.jpg");
+		User user = new User("th@naver.com", "태희", 1);
 		entityManager.persist(user);
 
 		for(int i=0; i<100; i++) {
