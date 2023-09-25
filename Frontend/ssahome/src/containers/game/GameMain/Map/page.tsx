@@ -1,16 +1,23 @@
 "use client"
 
-import React , { useState, useEffect }from 'react';
+import React , { useState, useEffect, useContext }from 'react';
 import styles from './page.module.css'
 import axios from 'axios';
+
 const Map = () => {
-  const [turn, setTurn] = useState(1);
+  const [turn, setTurn] = useState(localStorage.getItem('turn') || 1);
 
   const handleNextTurn = () => {
-    if (turn < 10) {
-      setTurn(turn + 1);
+    if (Number(turn) < 10) {
+      const newTurn = Number(turn) + 1;
+      localStorage.setItem('turn', newTurn.toString()); 
+      setTurn(newTurn);
     }
-    console.log(turn)
+    else {
+      localStorage.removeItem('turn')
+    }
+    console.log(turn);
+    location.reload();
   };
 
   useEffect(() =>{
