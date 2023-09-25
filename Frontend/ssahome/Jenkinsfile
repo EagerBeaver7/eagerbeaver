@@ -30,5 +30,10 @@ pipeline {
 				}
 		}
 
+		stage('Finish') {
+			steps{
+				sh 'docker images -qf dangling=true | xargs -I{} docker rmi {}'
+			}
+
 	}
 }
