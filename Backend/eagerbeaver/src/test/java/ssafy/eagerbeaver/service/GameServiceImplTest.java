@@ -80,9 +80,7 @@ class GameServiceImplTest {
 			}
 		}
 	}
-	
 	@Test
 	public void gameOverTest_게임결과_저장() {
-
 	}
 }

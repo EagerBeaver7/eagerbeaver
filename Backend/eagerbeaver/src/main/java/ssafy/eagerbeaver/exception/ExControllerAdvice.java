@@ -32,7 +32,7 @@ public class ExControllerAdvice {
     }
 
     @ExceptionHandler
-    public ResponseEntity<ErrorResult> userExHandle(UserNotFoundException e) {
+    public ResponseEntity<ErrorResult> userNotFoundExHandle(UserNotFoundException e) {
         ErrorResult errorResult = new ErrorResult("USER-EX",e.getMessage());
         return new ResponseEntity<>(errorResult, HttpStatus.BAD_REQUEST);
     }
