@@ -14,7 +14,9 @@ import SearchIcon from '@mui/icons-material/Search';
 // PriceComponent 추가
 const PriceComponent = () => (
   <div className={styles.PriceWrap}>
-    다음 시세 구매
+    <div className={styles.PriceTitle}>다음 시세 구매</div>
+    <div className={styles.PriceContent}>집을 보유하고 있는 지역의 다음 턴 시세 정보를 미리 확인할 수 있습니다.</div>
+    <div className={styles.ButtonWrap}><button className={styles.Button}>구매</button></div>
   </div>
 );
 
@@ -22,10 +24,14 @@ const PriceComponent = () => (
 const NewsComponent = () => (
   <div className={styles.NewsWrap}>
     <div className={styles.NewsContent}>
-      기본 뉴스 추가
+      <div className={styles.NewsTitle1}>뉴스 추가 구매</div>
+      <div className={styles.NewsTitle2}>다른 기본뉴스를 추가로 하나 더 확인할 수 있습니다</div>
+      <div className={styles.NewsButtonWrap}><button className={styles.NewsButton}>구매</button></div>
     </div>
     <div className={styles.NewsContent}>
-      고급 뉴스 추가
+      <div className={styles.NewsTitle1}>고급 정보 구매</div>
+      <div className={styles.NewsTitle2}>제공받은 기본뉴스에 해당하는 고급정보를 추가로 확인할 수 있습니다.</div>
+      <div className={styles.NewsButtonWrap2}><button className={styles.NewsButton}>구매</button></div>
     </div>
   </div>
 );
@@ -34,7 +40,14 @@ const NewsComponent = () => (
 const SearchComponent = () => (
   <div className={styles.SearchWrap}>
     <div className={styles.SearchButton}>
-      용어 검색 창
+      <input type="text" className={styles.search_input} placeholder="용어 검색" />
+      <button className={styles.search_button}>
+        <svg className={styles.search_icon} aria-hidden="true" viewBox="0 0 24 24">
+            <g>
+              <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+            </g>
+        </svg>
+    </button>
     </div>
     <div className={styles.SearchContent}>
       용어 설명 창
