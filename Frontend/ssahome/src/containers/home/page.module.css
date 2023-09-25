@@ -1,3 +1,4 @@
+
 .bg {
     position: relative;
     top: 0;
@@ -204,7 +205,7 @@
 
   .centerText4 {
     position: absolute;
-    top: 20%; /* 화면의 중앙 높이에 위치하도록 설정 */
+    top: 18%; /* 화면의 중앙 높이에 위치하도록 설정 */
     right: 50%; /* 화면의 중앙 가로 위치에서 오른쪽으로 이동 */
     transform: translate(50%, -50%); /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
     font-size: 20px;
@@ -244,4 +245,67 @@
     color: black;
     font-family: 'Dovemayo_gothic';
   }
-  
+
+  /* ##########################################################################################33 */
+.ButtonWrap{ 
+  position: absolute;
+  top: 25%; /* 화면의 중앙 높이에 위치하도록 설정 */
+  right: 50%;
+  transform: translate(50%, -50%);
+  margin: 23px auto;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Dovemayo_gothic';
+}
+
+.SlideShowWrap {
+  width: 60%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
+  /* flex-direction: row; */
+  /* justify-content: space-between; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 10px; 
+
+  position: absolute;
+  top: 60%; /* 화면의 중앙 높이에 위치하도록 설정 */
+  right: 50%;
+  transform: translate(50%, -50%);
+
+}
+
+.bnt {
+  font-size: 40px;
+  border: 3px solid #D1AB7D;
+  color: #D1AB7D; /* 글자 색을 흰색(#fff)으로 변경 */
+  background-color: white;
+  font-family: 'Dovemayo_gothic';
+  border-radius: 20px;
+}
+
+.bnt:hover {
+  background-color: #96785B; /* 마우스 호버 시 배경색 변경 */
+  border-color: #96785B; /* 마우스 호버 시 테두리 색 변경 */
+  box-shadow: none; /* 마우스 호버 시 그림자 제거 */
+}
+
+.buttonOnclickStyle{
+  font-size: 20px;
+  /*border-color: #96785B;  마우스 호버 시 테두리 색 변경 */
+  box-shadow: none; /* 마우스 호버 시 그림자 제거 */
+  color: #0b0b0b;
+}
+
+.buttonStyle{
+  font-size: 20px;
+ /* border: 3px solid #D1AB7D;*/
+  color: #bbb7b7;
+  background-color: white;
+  border-radius: 20px;
+
+}

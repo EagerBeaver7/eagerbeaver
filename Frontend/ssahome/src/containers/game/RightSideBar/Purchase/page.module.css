@@ -1,5 +1,4 @@
 .Purchase {
-  text-align: center;
   .wrap {
     width: 90%;
     height: 30vh;
@@ -9,7 +8,6 @@
     margin: 1.5vh auto;
     padding-top: 1vh;
     font-family: 'Dovemayo_gothic';
-    font-size: 20px;
 
     .RegionDetail{
       width: 95%; 
@@ -17,6 +15,19 @@
       border-radius: 10px;
       background-color: white;
       margin-bottom: 1vh;
+      margin-left: 1vh;
+      .RegionTitle{
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .RegionName{
+        font-size: 25px;
+        margin-top: 3vh;
+      }
+      .RegionPrice{
+        font-size: 25px;
+        margin-top: 1vh;
+      }
     }
     
     .ButtonWrap {
@@ -43,6 +54,7 @@
         align-items: center;
         border: none;
         border: 2px solid #222;
+        margin-left: 4rem;
       }
     }
     .IconButtonWrap {
