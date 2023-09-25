@@ -11,7 +11,7 @@ import { styled as muistyled } from "@mui/material/styles";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import axios from 'axios';
+import axios from 'axios'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -41,12 +41,22 @@ type GameMainProps = {
   setSeedMoney: (value: number) => void;
 };
 
+type Region = {
+  id: number;
+  name: string;
+  price: number;
+  maxPurchaseNum: number;
+};
+
 const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
   const [Modalopen, setModalOpen] = React.useState(false);
   const ModalhandleOpen = () => setModalOpen(true);
   const ModalhandleClose = () => setModalOpen(false);
+  
 
-  const [maxPuerchaseNum, setMaxPurchaseNum] = useState(1);
+  const [maxPuerchaseNum, setMaxPurchaseNum] = useState(1); // 아파트 구매할 수 있는 개수
+  const [purchasedRegions, setPurchasedRegions] = useState<Region[]>([]);
+
 
   // maxPuerchaseNum 값 변경
   const handleMaxUserNumChange = (value: number) => {
@@ -63,8 +73,9 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
       setTurn(turn + 1);
       // 턴이 증가할 때 타이머 초기화
       setTimeSecond(60);
+      
     } else {
-      // 게임 종료 또는 다른 로직 처리
+      alert('게임 종료')
     }
   }, [turn]);
 
@@ -74,51 +85,73 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
     return `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
   }
 
+  useEffect(() => {
+    const countDown = setInterval(() => {
+      setTimeSecond((prevSecond) => {
+        if (prevSecond <= 1) {
+          clearInterval(countDown);
+          alert('턴 종료')
+          // 타이머가 0이 되면 자동으로 다음 턴으로 넘기기
+          handleNextTurn();
+          return 0;
+        }
+        return prevSecond - 1;
+      });
+    }, 1000);
 
-  // useEffect(() => {
-  //   const countDown = setInterval(() => {
-  //     setTimeSecond((prevSecond) => {
-  //       if (prevSecond <= 1) {
-  //         clearInterval(countDown);
-  //         // 타이머가 0이 되면 자동으로 다음 턴으로 넘기기
-  //         handleNextTurn();
-  //         return 0;
-  //       }
-  //       return prevSecond - 1;
-  //     });
-  //   }, 1000);
+    return () => {
+      clearInterval(countDown);
+    };
+  }, [handleNextTurn]);
 
-  //   return () => {
-  //     clearInterval(countDown);
-  //   };
-  // }, [handleNextTurn]);
-
-  useEffect(() =>{
-    axios.get('http://localhost:9000/api/games')
-    .then(response =>{
-      console.log(response.data)
-      }
-    )
-    .catch(error => console.log(error))
-  },)
+  useEffect(() => {
+    const params = { turn: 10 };
+    axios.get('http://localhost:9000/api/games',  { params })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => console.log(error));
+  }, []);
   
 
 
-  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const [selectedRegion, setSelectedRegion] = useState<string | string>('구매내역');
 
   const handleRegionClick = (regionName: string) => {
     setSelectedRegion(regionName);
   };
 
-  const handleDecreaseHomePurchase = () => { // 시드머니를 활용해서 지역의 집 구매
+  const handleDecreaseHomePurchase = () => {
     if (seedMoney > 0) {
-      const newSeedMoney = seedMoney - 10000; // 예를 들어 10000씩 감소
-      setSeedMoney(newSeedMoney); // 변경사항을 부모 컴포넌트에 전달
-      console.log('구매 완료')
+      
+      let price = 0;
+      
+      // selectedRegion에 따라 가격 설정
+      if (selectedRegion === '속초시') {
+        price = 50000;
+      } else if (selectedRegion === '음성군') {
+        price = 30000;
+      } // 여기에 다른 지역의 가격을 추가할 수 있습니다.
+      
+      const newSeedMoney = seedMoney - price;
+      setSeedMoney(newSeedMoney);
+      console.log('구매 완료');
+
+      const newRegion = {
+        id: purchasedRegions.length + 1,
+        name: selectedRegion,
+        price,
+        maxPurchaseNum: maxPuerchaseNum, // maxPurchaseNum 추가
+      };
+
+      setPurchasedRegions((prevRegions) => [...prevRegions, newRegion]);
       ModalhandleOpen();
+
+      // maxPuerchaseNum 초기화
+      setMaxPurchaseNum(1);
     }
   };
-
+  
   return (
     
     <div>
@@ -157,8 +190,22 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           <div className={styles.Map}>
             <div className={styles.wrapper}>
               <div className={styles.cards}>
-                <div className={styles.card} onClick={() => handleRegionClick('속초시')}>속초시</div>
-                <div className={styles.card} onClick={() => handleRegionClick('음성군')}>음성군</div>
+              <div
+                  className={`${styles.card} ${
+                    purchasedRegions.some((region) => region.name === '속초시') ? styles.purchased : ''
+                  }`}
+                  onClick={() => handleRegionClick('속초시')}
+                >
+                  속초시
+                </div>
+                <div
+                  className={`${styles.card} ${
+                    purchasedRegions.some((region) => region.name === '음성군') ? styles.purchased : ''
+                  }`}
+                  onClick={() => handleRegionClick('음성군')}
+                >
+                  음성군
+                </div>
                 <div className={styles.card}>순천시</div>
                 <div className={styles.card}>광산구</div>
                 <div className={styles.card}>제천시</div>
@@ -186,10 +233,13 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
                   지역 상세정보
                 </div>
                 <div className={styles.RegionName}>
-                  지역명 : {selectedRegion || '선택된 지역 없음'}
+                  지역명 : {selectedRegion !== '구매내역' ? selectedRegion : '선택된 지역 없음'}
                 </div>
                 <div className={styles.RegionPrice}>
-                  구매가 : 70,000
+                  구매가 : {selectedRegion !== '구매내역' ? 
+                    (purchasedRegions.find(region => region.name === selectedRegion)?.price || 0) :
+                    '0'
+                  }
                 </div>
               </div>
               <div className={styles.ButtonWrap}>
@@ -217,13 +267,15 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
                 <button type="button" className={styles.button} onClick={handleDecreaseHomePurchase}>
                   구매
                 </button>
-                
               </div>
             </div>
           </div>
         </div>
         <div>
-          <PurchaseList/>
+        <PurchaseList
+          purchasedRegions={purchasedRegions}
+          setPurchasedRegions={setPurchasedRegions}
+        />
         </div>
       </div>
       <Modal
