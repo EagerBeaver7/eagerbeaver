@@ -96,15 +96,14 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> userInfo = new HashMap<>();
         JwtUtil jwtUtil = new JwtUtil();
         Optional<User> user = userRepository.findByEmail(email);
-        // email로 검색한 해당 유저가 존재하지 않으면, 가입 시키고 해당 회원 정보 반환
         Short id = -1;
-        if (!user.isPresent()) {
+        if (!user.isPresent() || user.get().getNickname() == null || user.get().getProfileImg() == 0) {
             User newUser = new User(email, null, 0);
             join(newUser);
             userInfo.put("user", newUser);
             userInfo.put("isNew", true);
             id = userRepository.findByEmail(email).get().getId();
-        } else { // email로 검색한 해당 유저가 존재하면, 가입은 시키지 않고 해당 회원 정보 반환
+        } else {
             userInfo.put("user", user);
             userInfo.put("isNew", false);
             id = user.get().getId();
