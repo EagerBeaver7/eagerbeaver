@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./page.module.css";
 import RankingTable from '@/containers/main/rankingTable';
+import  {Button}  from "@mui/material";
 
 
 const rankingPage = () => {

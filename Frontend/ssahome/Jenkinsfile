@@ -10,7 +10,7 @@ pipeline {
 			steps {
 				dir('Frontend/ssahome') {
 					sh 'npm install'
-					sh 'npm run start'
+					sh 'npm run build'
 				}
 			}
 		}
