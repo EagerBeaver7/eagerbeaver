@@ -16,12 +16,12 @@ const BeaverAvata = () => {
   const buttonClick = () => {
 
     // 사진을 선택했을 때 userId, NickName, profileimg가 같이 넘어가게! JSON 형식으로 주자
-    axios.put('http://localhost:8080/api/user',
-      data,
-
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-
-    );
+    axios.put('http://localhost:8080/api/user' ,
+              data,
+              
+              {headers: {Authorization: `Bearer ${accessToken}`}}
+              
+            );
   }
 
   return (
