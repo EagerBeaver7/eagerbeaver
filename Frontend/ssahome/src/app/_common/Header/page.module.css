@@ -1,0 +1,14 @@
+.appHeader {
+  .menu {
+    display: flex;
+    height: 8vh;
+  }
+  
+  .Logo {
+    position: absolute;
+    text-decoration: none;
+    padding: 5px 14px;
+    left: 1vh;
+    top: 1vh;
+  }
+}

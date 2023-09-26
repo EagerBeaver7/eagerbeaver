@@ -11,16 +11,31 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.6",
+    "@faker-js/faker": "^8.1.0",
+    "@mui/icons-material": "^5.14.9",
+    "@mui/material": "^5.14.10",
+    "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.199",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "axios": "^1.5.0",
     "eslint": "8.48.0",
     "eslint-config-naver": "^2.1.0",
     "eslint-config-next": "13.4.19",
+    "lodash": "^4.17.21",
     "next": "13.4.19",
+    "next-images": "^1.8.5",
     "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.2.2"
+    "react-router-dom": "^6.16.0",
+    "sharp": "^0.32.6",
+    "swr": "^2.2.2",
+    "typescript": "5.2.2",
+    "webpack": "^5.88.2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.199"
   }
 }
