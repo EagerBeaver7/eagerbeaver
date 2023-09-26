@@ -19,7 +19,7 @@ const NickNamePage: React.FC = () => {
   const debounceSearch = debounce(async (value: string) => {
 
     if (value.length > 0) {
-      const response = await axios.get(`http://localhost:9000/api/nickname/${value}`);
+      const response = await axios.get(`http://localhost:8080/api/nickname/${value}`);
       setIsDuplcate(response.data); // 백에서 받은 데이터를 상태에 설정
     }
   }, 100);
