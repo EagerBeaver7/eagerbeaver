@@ -12,19 +12,14 @@ import { useRouter } from 'next/navigation';
 
 
 
-const startBar = () => {
+const StartBar = () => {
   const router = useRouter();
 
   const [timer, setTimer] = useState<string>('90'); // 초기 선택 값을 설정
   const [turns, setTurns] = useState<string>('10'); // 초기 선택 값을 설정
 
   // 페이지 로드 시 로컬 스토리지에서 값을 가져와서 초기화
-  useEffect(() => {
-    // const storedValue = localStorage.getItem('selectedTime');
-    // if (storedValue) {
-    //   setTimer(storedValue);
-    // }
-  }, []);
+
 
   // 라디오 버튼 그룹의 변경 핸들러
   const timerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,4 +94,4 @@ const startBar = () => {
   );
 };
 
-export default startBar;
+export default StartBar;
