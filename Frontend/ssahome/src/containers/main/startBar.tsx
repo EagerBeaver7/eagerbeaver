@@ -1,4 +1,4 @@
-import React  , { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./page.module.css";
 import { Button } from "@mui/material";
 import FormControl from '@mui/material/FormControl';
@@ -8,7 +8,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import beavor from "../../../public/images/beaver.gif"
 import Image from "next/image";
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 
@@ -38,8 +37,8 @@ const startBar = () => {
     setTurns(newValue);
   };
 
-  const gogoairplane = ()=>{
-    console.log( turns +" "+timer);
+  const gogoairplane = () => {
+    console.log(turns + " " + timer);
     localStorage.setItem('Time', timer);;
     localStorage.setItem('Turns', turns);
     router.push('/game');
@@ -69,32 +68,32 @@ const startBar = () => {
         <br></br>
         <div className={styles.time}>
           <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check} >제한시간</FormLabel>
-              <RadioGroup
-                onChange={timerChange}
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-              >
-                <FormControlLabel value="90" control={<Radio />} label="90초" />
-                <FormControlLabel value="180" control={<Radio />} label="180초" />
-                <FormControlLabel value="300" control={<Radio />} label="300초" />
-              </RadioGroup>
-            </FormControl>
+            <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check} >제한시간</FormLabel>
+            <RadioGroup
+              onChange={timerChange}
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+            >
+              <FormControlLabel value="90" control={<Radio />} label="90초" />
+              <FormControlLabel value="180" control={<Radio />} label="180초" />
+              <FormControlLabel value="300" control={<Radio />} label="300초" />
+            </RadioGroup>
+          </FormControl>
         </div>
         <br></br>
         <div className={styles.bb}>
-          <Button onClick={gogoairplane} variant="outlined"  className={`${styles.stbnt} `} >시작</Button>
+          <Button onClick={gogoairplane} variant="outlined" className={`${styles.stbnt} `} >시작</Button>
         </div>
       </div>
       <div>
 
       </div>
       <div>
-          <Image src={beavor} alt="slide" width={300} height={300}></Image>
+        <Image src={beavor} alt="slide" width={300} height={300}></Image>
       </div>
       <div>
-        
+
       </div>
     </div>
   );
