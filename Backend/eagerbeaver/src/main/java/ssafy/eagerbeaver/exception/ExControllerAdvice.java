@@ -8,6 +8,10 @@ import ssafy.eagerbeaver.exception.game.GameDataNotFoundException;
 import ssafy.eagerbeaver.exception.game.GameErrorCode;
 import ssafy.eagerbeaver.exception.game.GameResultArgumentException;
 import ssafy.eagerbeaver.exception.game.GameResultSaveFailedException;
+import ssafy.eagerbeaver.exception.log.LogErrorCode;
+import ssafy.eagerbeaver.exception.log.LogNotFoundException;
+import ssafy.eagerbeaver.exception.log.LogParsingFailedException;
+import ssafy.eagerbeaver.exception.user.UserErrorCode;
 import ssafy.eagerbeaver.exception.user.UserNotFoundException;
 
 @RestControllerAdvice
@@ -33,7 +37,19 @@ public class ExControllerAdvice {
 
     @ExceptionHandler
     public ResponseEntity<ErrorResult> userNotFoundExHandle(UserNotFoundException e) {
-        ErrorResult errorResult = new ErrorResult("USER-EX",e.getMessage());
+        ErrorResult errorResult = new ErrorResult(UserErrorCode.USER_NOT_FOUND.getCode(), e.getMessage());
+        return new ResponseEntity<>(errorResult, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResult> logNotFoundExHandle(LogNotFoundException e) {
+        ErrorResult errorResult = new ErrorResult(LogErrorCode.LOG_NOT_FOUND.getCode(), e.getMessage());
+        return new ResponseEntity<>(errorResult, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResult> logParsingFailedExHandle(LogParsingFailedException e) {
+        ErrorResult errorResult = new ErrorResult(LogErrorCode.LOG_PARSING_FAILED.getCode(), e.getMessage());
         return new ResponseEntity<>(errorResult, HttpStatus.BAD_REQUEST);
     }
 
