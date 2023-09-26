@@ -16,8 +16,8 @@ const NickNamePage: React.FC = () => {
 
   // debounce 함수를 사용하여 GET 요청을 보내는 함수
   const debounceSearch = debounce(async (value: string) => {
-    
-    if(value.length > 0){
+
+    if (value.length > 0) {
       const response = await axios.get(`http://localhost:9000/api/nickname/${value}`);
       setIsDuplcate(response.data); // 백에서 받은 데이터를 상태에 설정
     }
@@ -36,22 +36,22 @@ const NickNamePage: React.FC = () => {
   // 입력 값이 변경될 때([inputValue]) 중복 여부 초기화
   useEffect(() => {
     setIsDuplcate(false);
-  },[inputValue]);
+  }, [inputValue]);
 
- 
+
   // 다음 버튼 누르면 닉네임이 프로필 화면으로 넘어간다.
   const handleDetailPost = () => {
 
-    if(inputCount === 0 || inputValue.trim() === ''){
+    if (inputCount === 0 || inputValue.trim() === '') {
       alert("닉네임 설정이 필요합니다.");
-    } else if(isDuplicate){
+    } else if (isDuplicate) {
       alert("중복된 닉네임이 있습니다. 변경해주세요");
     } else {
-    localStorage.setItem(
-      "nickname",
-      JSON.stringify(inputValue)
-    );
-    router.push('/profileimg');
+      localStorage.setItem(
+        "nickname",
+        JSON.stringify(inputValue)
+      );
+      router.push('/profileimg');
     }
   };
 
@@ -80,7 +80,7 @@ const NickNamePage: React.FC = () => {
           </div>
         )}
       </div>
-        <Button className={styles.start} onClick={() => handleDetailPost()}>다음</Button>
+      <Button className={styles.start} onClick={() => handleDetailPost()}>다음</Button>
     </main>
   );
 };
