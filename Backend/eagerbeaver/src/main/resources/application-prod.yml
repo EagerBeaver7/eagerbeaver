@@ -12,7 +12,7 @@ spring:
       ddl-auto: create
   redis:
     host: j9a507.p.ssafy.io
-    port: 6379
+    port: 4805
 
     properties:
       hibernate:
