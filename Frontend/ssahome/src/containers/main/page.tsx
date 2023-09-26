@@ -26,7 +26,7 @@ const MainPage = () => {
   };
 
   useEffect(() =>{
-    axios.get('http://localhost:8080/api/word')
+    axios.get('http://localhost:9000/api/word')
     .then(response =>{
       setWord(response.data[1].content);
       console.log("ans "+response);
