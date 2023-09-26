@@ -10,6 +10,8 @@ import beaver4 from "../../../public/images/IMG_0709.png";
 import beaver5 from "../../../public/images/IMG_0710.png";
 import beaver6 from "../../../public/images/IMG_0711.png";
 import Link from 'next/link';
+import axios from 'axios';
+import { data } from '../result/graph';
 
 
 const BeaverAvata = () => {
