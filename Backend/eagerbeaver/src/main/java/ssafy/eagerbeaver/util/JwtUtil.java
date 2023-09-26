@@ -30,10 +30,11 @@ public class JwtUtil {
 	// private String secretKey;
 	 private String secretKey = "eagerbeaversecretkeyhihellochillout";
 
-	public String generateJwt(String email) {
+	public String generateJwt(String email, Short id) {
 		Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("email", email);
+		claims.put("id", id);
 
 		return Jwts.builder()
 			.setClaims(claims)
@@ -74,5 +75,12 @@ public class JwtUtil {
 	 		.setSigningKey(secretKey)
 	 		.parseClaimsJws(jwt)
 	 		.getBody().get("email", String.class);
+	 }
+
+	 public Short getIdFromJwt(String jwt) {
+		return Jwts.parser()
+			.setSigningKey(secretKey)
+			.parseClaimsJws(jwt)
+			.getBody().get("id", Short.class);
 	 }
 }
