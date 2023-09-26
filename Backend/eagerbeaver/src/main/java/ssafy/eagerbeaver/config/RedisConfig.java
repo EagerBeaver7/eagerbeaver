@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+<<<<<<< HEAD
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
+=======
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+>>>>>>> 0da696d6cccc09d63f870e62ea48fbaf7f6c30ea
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import ssafy.eagerbeaver.domain.GameLog;
@@ -15,15 +18,18 @@ import ssafy.eagerbeaver.domain.GameLog;
 @Configuration
 public class RedisConfig {
 
-		@Value("${spring.redis.host}")
-		private String host;
+	@Value("${spring.redis.host}")
+	private String redisHost;
 
-		@Value("${spring.redis.port}")
-		private int port;
+	@Value("${spring.redis.port}")
+	private int redisPort;
 
-		@Value("${spring.redis.password}")
-		private String password;
+	@Bean
+	public RedisConnectionFactory redisConnectionFactory() {
+		return new LettuceConnectionFactory(redisHost, redisPort);
+	}
 
+<<<<<<< HEAD
 		@Bean
 		public RedisConnectionFactory redisConnectionFactory() {
 			RedisStandaloneConfiguration redisConfiguration = new RedisStandaloneConfiguration();
@@ -50,3 +56,14 @@ public class RedisConfig {
 
 }
 
+=======
+	@Bean
+	public RedisTemplate<String, Object> redisTemplate() {
+		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+		redisTemplate.setConnectionFactory(redisConnectionFactory());
+		redisTemplate.setKeySerializer(new StringRedisSerializer());
+		redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(Object.class));
+		return redisTemplate;
+	}
+}
+>>>>>>> 0da696d6cccc09d63f870e62ea48fbaf7f6c30ea

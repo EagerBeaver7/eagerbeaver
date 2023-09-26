@@ -55,9 +55,6 @@ public class Result {
 	}
 
 	public RankDto convertToRankDto() {
-		return RankDto.builder()
-			.userName(user.getNickname())
-			.rate(this.rate)
-			.build();
+		return RankDto.builder().userName(user.getNickname()).rate(this.rate).build();
 	}
 }

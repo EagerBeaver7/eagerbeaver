@@ -1,19 +1,16 @@
 package ssafy.eagerbeaver.domain;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -40,7 +37,12 @@ public class User {
 	private String profileImg;
 
 	@OneToMany(mappedBy = "user")
-	private List<Result> resultList = new ArrayList<>();
+	private final List<Result> resultList = new ArrayList<>();
+
+	public User(String email) {
+		this.email = email;
+		this.profileImg = 0;
+	}
 
 	public User(String email, String nickname) {
 		this.email = email;
