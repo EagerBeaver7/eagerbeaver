@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './page.module.css'
 
 import Purchase from './Purchase/page';
-import PurchaseList from './PurchaseList/page';
 
 // seedMoney 및 setSeedMoney prop을 타입으로 정의
 type RightSideBarProps = {
@@ -17,7 +16,6 @@ const RightSideBar: React.FC<RightSideBarProps> = ({ seedMoney, setSeedMoney }) 
         <Purchase/>
       </div>
       <div>
-        <PurchaseList/>
       </div>
     </div>
   );
