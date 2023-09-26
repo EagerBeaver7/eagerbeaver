@@ -20,7 +20,7 @@ public class RankController {
 	private final RankService rankService;
 
 	@GetMapping
-	public ResponseEntity<List<ResultDto>>  getRank() {
+	public ResponseEntity<List<ResultDto>> getRank() {
 		return new ResponseEntity<>(rankService.getTop10ResultByTurn(), HttpStatus.OK);
 	}
 }
