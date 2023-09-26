@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserNotFoundException extends RuntimeException {
-    public UserNotFoundException(String msg) {
-        super(msg);
-    }
+	public UserNotFoundException(String msg) {
+		super(msg);
+	}
 }

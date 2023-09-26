@@ -13,8 +13,6 @@ import ssafy.eagerbeaver.domain.User;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
-
-    private User user;
-    private boolean isNew;
-
+	private User user;
+	private boolean isNew;
 }

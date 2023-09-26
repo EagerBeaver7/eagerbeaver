@@ -15,20 +15,18 @@ spring:
         format_sql: true
   redis:
     host: localhost
-    port: 4805
-    password: EBroot
+    port: 6379
 
 logging:
   level:
-    com.ground.sswm : DEBUG
+    com.ground.sswm: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 server:
   servlet:
     context-path: /api
-  port:
-    9000
+  port: 8080
 
 # kakao 관련
 kakao:

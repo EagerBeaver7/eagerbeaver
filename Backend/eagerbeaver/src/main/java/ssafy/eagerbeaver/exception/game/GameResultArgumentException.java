@@ -5,8 +5,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GameResultArgumentException extends RuntimeException {
-
-    public GameResultArgumentException(String msg) {
-        super(msg);
-    }
+	public GameResultArgumentException(String msg) {
+		super(msg);
+	}
 }

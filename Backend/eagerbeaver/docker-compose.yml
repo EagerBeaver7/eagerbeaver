@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
 
   redis:  # Redis Container
-    image: redis:latest
+    image: redis:3.0.5
     container_name: eagerbeaver-redis
     ports:
       - 4805:6379
