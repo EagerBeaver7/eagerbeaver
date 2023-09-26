@@ -20,7 +20,9 @@ public class ValidTokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object Handler) throws Exception {
         log.info("interceptor 호출");
 
+        System.out.println("인터셉터 리퀘스트입니다: "+request.getHeader("Authorization"));
         String jwt = jwtUtil.getJwtFromHeader(request);
+        System.out.println("인터셉터 jwt입니다: "+jwt);
         jwtUtil.validateToken(jwt);
         // short id = jwtUtil.getIdFromJwt(jwt);
         UserContextHolder.userIdHolder.set(jwtUtil.getIdFromJwt(jwt));
