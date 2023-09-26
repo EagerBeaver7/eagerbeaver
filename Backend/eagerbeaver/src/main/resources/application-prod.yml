@@ -10,6 +10,9 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: create
+  redis:
+    host: j9a507.p.ssafy.io
+    port: 6379
 
     properties:
       hibernate:
@@ -17,11 +20,6 @@ spring:
         show_sql: true
 
     defer-datasource-initialization: true   #-> data.sql을 사용하기 위해 추가
-
-  redis:
-    host: j9a507.p.ssafy.io
-    port: 4805
-    password: EBroot
 
 logging:
   level:

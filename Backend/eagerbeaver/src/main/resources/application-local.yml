@@ -15,8 +15,7 @@ spring:
         format_sql: true
   redis:
     host: localhost
-    port: 4805
-    password: EBroot
+    port: 6379
 
 logging:
   level:
@@ -28,7 +27,7 @@ server:
   servlet:
     context-path: /api
   port:
-    9000
+    8080
 
 # kakao 관련
 kakao:
