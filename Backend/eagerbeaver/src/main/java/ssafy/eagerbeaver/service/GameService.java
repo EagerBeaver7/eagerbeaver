@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface GameService {
 
-    List<GameStartDto> gameStart(int turn);
+    List<GameStartDto> gameStart() throws Exception;
 
-    void gameOver(User user, int turn, double rate);
+    void gameOver(User user, int turn, double rate) throws Exception;
 }

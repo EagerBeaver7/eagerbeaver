@@ -20,8 +20,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import ssafy.eagerbeaver.domain.User;
-import ssafy.eagerbeaver.exception.user.UserErrorCode;
-import ssafy.eagerbeaver.exception.user.UserNotFoundException;
 import ssafy.eagerbeaver.repository.UserRepository;
 import ssafy.eagerbeaver.util.JwtUtil;
 
@@ -95,20 +93,18 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> login(String email) {
         Map<String, Object> userInfo = new HashMap<>();
         JwtUtil jwtUtil = new JwtUtil();
+
         Optional<User> user = userRepository.findByEmail(email);
-        Short id = -1;
-        if (!user.isPresent() || user.get().getNickname() == null || user.get().getProfileImg() == 0) {
-            User newUser = new User(email, null, 0);
-            join(newUser);
-            userInfo.put("user", newUser);
+        System.out.println(user.toString());
+        if (!user.isPresent()) {
+            User newUser = new User(email, generateRandomNickname());
+            userInfo.put("user", join(newUser));
             userInfo.put("isNew", true);
-            id = userRepository.findByEmail(email).get().getId();
         } else {
             userInfo.put("user", user);
             userInfo.put("isNew", false);
-            id = user.get().getId();
         }
-        userInfo.put("jwt", jwtUtil.generateJwt(email, id));
+        userInfo.put("jwt", jwtUtil.generateJwt(email));
 
         return userInfo;
     }
@@ -122,12 +118,6 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
-    @Override
-    public int setUserInfo(Short id, String nickname, int imgNum) {
-        int setUserInfoResult = userRepository.updateUserInfo(id, nickname, imgNum);
-        return setUserInfoResult;
-    }
-
     private User join(User user) {
         return userRepository.save(user);
     }
@@ -135,16 +125,10 @@ public class UserServiceImpl implements UserService {
     private String generateRandomNickname() {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder(10);
+        StringBuilder sb = new StringBuilder(16);
         for (int i = 0; i < 10; i++) {
             sb.append(characters.charAt(random.nextInt(characters.length())));
         }
         return sb.toString();
     }
-
-    public User findUserById(short userId) {
-        return userRepository.findById(userId).orElseThrow(() ->
-            new UserNotFoundException(UserErrorCode.USER_NOT_FOUND.getMsg()));
-    }
-
 }

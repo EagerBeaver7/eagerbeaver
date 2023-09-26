@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react';
 import styles from "./page.module.css";
 import { Button } from "@mui/material";
@@ -47,7 +49,6 @@ const StartBar = () => {
           <FormControl>
             <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check}>턴수</FormLabel>
             <RadioGroup
-              onChange={turnsChange}
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
@@ -63,7 +64,6 @@ const StartBar = () => {
           <FormControl>
             <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check} >제한시간</FormLabel>
             <RadioGroup
-              onChange={timerChange}
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
