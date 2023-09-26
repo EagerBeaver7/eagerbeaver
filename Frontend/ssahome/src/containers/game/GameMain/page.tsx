@@ -150,9 +150,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
         const currentprice = selectedRegionData.property[turn - 1]?.price || 0; // 선택한 턴의 가격을 가져오기
   
         if (currentprice > 0) {
-          const newSeedMoney = seedMoney - currentprice;
-          setSeedMoney(newSeedMoney);
-          console.log('구매 완료');
+          
   
           const newRegion = {
             id: purchasedRegions.length + 1,
@@ -161,6 +159,10 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
             maxPurchaseNum: maxPuerchaseNum, // maxPurchaseNum 추가
           };
   
+          const newSeedMoney = seedMoney - currentprice * maxPuerchaseNum;
+          setSeedMoney(newSeedMoney);
+          console.log('구매 완료');
+
           setPurchasedRegions((prevRegions) => [...prevRegions, newRegion]);
           ModalhandleOpen();
   
@@ -191,6 +193,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
     }
   };
   
+
   
   return (
     
@@ -300,6 +303,8 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           setPurchasedRegions={setPurchasedRegions}
           selectedRegion={selectedRegion} 
           currentPrices={currentPrices}
+          seedMoney={seedMoney} // seedMoney를 PurchaseList로 전달
+          setSeedMoney={setSeedMoney} // setSeedMoney를 PurchaseList로 전달
         />
         </div>
       </div>
