@@ -11,7 +11,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -45,9 +44,6 @@ public class Property {
 	}
 
 	public PropertyDto convertToDto() {
-		return PropertyDto.builder()
-			.price(this.price)
-			.period(this.period)
-			.build();
+		return PropertyDto.builder().price(this.price).period(this.period).build();
 	}
 }

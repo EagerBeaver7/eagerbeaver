@@ -6,13 +6,16 @@ import ssafy.eagerbeaver.domain.User;
 
 public interface UserService {
 
-    // kakao
-    public String getKakaoAccessToken(String code);
-    public String getKakaoMemberInfo(String token);
-    public Map<String, Object> login(String email);
-	boolean checkNickname(String nickname);
-	int setUserInfo(Short id, String nickname, int imgNum);
-	User findUserById(short userId);
+	// kakao
+	String getKakaoAccessToken(String code);
 
-	//    void modifyNickname(String nickname);
+	String getKakaoMemberInfo(String token);
+
+	Map<String, Object> login(String email);
+
+	boolean checkNickname(String nickname);
+
+	int setUserInfo(Short id, String nickname, int imgNum);
+
+	User findUserById(short userId);
 }

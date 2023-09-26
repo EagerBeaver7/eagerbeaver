@@ -3,7 +3,14 @@ package ssafy.eagerbeaver.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,40 +26,39 @@ import ssafy.eagerbeaver.dto.PropertyDto;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Region {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "region_id", columnDefinition = "smallint")
-    private short id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "region_id", columnDefinition = "smallint")
+	private short id;
 
-    @Column(name = "region_city", columnDefinition = "varchar(20)")
-    private String city;
+	@Column(name = "region_city", columnDefinition = "varchar(20)")
+	private String city;
 
-    @Column(name = "region_name", columnDefinition = "varchar(20)")
-    private String name;
+	@Column(name = "region_name", columnDefinition = "varchar(20)")
+	private String name;
 
-    //fetch 타입 eager 로 수정
-    @OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
-    private List<News> newsList = new ArrayList<>();
+	//fetch 타입 eager 로 수정
+	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
+	private final List<News> newsList = new ArrayList<>();
 
+	//fetch 타입 eager 로 수정
+	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
+	private final List<Property> propertyList = new ArrayList<>();
 
-    //fetch 타입 eager 로 수정
-    @OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
-    private List<Property> propertyList = new ArrayList<>();
+	public Region(String name, String city) {
+		this.name = name;
+		this.city = city;
+	}
 
-    public Region(String name, String city) {
-        this.name = name;
-        this.city = city;
-    }
+	public GameStartDto convertToGameStartDto() {
+		List<NewsDto> newsDtoStream = this.newsList.stream().map(News::convertToDto).toList();
+		List<PropertyDto> propertyDtoStream = this.propertyList.stream().map(Property::convertToDto).toList();
 
-    public GameStartDto convertToGameStartDto() {
-        List<NewsDto> newsDtoStream = this.newsList.stream().map(News::convertToDto).toList();
-        List<PropertyDto> propertyDtoStream = this.propertyList.stream().map(Property::convertToDto).toList();
-
-        return GameStartDto.builder()
-                .region(this.name)
-                .city(this.city)
-                .news(newsDtoStream)
-                .property(propertyDtoStream)
-                .build();
-    }
+		return GameStartDto.builder()
+			.region(this.name)
+			.city(this.city)
+			.news(newsDtoStream)
+			.property(propertyDtoStream)
+			.build();
+	}
 }
