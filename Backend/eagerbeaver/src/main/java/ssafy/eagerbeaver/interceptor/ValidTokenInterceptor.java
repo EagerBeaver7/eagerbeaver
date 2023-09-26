@@ -2,12 +2,11 @@ package ssafy.eagerbeaver.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import ssafy.eagerbeaver.util.JwtUtil;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import ssafy.eagerbeaver.util.JwtUtil;
 
 @Component
 @Slf4j

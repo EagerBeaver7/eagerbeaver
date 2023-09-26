@@ -29,7 +29,7 @@ server:
   servlet:
     context-path: /api
   port:
-    9000
+    8080
 
 # kakao 관련
 kakao:
