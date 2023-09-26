@@ -44,20 +44,29 @@ type GameMainProps = {
 type Region = {
   id: number;
   name: string;
-  price: number;
+  currentprice: number;
   maxPurchaseNum: number;
 };
 
+interface GameData {
+  city: string;
+  news: string;
+  property: { price: number, period: string }[]; 
+  region: string;
+}
+
 const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
+  const [gameData, setGameData] = useState<GameData[]>([]);
   const [Modalopen, setModalOpen] = React.useState(false);
   const ModalhandleOpen = () => setModalOpen(true);
   const ModalhandleClose = () => setModalOpen(false);
-  
+  const [currentPrices, setCurrentPrices] = useState<Record<string, number>>({});
+
 
   const [maxPuerchaseNum, setMaxPurchaseNum] = useState(1); // 아파트 구매할 수 있는 개수
   const [purchasedRegions, setPurchasedRegions] = useState<Region[]>([]);
 
-
+  
   // maxPuerchaseNum 값 변경
   const handleMaxUserNumChange = (value: number) => {
     if (value >= 1 && value <= 9) {
@@ -105,14 +114,25 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
   }, [handleNextTurn]);
 
   useEffect(() => {
-    const params = { turn: 10 };
-    axios.get('http://localhost:9000/api/games',  { params })
+    axios.get('http://localhost:8080/api/games/10')
       .then(response => {
         console.log(response.data);
+        setGameData(response.data);
       })
       .catch(error => console.log(error));
   }, []);
-  
+
+  useEffect(() => {
+    // 턴에 맞게 각 지역의 현재 가격 정보 가져와서 업데이트
+    const newPrices: Record<string, number> = {};
+    
+    gameData.forEach((regionData) => {
+      const currentprice = regionData.property[turn - 1]?.price || 0;
+      newPrices[regionData.region] = currentprice;
+    });
+
+    setCurrentPrices(newPrices);
+  }, [turn, gameData]);
 
 
   const [selectedRegion, setSelectedRegion] = useState<string | string>('구매내역');
@@ -123,34 +143,54 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
 
   const handleDecreaseHomePurchase = () => {
     if (seedMoney > 0) {
-      
-      let price = 0;
-      
-      // selectedRegion에 따라 가격 설정
-      if (selectedRegion === '속초시') {
-        price = 50000;
-      } else if (selectedRegion === '음성군') {
-        price = 30000;
-      } // 여기에 다른 지역의 가격을 추가할 수 있습니다.
-      
-      const newSeedMoney = seedMoney - price;
-      setSeedMoney(newSeedMoney);
-      console.log('구매 완료');
-
-      const newRegion = {
-        id: purchasedRegions.length + 1,
-        name: selectedRegion,
-        price,
-        maxPurchaseNum: maxPuerchaseNum, // maxPurchaseNum 추가
-      };
-
-      setPurchasedRegions((prevRegions) => [...prevRegions, newRegion]);
-      ModalhandleOpen();
-
-      // maxPuerchaseNum 초기화
-      setMaxPurchaseNum(1);
+      // 선택한 지역의 가격을 가져오기
+      const selectedRegionData = gameData.find((regionData) => regionData.region === selectedRegion);
+  
+      if (selectedRegionData) {
+        const currentprice = selectedRegionData.property[turn - 1]?.price || 0; // 선택한 턴의 가격을 가져오기
+  
+        if (currentprice > 0) {
+          const newSeedMoney = seedMoney - currentprice;
+          setSeedMoney(newSeedMoney);
+          console.log('구매 완료');
+  
+          const newRegion = {
+            id: purchasedRegions.length + 1,
+            name: selectedRegion,
+            currentprice,
+            maxPurchaseNum: maxPuerchaseNum, // maxPurchaseNum 추가
+          };
+  
+          setPurchasedRegions((prevRegions) => [...prevRegions, newRegion]);
+          ModalhandleOpen();
+  
+          // maxPuerchaseNum 초기화
+          setMaxPurchaseNum(1);
+  
+          // 이 부분에서 currentprice를 buyPrice로 사용
+          axios.post('http://localhost:8080/api/gameLog', {
+            id: purchasedRegions.length + 1,
+            region: selectedRegion,
+            tradeNum: maxPuerchaseNum,
+            buyPrice: currentprice, // 여기서 buyPrice로 사용
+            sellPrice: -1,
+            rate: -1,
+            turn: turn,
+          })
+          .then(response => {
+            console.log(response.data);
+            console.log('redis로 구매 로그 전송완료')
+          })
+          .catch(error => console.log(error));
+        } else {
+          console.log('가격 정보가 없습니다.');
+        }
+      } else {
+        console.log('선택한 지역 정보를 찾을 수 없습니다.');
+      }
     }
   };
+  
   
   return (
     
@@ -176,7 +216,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
                 넘어가기
               </button>
             </div>
-          </div>
+          </div>  
 
           {/* 시드머니 */}
           <div className={styles.Seed}>
@@ -189,36 +229,18 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
         <div className={styles.GameMap}>
           <div className={styles.Map}>
             <div className={styles.wrapper}>
-              <div className={styles.cards}>
-              <div
-                  className={`${styles.card} ${
-                    purchasedRegions.some((region) => region.name === '속초시') ? styles.purchased : ''
-                  }`}
-                  onClick={() => handleRegionClick('속초시')}
-                >
-                  속초시
-                </div>
+            <div className={styles.cards}>
+              {gameData.map((regionData, index) => (
                 <div
+                  key={index}
                   className={`${styles.card} ${
-                    purchasedRegions.some((region) => region.name === '음성군') ? styles.purchased : ''
+                    purchasedRegions.some((region) => region.name === regionData.region) ? styles.purchased : ''
                   }`}
-                  onClick={() => handleRegionClick('음성군')}
+                  onClick={() => handleRegionClick(regionData.region)}
                 >
-                  음성군
+                  {regionData.region}
                 </div>
-                <div className={styles.card}>순천시</div>
-                <div className={styles.card}>광산구</div>
-                <div className={styles.card}>제천시</div>
-                <div className={styles.card}>노원구</div>
-                <div className={styles.card}>영등포구</div>
-                <div className={styles.card}>강남구</div>
-                <div className={styles.card}>성남분당구</div>
-                <div className={styles.card}>의정부시</div>
-                <div className={styles.card}>포항남구</div>
-                <div className={styles.card}>해운대구</div>
-                <div className={styles.card}>연수구</div>
-                <div className={styles.card}>거제시</div>
-                <div className={styles.card}>파주시</div>
+                ))}
               </div>
             </div>
           </div>
@@ -237,7 +259,8 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
                 </div>
                 <div className={styles.RegionPrice}>
                   구매가 : {selectedRegion !== '구매내역' ? 
-                    (purchasedRegions.find(region => region.name === selectedRegion)?.price || 0) :
+                    (gameData.find((regionData) => regionData.region === selectedRegion)?.property[(turn-1)]?.price || '0')
+                    :
                     '0'
                   }
                 </div>
@@ -275,6 +298,8 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
         <PurchaseList
           purchasedRegions={purchasedRegions}
           setPurchasedRegions={setPurchasedRegions}
+          selectedRegion={selectedRegion} 
+          currentPrices={currentPrices}
         />
         </div>
       </div>

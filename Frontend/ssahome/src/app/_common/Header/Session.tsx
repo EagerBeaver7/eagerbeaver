@@ -39,7 +39,7 @@ const Session = () => {
       
       axios
         .get(
-          `http://localhost:9000/api/auth/login?code=${tmpcode}`)
+          `http://localhost:8080/api/auth/login?code=${tmpcode}`)
         .then((jwtToken) => {
           
           if(!jwtToken.data.isNew){
