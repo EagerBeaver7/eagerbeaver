@@ -11,7 +11,33 @@ import Image from "next/image";
 
 
 
-const startBar = () => {
+const StartBar = () => {
+  const router = useRouter();
+
+  const [timer, setTimer] = useState<string>('90'); // 초기 선택 값을 설정
+  const [turns, setTurns] = useState<string>('10'); // 초기 선택 값을 설정
+
+  // 페이지 로드 시 로컬 스토리지에서 값을 가져와서 초기화
+
+
+  // 라디오 버튼 그룹의 변경 핸들러
+  const timerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue2 = event.target.value;
+    setTimer(newValue2);
+  };
+
+  const turnsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    setTurns(newValue);
+  };
+
+  const gogoairplane = () => {
+    console.log(turns + " " + timer);
+    localStorage.setItem('Time', timer);;
+    localStorage.setItem('Turns', turns);
+    router.push('/game');
+  }
+
   return (
     <div className={styles.StartBar1}>
       <div>
@@ -65,4 +91,4 @@ const startBar = () => {
   );
 };
 
-export default startBar;
+export default StartBar;
