@@ -76,7 +76,7 @@ const StartBar = () => {
         </div>
         <br></br>
         <div className={styles.bb}>
-          <Button onClick={gogoairplane} variant="outlined" className={`${styles.stbnt} `} >시작</Button>
+          <Button onClick={gogoairplane} value="Push" variant="outlined" className={`${styles.stbnt} `} >시작</Button>
         </div>
       </div>
       <div>
