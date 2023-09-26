@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from "./page.module.css";
 import { Button } from "@mui/material";
 import FormControl from '@mui/material/FormControl';
@@ -8,42 +8,10 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import beavor from "../../../public/images/beaver.gif"
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
 
 
 
 const startBar = () => {
-  const router = useRouter();
-
-  const [timer, setTimer] = useState<string>('90'); // 초기 선택 값을 설정
-  const [turns, setTurns] = useState<string>('10'); // 초기 선택 값을 설정
-
-  // 페이지 로드 시 로컬 스토리지에서 값을 가져와서 초기화
-  useEffect(() => {
-    // const storedValue = localStorage.getItem('selectedTime');
-    // if (storedValue) {
-    //   setTimer(storedValue);
-    // }
-  }, []);
-
-  // 라디오 버튼 그룹의 변경 핸들러
-  const timerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue2 = event.target.value;
-    setTimer(newValue2);
-  };
-
-  const turnsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    setTurns(newValue);
-  };
-
-  const gogoairplane = () => {
-    console.log(turns + " " + timer);
-    localStorage.setItem('Time', timer);;
-    localStorage.setItem('Turns', turns);
-    router.push('/game');
-  }
-
   return (
     <div className={styles.StartBar1}>
       <div>
@@ -54,7 +22,6 @@ const startBar = () => {
           <FormControl>
             <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check}>턴수</FormLabel>
             <RadioGroup
-              onChange={turnsChange}
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
@@ -68,32 +35,31 @@ const startBar = () => {
         <br></br>
         <div className={styles.time}>
           <FormControl>
-            <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check} >제한시간</FormLabel>
-            <RadioGroup
-              onChange={timerChange}
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-            >
-              <FormControlLabel value="90" control={<Radio />} label="90초" />
-              <FormControlLabel value="180" control={<Radio />} label="180초" />
-              <FormControlLabel value="300" control={<Radio />} label="300초" />
-            </RadioGroup>
-          </FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check} >제한시간</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel value="90" control={<Radio />} label="90초" />
+                <FormControlLabel value="180" control={<Radio />} label="180초" />
+                <FormControlLabel value="300" control={<Radio />} label="300초" />
+              </RadioGroup>
+            </FormControl>
         </div>
         <br></br>
         <div className={styles.bb}>
-          <Button onClick={gogoairplane} variant="outlined" className={`${styles.stbnt} `} >시작</Button>
+          <Button variant="outlined"  className={`${styles.stbnt} `} >시작</Button>
         </div>
       </div>
       <div>
 
       </div>
       <div>
-        <Image src={beavor} alt="slide" width={300} height={300}></Image>
+          <Image src={beavor} alt="slide" width={300} height={300}></Image>
       </div>
       <div>
-
+        
       </div>
     </div>
   );
