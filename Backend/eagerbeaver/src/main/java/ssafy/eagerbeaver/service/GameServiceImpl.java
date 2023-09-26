@@ -31,10 +31,16 @@ import org.springframework.stereotype.Service;
 public class GameServiceImpl implements GameService {
 
     private static final int START_DATE = 201003;
-    private static final Map<Integer, Integer> lastDateMap = new HashMap<>() {{
-        put(10,202103);
-        put(15,201912);
-        put(20, 201809);
+    private static final Map<Integer, Integer> yearMap = new HashMap<>() {{
+        put(10,2021);
+        put(15,2019);
+        put(20, 2018);
+    }};
+
+    private static final Map<Integer, Integer> monthMap = new HashMap<>() {{
+        put(10,3);
+        put(15,12);
+        put(20,9);
     }};
 
     @Autowired
@@ -61,10 +67,12 @@ public class GameServiceImpl implements GameService {
         //10턴인 경우 201003 - 202103
         //15턴인 경우 201003 - 201912
         //20턴인 경우 201003 - 201809
-        int lastDate = lastDateMap.get(turn);
-        int startDate = random.nextInt(START_DATE, lastDate);
+        int year = random.nextInt(2010, yearMap.get(turn));
+        int month = random.nextInt(0, monthMap.get(turn));
+        month += 3-(month%3);
 
-        int fixedStartDate = startDate - (startDate % 100 % 3);
+        int startDate = year * 100 + month;
+        int lastDate = getLastDate(startDate, turn);
         if (!pickedRegionList.isEmpty()) {
             //뽑힌 지역 리스트로 특정 기간내의 뉴스, 매매 데이터만 가지고 GameStartDto 리스트 생성
             return pickedRegionList.stream()
@@ -73,16 +81,16 @@ public class GameServiceImpl implements GameService {
                     List<NewsDto> filteredNewsDtoList = region.getNewsList().stream()
                         .filter(news -> { //뉴스마다 순회하면서 기간을 벗어난 뉴스 필터링
                             int newsDate = Integer.parseInt(news.getPublishedDt().substring(0, 4));
-                            return newsDate >= fixedStartDate && newsDate <= lastDate;
+                            return newsDate >= startDate && newsDate <= lastDate;
                         })
                         .map(News::convertToDto)
                         .toList();
 
                     //Property 리스트 생성
                     List<PropertyDto> filteredPropertiesDtoList = region.getPropertyList().stream()
-                        .filter(property -> { //매매데이터마다 순회하면서 기간 벗어난 데이터 필터링
+                        .filter(property -> { //매매 데이터마다 순회하면서 기간 벗어난 데이터 필터링
                             int propertyDate = Integer.parseInt(property.getPeriod());
-                            return propertyDate >= fixedStartDate && propertyDate <= lastDate;
+                            return propertyDate >= startDate && propertyDate <= lastDate;
                         })
                         .map(Property::convertToDto)
                         .toList();
@@ -97,6 +105,17 @@ public class GameServiceImpl implements GameService {
                 }).toList();
         }
         throw new GameDataNotFoundException(GameErrorCode.GAME_DATA_NOT_FOUND.getMessage());
+    }
+
+    private static int getLastDate(int start, int turn) {
+        int last = start;
+        for(int i=0; i<turn-1; i++) {
+            last += 3;
+            if ((last % 100) == 15) {
+                last += 88;
+            }
+        }
+        return last;
     }
 
     /**
