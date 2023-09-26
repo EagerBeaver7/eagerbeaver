@@ -49,7 +49,6 @@ const StartBar = () => {
           <FormControl>
             <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check}>턴수</FormLabel>
             <RadioGroup
-              onChange={turnsChange}
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
@@ -65,7 +64,6 @@ const StartBar = () => {
           <FormControl>
             <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check} >제한시간</FormLabel>
             <RadioGroup
-              onChange={timerChange}
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
@@ -78,7 +76,7 @@ const StartBar = () => {
         </div>
         <br></br>
         <div className={styles.bb}>
-          <Button onClick={gogoairplane} variant="outlined" className={`${styles.stbnt} `} >시작</Button>
+          <Button onClick={gogoairplane} value="Push" variant="outlined" className={`${styles.stbnt} `} >시작</Button>
         </div>
       </div>
       <div>

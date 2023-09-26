@@ -23,26 +23,42 @@ const Session = () => {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
       setIsLoggedIn(true);
-    }
+      }
 
-    const tmpcode = new URL(window.location.href).searchParams.get("code");
+      const tmpcode = new URL(window.location.href).searchParams.get("code");
+      
+      if (tmpcode != null ) {
+        getCallBack( tmpcode); // 코드가 있을 때만 실행
+      }
 
-    if (tmpcode != null) {
-      getCallBack(tmpcode); // 코드가 있을 때만 실행
-    }
 
-
-  }, []);
-
-  const getCallBack = async (tmpcode: string) => {
-    console.log("실행");
-
-    axios
-      .get(
-        `http://localhost:8080/api/auth/login?code=${tmpcode}`)
-      .then((jwtToken) => {
-
-        if (!jwtToken.data.isNew) {
+    }, []);
+    
+    const getCallBack = async ( tmpcode : string) => {
+      console.log("실행");
+      
+      axios
+        .get(
+          `http://localhost:9000/api/auth/login?code=${tmpcode}`)
+        .then((jwtToken) => {
+          
+          if(jwtToken.data.isNew){
+            console.log(jwtToken.data);
+            localStorage.setItem(
+              "accessToken",
+              JSON.stringify(jwtToken.data.jwt)
+            );
+            setIsLoggedIn(true);
+  
+          
+          }else{
+            localStorage.setItem(
+              "tmpAccessToken",
+              JSON.stringify(jwtToken.data.jwt)
+            );
+            router.push('/nickname');
+          }
+          alert("가입해주셔서 감사합니다. 닉네임 설정을 부탁드립니다.");
           console.log(jwtToken.data);
           localStorage.setItem(
             "accessToken",
