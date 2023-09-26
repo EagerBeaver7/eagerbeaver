@@ -1,4 +1,6 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import styles from './page.module.css'
 import IconButton from "@mui/material/IconButton";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
@@ -6,8 +8,15 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Paper from "@mui/material/Paper";
 import { styled as muistyled } from "@mui/material/styles";
 
-          </div>
-        </div>
+const Item = muistyled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+  width: "25px", // 원하는 너비 값으로 설정
+  height: "25px", // 원하는 높이 값으로 설정
+}));
 
 type Region = {
   id: number;
@@ -85,7 +94,6 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
         })}
       </div>
     </div>
-    
   );
 };
 
