@@ -3,7 +3,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import styles from "./page.module.css";
@@ -14,7 +13,7 @@ function createData(
   nickname: string,
   earningRate: number,
 ) {
-  return { ranking, profile, nickname,earningRate};
+  return { ranking, profile, nickname, earningRate };
 }
 
 const rows = [
@@ -26,7 +25,7 @@ const rows = [
 export default function BasicTable() {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ width: '100%', height:'20%',spacing: 10}} aria-label="simple table">
+      <Table sx={{ width: '100%', height: '20%', spacing: 10 }} aria-label="simple table">
         <TableBody>
           {rows.map((row) => (
             <TableRow

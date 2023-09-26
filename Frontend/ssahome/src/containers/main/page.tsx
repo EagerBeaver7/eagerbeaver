@@ -29,13 +29,10 @@ const MainPage = () => {
     axios.get('http://localhost:8080/api/word')
     .then(response =>{
       setWord(response.data[1].content);
-      console.log("ans "+response);
       setContent(response.data[1].meaning);
       }
     )
-    .catch(error =>  { 
-      console.log("error") 
-      console.log(error)})
+    .catch(error => console.log(error))
   },)
 
 
