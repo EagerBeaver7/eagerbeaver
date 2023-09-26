@@ -33,6 +33,37 @@
       height: 8vh;
       border-radius: 10px;
       background-color: white;
+      margin-bottom: 1vh;
+      display: flex;
+      .button {
+        color: black;
+        background-color: #fff;
+        font-weight: 600;
+        border-radius: 2rem;
+        font-size: 1rem;
+        line-height: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        border: none;
+        border: 2px solid #222;
+        margin-left: 3rem;
+      }
+      .button:hover {
+        box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+      }
+      
+      .button:active {
+        box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+      }
+      .IconButtonWrap {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 }
