@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,8 +26,14 @@ public class GameLogServiceImpl implements GameLogService {
 	private final RedisTemplate<String, Object> redisTemplate;
 	private final ObjectMapper objectMapper;
 
+	private static String makeKey() {
+		Short userId = UserContextHolder.userIdHolder.get();
+		String uuid = UUID.randomUUID().toString();
+		return userId + uuid;
+	}
+
 	@Override
-	public GameLog save(GameLog gameLog){
+	public GameLog save(GameLog gameLog) {
 		gameLog.setId(makeKey());
 		try {
 			String gameLogJson = objectMapper.writeValueAsString(gameLog);
@@ -39,12 +44,6 @@ public class GameLogServiceImpl implements GameLogService {
 			new Exception(e.getMessage());
 		}
 		return null;
-	}
-
-	private static String makeKey() {
-		Short userId = UserContextHolder.userIdHolder.get();
-		String uuid = UUID.randomUUID().toString();
-		return userId + uuid;
 	}
 
 	@Override
@@ -75,7 +74,7 @@ public class GameLogServiceImpl implements GameLogService {
 				throw new LogParsingFailedException(LogErrorCode.LOG_PARSING_FAILED.getMsg());
 			}
 		}
-		if(!gameLogList.isEmpty()) {
+		if (!gameLogList.isEmpty()) {
 			return gameLogList;
 		}
 		throw new LogNotFoundException(LogErrorCode.LOG_NOT_FOUND.getMsg());

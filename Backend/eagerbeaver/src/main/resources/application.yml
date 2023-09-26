@@ -2,8 +2,7 @@
 server:
   servlet:
     context-path: /api
-  port:
-    8200
+  port: 8200
 
 spring:
   profiles:

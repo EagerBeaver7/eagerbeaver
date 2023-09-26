@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import ssafy.eagerbeaver.domain.GameLog;
 
 public interface GameLogService {
-	GameLog save (GameLog gameLog) throws JsonProcessingException;
+	GameLog save(GameLog gameLog) throws JsonProcessingException;
 
 	int count();
 
@@ -15,5 +15,5 @@ public interface GameLogService {
 
 	List<GameLog> getList() throws JsonProcessingException;
 
-	void delete ();
+	void delete();
 }

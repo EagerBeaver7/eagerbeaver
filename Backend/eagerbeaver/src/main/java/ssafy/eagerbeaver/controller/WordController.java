@@ -1,6 +1,5 @@
 package ssafy.eagerbeaver.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,7 @@ public class WordController {
 	private final WordService wordService;
 
 	@GetMapping
-	public ResponseEntity<WordDto[]> getAllRandomWords(){
+	public ResponseEntity<WordDto[]> getAllRandomWords() {
 		return new ResponseEntity<>(wordService.getRandomWord(), HttpStatus.OK);
 	}
 }
