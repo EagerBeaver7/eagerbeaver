@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import ssafy.eagerbeaver.util.JwtUtil;
-import ssafy.eagerbeaver.util.UserContextHolder;
 
 @Component
 @Slf4j
@@ -22,13 +21,6 @@ public class ValidTokenInterceptor implements HandlerInterceptor {
 
         String jwt = jwtUtil.getJwtFromHeader(request);
         jwtUtil.validateToken(jwt);
-        // short id = jwtUtil.getIdFromJwt(jwt);
-        UserContextHolder.userIdHolder.set(jwtUtil.getIdFromJwt(jwt));
         return true;
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        UserContextHolder.userIdHolder.remove();
     }
 }
