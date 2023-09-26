@@ -2,10 +2,18 @@ package ssafy.eagerbeaver.service;
 
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import ssafy.eagerbeaver.domain.GameLog;
 
 public interface GameLogService {
-	void save (GameLog gameLog);
-	List<String> gameLog (short userId);
-	void delete (short userId);
+	GameLog save (GameLog gameLog) throws JsonProcessingException;
+
+	int count();
+
+	Object getOne(String key) throws JsonProcessingException;
+
+	List<GameLog> getList() throws JsonProcessingException;
+
+	void delete ();
 }
