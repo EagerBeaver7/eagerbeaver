@@ -1,4 +1,6 @@
-import React from 'react';
+'use client'
+
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './page.module.css'
 import PurchaseList from '@/containers/game/RightSideBar/PurchaseList/page';
 import IconButton from "@mui/material/IconButton";
@@ -92,10 +94,19 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
     return `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
   }
 
-import Timer from './Timer/page';
-import Turn from './Turn/page';
-import Seed from './Seed/page';
-import Map from './Map/page';
+  useEffect(() => {
+    const countDown = setInterval(() => {
+      setTimeSecond((prevSecond) => {
+        if (prevSecond <= 1) {
+          clearInterval(countDown);
+          alert('턴 종료')
+          // 타이머가 0이 되면 자동으로 다음 턴으로 넘기기
+          handleNextTurn();
+          return 0;
+        }
+        return prevSecond - 1;
+      });
+    }, 1000);
 
     return () => {
       clearInterval(countDown);
@@ -292,6 +303,21 @@ import Map from './Map/page';
         />
         </div>
       </div>
+      <Modal
+          open={Modalopen}
+          onClose={ModalhandleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              아파트 구매
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              성공적으로 지역에 아파트 구매가 완료되었습니다.
+            </Typography>
+          </Box>
+        </Modal>
     </div>
   );
 };
