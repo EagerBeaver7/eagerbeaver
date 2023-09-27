@@ -1,12 +1,11 @@
 // next.config.js
  const nextConfig = {
-
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
+        source: "/:path*",
         destination: "http://localhost:8080/:path*",
       },
     ];

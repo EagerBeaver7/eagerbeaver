@@ -19,9 +19,10 @@ const Session = () => {
     window.location.href = kakaoURL
   }
 
-  const accessToken = localStorage.getItem('accessToken');
+
 
   useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
       setIsLoggedIn(true);
     }
@@ -45,14 +46,14 @@ const Session = () => {
     });
 
     // axiosInstance.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-    axiosInstance.defaults.headers.common['Authorization'] = accessToken;
+    // axiosInstance.defaults.headers.common['Authorization'] = accessToken;
 
     axiosInstance
       .get(
-        `http://localhost:8080/api/auth/login`, {
-          headers:{
-            Authorization: accessToken,
-          },
+        `api/auth/login`, {
+        headers: {
+          Authorization: localStorage.getItem('accessToken'),
+        },
         params: {
           code: tmpcode
         }
