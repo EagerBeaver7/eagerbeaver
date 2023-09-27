@@ -8,7 +8,7 @@ import GameMain from '@/containers/game/GameMain/page';
 
 
 const Game = () => {
-  const [seedMoney, setSeedMoney] = useState(9999999);
+  const [seedMoney, setSeedMoney] = useState(10000);
   return (
     <div className={styles.game}>
       <LeftSideBar seedMoney={seedMoney} setSeedMoney={setSeedMoney}/>

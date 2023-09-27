@@ -1,4 +1,4 @@
-import React  , { useState} from 'react';
+import React  , { useState, useEffect} from 'react';
 import styles from "./page.module.css";
 import { Button } from "@mui/material";
 import FormControl from '@mui/material/FormControl';
@@ -8,6 +8,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import beavor from "../../../public/images/beaver.gif"
 import Image from "next/image";
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 
@@ -18,6 +19,13 @@ const startBar = () => {
   const [timer, setTimer] = useState<string>('90'); // 초기 선택 값을 설정
   const [turns, setTurns] = useState<string>('10'); // 초기 선택 값을 설정
 
+  // 페이지 로드 시 로컬 스토리지에서 값을 가져와서 초기화
+  useEffect(() => {
+    // const storedValue = localStorage.getItem('selectedTime');
+    // if (storedValue) {
+    //   setTimer(storedValue);
+    // }
+  }, []);
 
   // 라디오 버튼 그룹의 변경 핸들러
   const timerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
