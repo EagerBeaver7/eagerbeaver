@@ -1,8 +1,7 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './page.module.css'
-
 import IconButton from "@mui/material/IconButton";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -22,70 +21,142 @@ const Item = muistyled(Paper)(({ theme }) => ({
 type Region = {
   id: number;
   name: string;
-  price: number;
+  currentprice: number;  // 내가 구매했을 당시 구매가격
   maxPurchaseNum: number; 
 };
 
 type PurchaseListProps = {
   purchasedRegions: Region[];
   setPurchasedRegions: React.Dispatch<React.SetStateAction<Region[]>>;
+  selectedRegion: string;
+  currentPrices: {};
+  seedMoney: number; // seedMoney 추가
+  setSeedMoney: (value: number) => void; // setSeedMoney 추가
 };
 
-const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurchasedRegions }) => {
-  // maxPuerchaseNum 값 변경
-  const handleMaxUserNumChange = (regionId: number, newMaxPurchaseNum: number) => {
-    if (newMaxPurchaseNum >= 1 && newMaxPurchaseNum <= 9) {
-      setPurchasedRegions((prevRegions) =>
-        prevRegions.map((region) =>
-          region.id === regionId
-            ? { ...region, maxPurchaseNum: newMaxPurchaseNum } // 변수 이름 변경
-            : region
-        )
-      );
+const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurchasedRegions, selectedRegion, currentPrices, seedMoney, setSeedMoney }) => {
+  const [displayedQuantities, setDisplayedQuantities] = useState<number[]>([]);
+
+  // purchasedRegions가 변경될 때마다 displayedQuantities 업데이트
+  useEffect(() => {
+    setDisplayedQuantities(purchasedRegions.map(region => region.maxPurchaseNum));
+  }, [purchasedRegions]);
+
+  const incrementQuantity = (id: number) => {
+    // id에 해당하는 지역의 현재 수량을 가져옴
+    const currentQuantity = displayedQuantities[id - 1];
+    const maxQuantity = purchasedRegions[id - 1].maxPurchaseNum; // 최대 수량은 해당 지역의 maxPurchaseNum
+  
+    // 현재 수량이 최대 수량보다 작을 때만 증가
+    if (currentQuantity < maxQuantity) {
+      // 증가한 수량을 설정하고 displayedQuantities를 업데이트
+      setDisplayedQuantities(prevQuantities => {
+        const newQuantities = [...prevQuantities];
+        newQuantities[id - 1] = currentQuantity + 1;
+        return newQuantities;
+      });
     }
   };
+  
+  const decrementQuantity = (id: number) => {
+    // id에 해당하는 지역의 현재 수량을 가져옴
+    const currentQuantity = displayedQuantities[id - 1];
+  
+    // 현재 수량이 1보다 큰 경우에만 감소
+    if (currentQuantity > 1) {
+      // 감소한 수량을 설정하고 displayedQuantities를 업데이트
+      setDisplayedQuantities(prevQuantities => {
+        const newQuantities = [...prevQuantities];
+        newQuantities[id - 1] = currentQuantity - 1;
+        return newQuantities;
+      });
+    }
+  };
+  
+  const handleIncreaseHomePurchase = (id: number) => {
+    // id에 해당하는 지역의 현재 수량을 가져옴
+    const currentQuantity = displayedQuantities[id - 1];
+    const purchasePrice = purchasedRegions[id - 1].currentprice;
+  
+    if (currentQuantity > 0) {
+      // 판매할 아이템이 있을 때만 아래 작업 수행
+      const totalPrice = seedMoney + purchasePrice * currentQuantity;
+      console.log(totalPrice);
+  
+      // 판매한 아이템 가격을 seedMoney에 추가
+      setSeedMoney(totalPrice);
+  
+      // 판매한 아이템의 수량을 0으로 설정
+      setDisplayedQuantities((prevQuantities) => {
+        const newQuantities = [...prevQuantities];
+        newQuantities[id - 1] = 0;
+        return newQuantities;
+      });
+    }
+  };
+  
 
+
+  
+  
+  
   return (
     <div className={styles.PurchaseList}>
       <div className={styles.wrap}>
-        {purchasedRegions.map((region) => (
-          <div className={styles.Contents} key={region.id}>
-            <div className={styles.RegionDetail}>
-              {region.name} 상세정보
-              <p>가격: {region.price}원</p>
-              <p>개수: {region.maxPurchaseNum}</p>
-            </div>
-            <div className={styles.ButtonWrap}>
-              <Item>{region.maxPurchaseNum}</Item>
-              <div className={styles.IconButtonWrap}>
-                <IconButton
-                  aria-label="plus"
-                  onClick={() =>
-                    handleMaxUserNumChange(region.id, region.maxPurchaseNum + 1)
-                  }
-                  sx={{ padding: 0 }}
-                >
-                  <ArrowDropUpIcon fontSize="large" />
-                </IconButton>
-                <IconButton
-                  aria-label="minus"
-                  onClick={() =>
-                    handleMaxUserNumChange(region.id, region.maxPurchaseNum - 1)
-                  }
-                  sx={{ padding: 0 }}
-                >
-                  <ArrowDropDownIcon fontSize="large" />
-                </IconButton>
+        {purchasedRegions.map((region, id) => {
+          // region.name에 해당하는 현재 가격을 currentPrice 변수에 가져옴
+          const currentPrice = (currentPrices as Record<string, number>)[region.name] || 0;  // 턴 마다 지역의 현재 가격을 담고있음
+
+          return (
+            <div className={styles.Contents} key={region.id}>
+              <div className={styles.RegionDetail}>
+                {region.name} 상세정보
+                <h4>구매 가격: {region.currentprice}원</h4>
+                <div>
+                  <h4>현재 가격: {currentPrice}원</h4>
+                  <h4>수익률: {calculateProfitRate(region.currentprice, currentPrice)}</h4>
+                </div>
+                <h4>개수: {region.maxPurchaseNum}</h4>  
               </div>
-              <button type="button" className={styles.button}>
-                판매
-              </button>
+              <div className={styles.ButtonWrap}>
+                <Item>{displayedQuantities[(region.id)-1]}</Item>
+                <div className={styles.IconButtonWrap}>
+                  <IconButton
+                    aria-label="plus"
+                    onClick={() => incrementQuantity(region.id)}
+                    sx={{padding: 0}}
+                  >
+                    <ArrowDropUpIcon fontSize="large"/>
+                  </IconButton>
+                  <IconButton
+                    aria-label="minus"
+                    onClick={() => decrementQuantity(region.id)}
+                    sx={{padding: 0}}
+                  >
+                    <ArrowDropDownIcon fontSize="large"/>
+                  </IconButton>
+                </div>
+                <button type="button" className={styles.button} onClick={() => handleIncreaseHomePurchase(region.id)}>
+                  판매
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
 };
 
+
 export default PurchaseList;
+
+// 수익률 계산 함수
+function calculateProfitRate(purchasePrice: number, currentPrice: number) {
+  if (purchasePrice === 0) {
+    return '0.00%'; // 구매 가격이 0일 경우 수익률은 0.00%
+  }
+  
+  const profitRate = ((currentPrice - purchasePrice) / purchasePrice) * 100;
+  return profitRate.toFixed(2) + '%'; // 소수점 2자리까지 반올림하여 문자열로 반환
+}
