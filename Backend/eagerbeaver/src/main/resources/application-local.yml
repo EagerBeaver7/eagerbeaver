@@ -4,8 +4,8 @@ spring:
       on-profile: local
   datasource:
     url: jdbc:mysql://localhost:3306/eagerbeaver
-    username: root
-    password: ssafy
+    username: EB
+    password: kbsw2jEB!
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
@@ -29,7 +29,7 @@ server:
   servlet:
     context-path: /api
   port:
-    9000
+    8080
 
 # kakao 관련
 kakao:
