@@ -87,7 +87,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Map<String, Object> login(String email) {
-		User user = userRepository.findByEmail(email).orElse(join(new User(email)));
+		Optional<User> findUser = userRepository.findByEmail(email);
+		User user = null;
+		if(findUser.isEmpty()) {
+			user = this.join(new User(email));
+		} else {
+			user = findUser.get();
+		}
 
 		JwtUtil jwtUtil = new JwtUtil();
 		Map<String, Object> userInfo = new HashMap<>();
