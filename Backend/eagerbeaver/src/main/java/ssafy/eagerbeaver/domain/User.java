@@ -33,8 +33,8 @@ public class User {
 	@Column(name = "user_nickname", columnDefinition = "varchar(45)")
 	private String nickname;
 
-	@Column(name = "user_profile_img", columnDefinition = "varchar(255)")
-	private String profileImg;
+	@Column(name = "user_profile_img", columnDefinition = "int")
+	private int profileImg;
 
 	@OneToMany(mappedBy = "user")
 	private final List<Result> resultList = new ArrayList<>();
@@ -49,7 +49,7 @@ public class User {
 		this.nickname = nickname;
 	}
 
-	public User(String email, String nickname, String profileImg) {
+	public User(String email, String nickname, int profileImg) {
 		this.email = email;
 		this.nickname = nickname;
 		this.profileImg = profileImg;

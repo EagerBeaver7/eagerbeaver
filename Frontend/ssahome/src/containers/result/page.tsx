@@ -8,6 +8,7 @@ import Graph from './graph';
 import History from './history';
 import winner from '../../../public/images/free-icon-confetti-4525694.png';
 import party from '../../../public/images/free-icon-championship-award-4798145.png';
+import profits from "../../../public/images/image 39.png";
 
 const ResultPage = () => {
   const [report, setReport] = React.useState(true);
@@ -37,7 +38,7 @@ const ResultPage = () => {
       </div>
       <div className={styles.footer}>
         <Image
-          src={`https://images.unsplash.com/photo-1549388604-817d15aa0110`}
+          src={profits}
           alt='bed'
           width={600}
           height={130}

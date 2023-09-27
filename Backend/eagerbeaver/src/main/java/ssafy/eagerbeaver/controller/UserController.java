@@ -1,29 +1,22 @@
 package ssafy.eagerbeaver.controller;
 
 import java.util.Map;
-<<<<<<< HEAD
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-=======
 
->>>>>>> 0da696d6cccc09d63f870e62ea48fbaf7f6c30ea
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-<<<<<<< HEAD
-import ssafy.eagerbeaver.dto.UserDto;
-=======
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ssafy.eagerbeaver.dto.UserInfoSetReq;
->>>>>>> 0da696d6cccc09d63f870e62ea48fbaf7f6c30ea
 import ssafy.eagerbeaver.service.UserService;
 import ssafy.eagerbeaver.util.JwtUtil;
+import ssafy.eagerbeaver.util.UserContextHolder;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -39,15 +32,8 @@ public class UserController {
 		String email = userService.getKakaoMemberInfo(accessToken);
 		Map<String, Object> userInfo = userService.login(email);
 
-<<<<<<< HEAD
-
-        return new ResponseEntity<>(userInfo, HttpStatus.OK);
-
-    }
-=======
 		return new ResponseEntity<>(userInfo, HttpStatus.OK);
 	}
->>>>>>> 0da696d6cccc09d63f870e62ea48fbaf7f6c30ea
 
 	/*
 	닉네임 중복 검사 for debounce
@@ -58,8 +44,6 @@ public class UserController {
 		return new ResponseEntity<>(isDuplicate, HttpStatus.OK);
 	}
 
-<<<<<<< HEAD
-=======
 	/*
 	닉네임 설정
 	 */
@@ -73,5 +57,4 @@ public class UserController {
 			return new ResponseEntity<>("유저 정보 등록 성공", HttpStatus.CREATED);
 		}
 	}
->>>>>>> 0da696d6cccc09d63f870e62ea48fbaf7f6c30ea
 }

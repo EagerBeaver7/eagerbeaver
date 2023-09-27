@@ -1,9 +1,21 @@
-import { ImageList, ImageListItem, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import Image from 'next/image';
 import * as React from 'react';
 import styles from './page.module.css';
+import axios from 'axios';
 
 const RankList = () => {
+    const [users, setUser] = React.useState("");
+
+    React.useEffect(() => {
+        axios.get('http://localhost:8080/api/rank')
+            .then(response => {
+
+            }
+            )
+            .catch(error => console.log(error))
+    },)
+
     return (
         <main className={styles.rank}>
             <Typography> 위</Typography>

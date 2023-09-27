@@ -6,14 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-<<<<<<< HEAD
-import org.springframework.data.redis.serializer.GenericToStringSerializer;
-=======
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
->>>>>>> 0da696d6cccc09d63f870e62ea48fbaf7f6c30ea
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-
-import ssafy.eagerbeaver.domain.GameLog;
 
 @Configuration
 public class RedisConfig {
@@ -29,34 +23,6 @@ public class RedisConfig {
 		return new LettuceConnectionFactory(redisHost, redisPort);
 	}
 
-<<<<<<< HEAD
-		@Bean
-		public RedisConnectionFactory redisConnectionFactory() {
-			RedisStandaloneConfiguration redisConfiguration = new RedisStandaloneConfiguration();
-			redisConfiguration.setHostName(host);
-			redisConfiguration.setPort(port);
-			redisConfiguration.setPassword(password);
-			LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory(redisConfiguration);
-			return lettuceConnectionFactory;
-		}
-
-		@Bean
-		public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-			RedisTemplate<String, Object> template = new RedisTemplate<>();
-			template.setConnectionFactory(redisConnectionFactory);
-			template.setKeySerializer(new StringRedisSerializer());
-			template.setValueSerializer(new StringRedisSerializer());
-			template.setHashKeySerializer(new StringRedisSerializer());
-			template.setHashValueSerializer(new StringRedisSerializer());
-			template.setEnableDefaultSerializer(false);
-			template.setEnableTransactionSupport(true);
-
-			return template;
-		}
-
-}
-
-=======
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate() {
 		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
@@ -66,4 +32,3 @@ public class RedisConfig {
 		return redisTemplate;
 	}
 }
->>>>>>> 0da696d6cccc09d63f870e62ea48fbaf7f6c30ea

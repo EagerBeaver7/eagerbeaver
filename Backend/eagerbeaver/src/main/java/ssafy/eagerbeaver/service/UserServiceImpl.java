@@ -24,6 +24,8 @@ import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ssafy.eagerbeaver.domain.User;
+import ssafy.eagerbeaver.exception.user.UserErrorCode;
+import ssafy.eagerbeaver.exception.user.UserNotFoundException;
 import ssafy.eagerbeaver.repository.UserRepository;
 import ssafy.eagerbeaver.util.JwtUtil;
 
@@ -124,54 +126,9 @@ public class UserServiceImpl implements UserService {
 		return sb.toString();
 	}
 
-<<<<<<< HEAD
-    @Override
-    public Map<String, Object> login(String email) {
-        Map<String, Object> userInfo = new HashMap<>();
-        JwtUtil jwtUtil = new JwtUtil();
-
-        Optional<User> user = userRepository.findByEmail(email);
-        System.out.println(user.toString());
-        if (!user.isPresent()) {
-            User newUser = new User(email, generateRandomNickname());
-            userInfo.put("user", join(newUser));
-            userInfo.put("isNew", true);
-        } else {
-            userInfo.put("user", user);
-            userInfo.put("isNew", false);
-        }
-        userInfo.put("jwt", jwtUtil.generateJwt(email));
-
-        return userInfo;
-    }
-
-    @Override
-    public boolean checkNickname(String nickname) {
-        Optional<User> user = userRepository.findByNickname(nickname);
-        if (!user.isPresent()) {
-            return false;
-        }
-        return true;
-    }
-
-    private User join(User user) {
-        return userRepository.save(user);
-    }
-
-    private String generateRandomNickname() {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder(16);
-        for (int i = 0; i < 10; i++) {
-            sb.append(characters.charAt(random.nextInt(characters.length())));
-        }
-        return sb.toString();
-    }
-=======
 	public User findUserById(short userId) {
 		return userRepository.findById(userId)
 			.orElseThrow(() -> new UserNotFoundException(UserErrorCode.USER_NOT_FOUND.getMsg()));
 	}
 
->>>>>>> 0da696d6cccc09d63f870e62ea48fbaf7f6c30ea
 }

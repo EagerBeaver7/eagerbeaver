@@ -29,10 +29,11 @@ public class JwtUtil {
 	// private String secretKey;
 	private final String secretKey = "eagerbeaversecretkeyhihellochillout";
 
-	public String generateJwt(String email) {
+	public String generateJwt(String email, Short id) {
 		Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("email", email);
+		claims.put("id", id);
 
 		return Jwts.builder().setClaims(claims)
 			// .claim("email", email) // claim 추가할 경우 수정 필요
@@ -64,14 +65,6 @@ public class JwtUtil {
 		return false;
 	}
 
-<<<<<<< HEAD
-	 public String getEmailFromJwt(String jwt) {
-	 	return Jwts.parser()
-	 		.setSigningKey(secretKey)
-	 		.parseClaimsJws(jwt)
-	 		.getBody().get("email", String.class);
-	 }
-=======
 	public String getEmailFromJwt(String jwt) {
 		return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody().get("email", String.class);
 	}
@@ -79,5 +72,4 @@ public class JwtUtil {
 	public Short getIdFromJwt(String jwt) {
 		return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody().get("id", Short.class);
 	}
->>>>>>> 0da696d6cccc09d63f870e62ea48fbaf7f6c30ea
 }
