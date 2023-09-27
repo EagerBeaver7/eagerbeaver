@@ -43,7 +43,7 @@ export const data = {
     datasets: [
         {
             label: '자산(씨드)',
-            data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+            data: labels.map(() => faker.number.int({ min: -1000, max: 1000 })),
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
         },
