@@ -50,8 +50,8 @@ type Region = {
 
 interface GameData {
   city: string;
-  news: string;
-  property: { price: number, period: string }[];
+  news: { title: string, summary: string, publishedDt: string }[];
+  property: { price: number, period: string }[]; 
   region: string;
 }
 
@@ -65,7 +65,11 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
   const [Modalopen, setModalOpen] = React.useState(false);
   const ModalhandleOpen = () => setModalOpen(true);
   const ModalhandleClose = () => setModalOpen(false);
+  const [NewsModalopen, setNewsModalOpen] = React.useState(false);
+  const NewsModalhandleOpen = () => setNewsModalOpen(true);
+  const NewsModalhandleClose = () => setNewsModalOpen(false);
   const [currentPrices, setCurrentPrices] = useState<Record<string, number>>({});
+  const [newsData, setNewsData] = useState<Record<string, { title: string; summary: string; publishedDt: string }[]>>({});
 
 
   const [maxPuerchaseNum, setMaxPurchaseNum] = useState(1); // 아파트 구매할 수 있는 개수
@@ -134,15 +138,27 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
   useEffect(() => {
     // 턴에 맞게 각 지역의 현재 가격 정보 가져와서 업데이트
     const newPrices: Record<string, number> = {};
+    const newNews: Record<string, any[]> = {};
 
     gameData.forEach((regionData) => {
       const currentprice = regionData.property[turn - 1]?.price || 0;
       newPrices[regionData.region] = currentprice;
+      // 해당 턴의 뉴스 데이터 가져오기
+      const newsForTurn = regionData.news[turn - 1];
+      if (newsForTurn) {
+        if (!newNews[regionData.region]) {
+          newNews[regionData.region] = []; // 뉴스 배열이 없다면 빈 배열로 초기화
+        }
+        newNews[regionData.region].push(newsForTurn); // 뉴스 데이터 추가
+      }
     });
 
     setCurrentPrices(newPrices);
+    // 뉴스 데이터 업데이트
+    setNewsData(newNews);
+    NewsModalhandleOpen()
   }, [turn, gameData]);
-
+  
 
   const [selectedRegion, setSelectedRegion] = useState<string | string>('구매내역');
 
@@ -201,9 +217,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
       }
     }
   };
-
-
-
+  
   return (
 
     <div>
@@ -329,6 +343,33 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             성공적으로 지역에 아파트 구매가 완료되었습니다.
           </Typography>
+        </Box>
+      </Modal>
+      <Modal
+        open={NewsModalopen}
+        onClose={NewsModalhandleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {turn}번째 턴의 뉴스입니다.
+          </Typography>
+          <Box sx={{ mt: 2, maxHeight: '500px', overflowY: 'auto' }}>
+            {Object.keys(newsData).map((regionName) => (
+              <div key={regionName}>
+                <h3>{regionName} 지역 뉴스</h3>
+                {newsData[regionName].map((newsItem, index) => (
+                  <div key={index}>
+                    <div>{newsItem.publishedDt}</div>
+                    <div>{newsItem.title}</div>
+                    <div>{newsItem.summary}</div>
+                    <div>----------------------------------------------------------</div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </Box>
         </Box>
       </Modal>
     </div>
