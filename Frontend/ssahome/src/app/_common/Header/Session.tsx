@@ -23,34 +23,34 @@ const Session = () => {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
       setIsLoggedIn(true);
-      }
+    }
 
-      const tmpcode = new URL(window.location.href).searchParams.get("code");
-      
-      if (tmpcode != null ) {
-        getCallBack( tmpcode); // 코드가 있을 때만 실행
-      }
+    const tmpcode = new URL(window.location.href).searchParams.get("code");
+
+    if (tmpcode != null) {
+      getCallBack(tmpcode); // 코드가 있을 때만 실행
+    }
 
 
-    }, []);
-    
-    const getCallBack = async ( tmpcode : string) => {
-      console.log("실행");
-      
-      axios
-        .get(
-          `http://localhost:8080/api/auth/login?code=${tmpcode}`)
-        .then((jwtToken) => {
-          
-          if(!jwtToken.data.isNew){
-            localStorage.setItem(
-              "accessToken",
-              JSON.stringify(jwtToken.data.jwt)
-            );
-            setIsLoggedIn(true);
-  
-          
-          }else {
+  }, []);
+
+  const getCallBack = async (tmpcode: string) => {
+    console.log("실행");
+
+    axios
+      .get(
+        `api/auth/login?code=${tmpcode}`)
+      .then((jwtToken) => {
+
+        if (!jwtToken.data.isNew) {
+          localStorage.setItem(
+            "accessToken",
+            JSON.stringify(jwtToken.data.jwt)
+          );
+          setIsLoggedIn(true);
+
+
+        } else {
           localStorage.setItem(
             "tmpAccessToken",
             JSON.stringify(jwtToken.data.jwt)
