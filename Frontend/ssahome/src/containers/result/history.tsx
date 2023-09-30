@@ -1,6 +1,7 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import * as React from 'react';
 import styles from './page.module.css';
+import axios from 'axios';
 
 function createData(
     region: string,
@@ -21,6 +22,12 @@ const rows = [
 ];
 
 const History = () => {
+    const [gameLogs, setGameLogs] = React.useState([]);
+
+    axios.get('api/gameLog/list', {
+
+    })
+
     return (
         <main className={styles.table}>
             <TableContainer component={Paper}>
