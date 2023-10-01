@@ -2,30 +2,33 @@
 import React from "react";
 import styles from "./page.module.css";
 import { Button } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
-import Beaver from "../../../public/images/Beaver.png"
+import Image from "next/image";
+import city from "/public/images/city7.jpg"
 
 const Section5: React.FC = () => (
   <div className={`${styles.bg} ${styles.section5} `} >
-    <div className={`${styles.cheer} `}>
-      지금 바로 당신의 능력을 보여주세요
-    </div>
-    <div className={`${styles.grap} `}>
-      <div className={`${styles.beaverlogo} `}>
-        <Image
-          src={Beaver}
-          alt="Beaver"
-          width={400}
-          height={400}
-        />
+
+    <div className={styles.textContainer4}>
+      <div className={styles.cheer}>
+        지금 바로 당신의 능력을 보여주세요!
       </div>
+
+      <Link href="/main" className={styles.btnLink}>
+        <div className={styles.startbtndiv}>
+          <Button variant="outlined" className={styles.startbtn}>시작하기</Button>
+        </div>
+      </Link>
     </div>
-    <Link href="/main" className={styles.btnLink}>
-      <div className={`${styles.startbtndiv} `}>
-        <Button variant="outlined" className={`${styles.startbtn} `} >시작하기</Button>
-      </div>
-    </Link>
+
+    <div className={styles.cityBox}>
+      <Image
+        src={city}
+        alt="city"
+        className={styles.city2}
+      />
+    </div>
+
   </div>
 );
 

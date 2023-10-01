@@ -2,8 +2,8 @@
 import React from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
-import cardimg1 from "../../../public/images/card_img1.png"
-import cardimg4 from "../../../public/images/card_img4.png"
+import cardimg1 from "../../../public/images/word.jpg"
+import cardimg4 from "../../../public/images/word.jpg"
 
 const Section4: React.FC = () => (
   <div className={`${styles.bg} ${styles.section4} ${styles.background4}`}>
