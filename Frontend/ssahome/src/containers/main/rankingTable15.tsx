@@ -28,6 +28,7 @@ export default function BasicTable(props: RankingPageProps) {
               <TableRow
                 key={idx + 1}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell align="right" className={styles.check2}>{idx + 1}위</TableCell>
                 <TableCell align="right" className={styles.check2}>{row.userName}&nbsp;(님)</TableCell>
                 <TableCell align="right" className={styles.check2}>{row.rate}&nbsp;(%)</TableCell>
               </TableRow>

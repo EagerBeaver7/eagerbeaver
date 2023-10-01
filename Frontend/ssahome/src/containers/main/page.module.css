@@ -1,14 +1,15 @@
 
 .rankbar {
 
-  background-color: #D1AB7D;
-  width: 80%; /* 원하는 가로 길이(예: 50%)로 설정하세요. */
+  background-color: #FFFFFF;
+  border: 3px solid #D1AB7D;
+  width: 60%; /* 원하는 가로 길이(예: 50%)로 설정하세요. */
    /*float: left;  왼쪽으로 붙이기 */
   height: 80vh; /* 페이지 높이와 같게 설정 */
   z-index: 999;
   position: absolute;
   top: 50%;
-  left: 63%;
+  left: 73%;
   transform: translate(-50%, -50%);
   border-radius: 10px; /* 원하는 둥근 정도(px)를 설정하세요. */
 }
@@ -174,16 +175,20 @@ transition: 1s;
 
 .parents{
 position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
 display: grid;
 grid-template-columns: 1fr 1fr 3fr 1fr 1fr; /* 다른 영역의 넓이를 설정합니다. */
-grid-gap: 5px; /* 영역 간격 조정 (선택 사항) */
+grid-gap: 5px; /*영역 간격 조정 (선택 사항) */
 
 flex-direction: column;
 justify-content: center;
 align-items: center;
-height: 90vh; 
 
-overflow: hidden; /* 스크롤 없애기 */
+height: 90vh;
+
+overflow: hidden; /*스크롤 없애기 */
 }
 
 .GridItemR {
@@ -191,7 +196,18 @@ background-color: white;
 padding: 20px;
 text-align: right;
 font-size: 18px;
+width: 430px;
 }
+
+.GridItemM {
+  width: 600px;
+  position: flex;
+  justify-content: center;
+}
+
+  .img {
+    width: 500px;
+  }
 
 .GridItemL{
   background-color: white;
@@ -201,12 +217,16 @@ font-size: 18px;
   }
 
   .wordTitle {
+    width: 500px;
+    margin-left: 60px;
     text-align: center;
     font-family: 'Dovemayo_gothic';
     font-size: 40px;
   }
 
   .wordContents {
+    width: 500px;
+    margin-left: 70px;
     text-align: center;
     white-space: normal;
     font-family: 'Dovemayo_gothic';

@@ -39,13 +39,15 @@ const MainPage = () => {
   const toggleMenu2 = () => {
     // console.log(isOpen2);
     setMenu2((isOpen2) => !isOpen2); // on, off 개념 boolean
-    axios.get('api/rank')
-      .then(response => {
-        setRank(response.data); // 데이터 업데이트
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    if (isOpen2) {
+      axios.get('api/rank')
+        .then(response => {
+          setRank(response.data); // 데이터 업데이트
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
   };
 
   useEffect(() => {
@@ -64,41 +66,39 @@ const MainPage = () => {
 
 
   return (
-    <>
-      <div className={styles.parents}>
-        <div className={styles.GridItemR}>
-          <Button onClick={() => toggleMenu2()}
-            className={isOpen ? styles.bnt : styles.bntHide}>랭킹보기</Button>
+    <div className={styles.parents}>
+      <div className={styles.GridItemR}>
+        <Button onClick={() => toggleMenu2()}
+          className={isOpen ? styles.bnt : styles.bntHide}>랭킹보기</Button>
+      </div>
+      <div className={styles.GridItemM}>
+        <div className={styles.img}>
+          <Image src={home} alt="slide" width={500} height={400}></Image>
         </div>
-        <div>
-          <div>
-            <Image src={home} alt="slide" width={500} height={400}></Image>
-          </div>
-          <div className={styles.wordTitle}>
-            {word}
-          </div>
-          <br></br>
-          <div className={styles.wordContents}>
-            {content}
-          </div>
+        <div className={styles.wordTitle}>
+          {word}
         </div>
-        <div className={styles.GridItemL}>
-          <Button onClick={() => toggleMenu()} className={isOpen2 ? styles.bnt : styles.bntHide}>플레이</Button>
+        <br></br>
+        <div className={styles.wordContents}>
+          {content}
         </div>
-        <div>
-
-        </div>
-
-        <div className={isOpen ? styles['show-menu3'] : styles['hide-menu3']}>
-          <StartBar></StartBar>
-        </div>
-        <div className={isOpen2 ? styles['show-menu2'] : styles['hide-menu2']}>
-          <Ranking rank={rank}></Ranking>
-        </div>
-
+      </div>
+      <div className={styles.GridItemL}>
+        <Button onClick={() => toggleMenu()} className={isOpen2 ? styles.bnt : styles.bntHide}>플레이</Button>
+      </div>
+      <div>
 
       </div>
-    </>
+
+      <div className={isOpen ? styles['show-menu3'] : styles['hide-menu3']}>
+        <StartBar></StartBar>
+      </div>
+      <div className={isOpen2 ? styles['show-menu2'] : styles['hide-menu2']}>
+        <Ranking rank={rank}></Ranking>
+      </div>
+
+
+    </div>
   );
 };
 
