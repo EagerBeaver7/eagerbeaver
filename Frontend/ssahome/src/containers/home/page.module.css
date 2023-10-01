@@ -1,263 +1,395 @@
-
 .bg {
-    position: relative;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .outer {
-    height: 100%;
-    width: 100%;
-    overflow-y: auto;
-  }
-  
-  .section1 {
-    height: 100%;
-    width: 100%;  
-  }
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
-  .section2 {
-    height: 100%;
-    width: 100%;  
-  }
-  .section3 {
-    height: 100%;
-    width: 100%;  
-  }
-  .section4 {
-    height: 100%;
-    width: 100%;  
-  }
-  .section5 {
-    height: 100%;
-    width: 100%;  
-  }
+.outer {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
 
+.section1 {
+  height: 100%;
+  width: 100%;
+}
 
-  .beaverlogo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.section2 {
+  height: 100%;
+  width: 100%;
+}
 
-  .cheer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    color: #D1AB7D;
-    margin-top: 50px; /* 위쪽 마진 설정 */
-    margin-bottom: 20px; /* 아래쪽 마진 설정 */
-    font-family: 'Dovemayo_gothic';
-  }
+.section3 {
+  height: 100%;
+  width: 100%;
 
-  .grap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70%;
-    /* height: 400px; */
-    height: 60%;
-    font-size: 120px;
-    padding: 10; /* 불필요한 패딩 제거 */
-  }
+  display: flex-row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
-  .btnLink {
-    text-decoration: none;
-  }
-  .startbtndiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    .startbtn {
-      font-size: 40px;
-      background-color: '#0063cc';
-      line-height: 1.5;
-      border-color: #D1AB7D;
-      border: 3px solid; /* 두껍게 조정 */
-      color: #D1AB7D; /* 글자 색을 흰색(#fff)으로 변경 */
-      border-radius: 20px;
-      font-family: 'Dovemayo_gothic';
-      
-    }
-    .startbtn:hover {
-      background-color: #96785B; /* 마우스 호버 시 배경색 변경 */
-      border-color: #96785B; /* 마우스 호버 시 테두리 색 변경 */
-      box-shadow: none; /* 마우스 호버 시 그림자 제거 */
-    }
-  }
+.section5 {
+  height: 100%;
+  width: 100%;
+}
+
+.flowText {
+  display: flex;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: 0.3s;
+
+  font-size: 1.3rem;
+  font-family: 'ONE-Mobile-POP';
+  color: #96785B;
+
+  border-top: 1px solid #96785B;
+  border-bottom: 1px solid #96785B;
+
+  margin-top: 30px;
+  padding: 1% 0;
+}
 
 
-  .background2 {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to right,
+.flowText:hover .flowWrap {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+.flowWrap {
+  animation: textLoop 15s linear infinite;
+  padding-right: 1.4881vw;
+}
+
+@keyframes textLoop {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+
+.textContainer {
+  display: flex-row;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 4%;
+
+  width: 1000px;
+  height: 450px;
+
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+
+  background-color: white;
+  border-radius: 20px;
+  z-index: 100;
+}
+
+.mainText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 35px;
+
+  font-size: 6rem;
+  color: black;
+  font-family: 'ONE-Mobile-POP';
+}
+
+.subText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 40px;
+
+  font-size: 3rem;
+  color: black;
+  font-family: 'Dovemayo_gothic';
+}
+
+.subText2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 20px;
+
+  font-size: 2rem;
+  color: black;
+  font-family: 'Dovemayo_gothic';
+}
+
+.city {
+  width: 100%;
+  height: 96%;
+
+  z-index: -1;
+
+  position: absolute;
+  top: 0px;
+}
+
+.btnLink {
+  text-decoration: none;
+}
+
+.startbtndiv {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .startbtn {
+    width: 150px;
+
+    font-size: 35px;
+    background-color: #96785B;
+    line-height: 1.5;
+    /* 두껍게 조정 */
+    color: white;
+    /* 글자 색을 흰색(#fff)으로 변경 */
+    border-radius: 20px;
+    font-family: '116angduk_honesty15';
+  }
+
+  .startbtn:hover {
+    background-color: white;
+    border: solid 1px #0b0b0b;
+    color: black;
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+
+  display: flex-row;
+  justify-content: center;
+  align-items: center;
+}
+
+.textContainer2 {
+  min-width: 300px;
+
+  padding-bottom: 30px;
+
+  display: flex-row;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.text1 {
+  font-size: 3.5rem;
+  font-family: 'Dovemayo_gothic';
+}
+
+.mark{
+  background: linear-gradient(180deg,rgba(255,255,255,0) 75%, #FFD0AE 50%);
+}
+
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 200px;
+
+  min-width: 1000px;
+}
+
+.card {
+  min-width: 300px;
+  min-height: 350px;
+
+  display: flex-row;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 20px;
+
+  border: 1px solid black;
+  border-radius: 30px;
+
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+}
+
+.cardImg {
+  width: 270px;
+  height: 200px;
+
+  padding-top: 5px;
+  padding-bottom: 30px;
+}
+
+.cardText {
+  width: 300px;
+
+  font-size: 1.3rem;
+  font-family: 'Dovemayo_gothic';
+
+  .cardTextBold {
+    font-weight: bold;
+    font-size: 2rem;
+
+    padding-bottom: 15px;
+  }
+}
+
+.background3 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left,
       rgba(20, 20, 20, 0.1) 10%,
       rgba(20, 20, 20, 0.7) 50%,
-      rgba(20, 20, 20, 1)
-    ),
-    /* url('../../../public/img/page3.png'); public 폴더 내의 이미지 경로 */
-    /* background-size: cover; */
-  }
-
-  .background3 {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to left,
-      rgba(20, 20, 20, 0.1) 10%,
-      rgba(20, 20, 20, 0.7) 50%,
-      rgba(20, 20, 20, 1)
-    ),
+      rgba(20, 20, 20, 1)),
     /* url('../../../public/img/page2.png'); public 폴더 내의 이미지 경로 */
     /* background-size: cover; */
-  }
+}
 
-  .background4 {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* background:  rgba(12, 12, 12, 1) url('../../../public/img/page4.png'); public 폴더 내의 이미지 경로 */
-    /* background-size: cover; */
-  }
+.background4 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background:  rgba(12, 12, 12, 1) url('../../../public/img/page4.png'); public 폴더 내의 이미지 경로 */
+  /* background-size: cover; */
+}
 
-  .centerText1 {
-    position: absolute;
-    top: 15%; /* 화면의 중앙 높이에 위치하도록 설정 */
-    right: 50%; /* 화면의 중앙 가로 위치에서 오른쪽으로 이동 */
-    transform: translate(50%, -50%); /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
-    font-size: 50px;
-    color: black;
+.centerText1 {
+  position: absolute;
+  top: 15%;
+  /* 화면의 중앙 높이에 위치하도록 설정 */
+  right: 50%;
+  /* 화면의 중앙 가로 위치에서 오른쪽으로 이동 */
+  transform: translate(50%, -50%);
+  /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
+  font-size: 50px;
+  color: black;
+  font-family: 'Dovemayo_gothic';
+}
+
+.center {
+  text-align: center;
+}
+
+.bottomWrap {
+  position: absolute;
+  top: 35%;
+  right: 7%;
+  display: flex;
+  gap: 4vh;
+
+  .cards {
+    width: 43vh;
+    height: 55vh;
     font-family: 'Dovemayo_gothic';
-  }
-  .center {
-    text-align: center;
-  }
-  .bottomWrap{
-    position: absolute;
-    top: 35%;
-    right: 7%;
-    display: flex;
-    gap: 4vh;
 
-    .cards{
-      width: 43vh;
-      height: 55vh;
-      font-family: 'Dovemayo_gothic';
-      .cards_img{
-        height: 27vh;
+    .cards_img {
+      height: 27vh;
+      width: 100%;
+
+      .imgWrap {
+        height: 100%;
         width: 100%;
-        .imgWrap {
-          height: 100%;
-          width: 100%;
-        }
       }
-      .cards_text{
-        height: 28vh;
-        text-align: center;
+    }
 
-        .text_title{
-          font-size: 25px;
-          font-weight: bold;
-          height: 8vh;
-          line-height: 8vh;
-        }
-        .text_content{
-          font-size: 18px;
-          width: 32vh;
-          height: 20vh;
-          word-break:break-all;
-        }
+    .cards_text {
+      height: 28vh;
+      text-align: center;
+
+      .text_title {
+        font-size: 25px;
+        font-weight: bold;
+        height: 8vh;
+        line-height: 8vh;
+      }
+
+      .text_content {
+        font-size: 18px;
+        width: 32vh;
+        height: 20vh;
+        word-break: break-all;
       }
     }
   }
-  
-  .centerText2 {
-    position: absolute;
-    top: 10%; /* 화면의 중앙 높이에 위치하도록 설정 */
-    right: 50%; /* 화면의 중앙 가로 위치에서 오른쪽으로 이동 */
-    transform: translate(50%, -50%); /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
-    font-size: 50px;
-    color: black;
-    font-family: 'Dovemayo_gothic';
-  }
+}
 
-  .centerText3 {
-    position: absolute;
-    top: 10%; /* 화면의 중앙 높이에 위치하도록 설정 */
-    right: 50%; /* 화면의 중앙 가로 위치에서 오른쪽으로 이동 */
-    transform: translate(50%, -50%); /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
-    font-size: 50px;
-    color: black;
-    font-family: 'Dovemayo_gothic';
-  }
-
-  .centerText4 {
-    position: absolute;
-    top: 18%; /* 화면의 중앙 높이에 위치하도록 설정 */
-    right: 50%; /* 화면의 중앙 가로 위치에서 오른쪽으로 이동 */
-    transform: translate(50%, -50%); /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
-    font-size: 20px;
-    color: black;
-    font-family: 'Dovemayo_gothic';
-  }
-
-  .centerText5 {
-    position: absolute;
-    top: 60%; /* 화면의 중앙 높이에 위치하도록 설정 */
-    right: 50%; /* 화면의 중앙 가로 위치에서 오른쪽으로 이동 */
-    width: 110vh;
-    height: 50vh;
-    border: 1px solid black;
-    transform: translate(50%, -50%); /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
-    font-size: 50px;
-    color: black;
-    font-family: 'Dovemayo_gothic';
-  }
-
-  .centerText6 {
-    position: absolute;
-    top: 10%; /* 화면의 중앙 높이에 위치하도록 설정 */
-    right: 50%; /* 화면의 중앙 가로 위치에서 오른쪽으로 이동 */
-    transform: translate(50%, -50%); /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
-    font-size: 50px;
-    color: black;
-    font-family: 'Dovemayo_gothic';
-  }
-
-  .centerText7 {
-    position: absolute;
-    top: 20%; /* 화면의 중앙 높이에 위치하도록 설정 */
-    right: 50%; /* 화면의 중앙 가로 위치에서 오른쪽으로 이동 */
-    transform: translate(50%, -50%); /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
-    font-size: 20px;
-    color: black;
-    font-family: 'Dovemayo_gothic';
-  }
-
-  /* ##########################################################################################33 */
-.ButtonWrap{ 
+.centerText2 {
   position: absolute;
-  top: 25%; /* 화면의 중앙 높이에 위치하도록 설정 */
+  top: 10%;
+  /* 화면의 중앙 높이에 위치하도록 설정 */
+  right: 50%;
+  /* 화면의 중앙 가로 위치에서 오른쪽으로 이동 */
+  transform: translate(50%, -50%);
+  /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
+  font-size: 50px;
+  color: black;
+  font-family: 'Dovemayo_gothic';
+}
+
+.centerText3 {
+  position: absolute;
   right: 50%;
   transform: translate(50%, -50%);
-  margin: 23px auto;
-  width: 50%;
-  display: flex;
-  flex-direction: row;
+  font-size: 4rem;
+  color: black;
+  font-family: 'Dovemayo_gothic';
+}
+
+.centerText4 {
+  position: absolute;
+  top: 10%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  /* 화면 중앙 정렬을 위한 트랜스폼 사용 */
+  font-size: 2rem;
+  color: black;
+  font-family: 'Dovemayo_gothic';
+}
+
+/* ##########################################################################################33 */
+.textContainer3 {
+  width: 500px;
+  height: 170px;
+}
+
+.slideContainer {
+  width: 100%;
+  height: 76%;
+
+  position: absolute;
+  top: 15%;
+
+  display: flex-row;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+}
+
+.slideTexts {
+  margin-top: 15px;
+
+  font-size: 2rem;
   font-family: 'Dovemayo_gothic';
 }
 
@@ -265,47 +397,84 @@
   width: 60%;
   display: grid;
   grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
-  /* flex-direction: row; */
-  /* justify-content: space-between; */
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  grid-gap: 10px; 
-
-  position: absolute;
-  top: 60%; /* 화면의 중앙 높이에 위치하도록 설정 */
-  right: 50%;
-  transform: translate(50%, -50%);
-
+  margin: auto;
 }
 
 .bnt {
   font-size: 40px;
-  border: 3px solid #D1AB7D;
-  color: #D1AB7D; /* 글자 색을 흰색(#fff)으로 변경 */
+  border: 3px solid #96785B;
+  color: #96785B;
   background-color: white;
   font-family: 'Dovemayo_gothic';
-  border-radius: 20px;
+  border-radius: 50px;
 }
 
 .bnt:hover {
-  background-color: #96785B; /* 마우스 호버 시 배경색 변경 */
-  border-color: #96785B; /* 마우스 호버 시 테두리 색 변경 */
-  box-shadow: none; /* 마우스 호버 시 그림자 제거 */
+  background-color: #96785B;
+  border-color: #96785B;
+  color: white;
 }
 
-.buttonOnclickStyle{
+.buttonOnclickStyle {
   font-size: 20px;
   /*border-color: #96785B;  마우스 호버 시 테두리 색 변경 */
-  box-shadow: none; /* 마우스 호버 시 그림자 제거 */
+  box-shadow: none;
+  /* 마우스 호버 시 그림자 제거 */
   color: #0b0b0b;
 }
 
-.buttonStyle{
+.buttonStyle {
   font-size: 20px;
- /* border: 3px solid #D1AB7D;*/
+  /* border: 3px solid #D1AB7D;*/
   color: #bbb7b7;
   background-color: white;
   border-radius: 20px;
+}
 
+/* ======================section5======================= */
+
+.cheer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: black;
+
+  margin-top: 15%;
+  margin-bottom: 20px;
+
+  padding-top: 30px;
+
+  font-family: 'Dovemayo_gothic';
+}
+
+.textContainer4 {
+  display: flex-row;
+  justify-content: center;
+  align-items: center;
+
+  width: 800px;
+  height: 230px;
+
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+
+  background-color: white;
+  border-radius: 20px;
+}
+
+.cityBox {
+  display: flex-row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.city2 {
+  width: 100%;
+  height: 130%;
+
+  position: absolute;
+  top: -45%;
+
+  z-index: -1;
 }
