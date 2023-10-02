@@ -24,6 +24,8 @@ interface Props {
 const MainPage = () => {
   const [isOpen, setMenu] = useState(true); // 메뉴의 초기값을 false로 설정
   const [isOpen2, setMenu2] = useState(true); // 메뉴의 초기값을 false로 설정
+  // 버튼 유무
+  const [bntOpen, setBntOpen] = useState(true);
   const [word, setWord] = useState("");
   const [content, setContent] = useState("");
   // 여기서부턴 예지 코드
@@ -32,13 +34,15 @@ const MainPage = () => {
 
 
   const toggleMenu = () => {
-    // console.log(isOpen);
+    setBntOpen((bntOpen) => !bntOpen);
     setMenu((isOpen) => !isOpen); // on, off 개념 boolean
   };
 
   const toggleMenu2 = () => {
-    // console.log(isOpen2);
+    setBntOpen((bntOpen) => !bntOpen);
     setMenu2((isOpen2) => !isOpen2); // on, off 개념 boolean
+    
+    
     if (isOpen2) {
       axios.get('api/rank')
         .then(response => {
@@ -49,6 +53,16 @@ const MainPage = () => {
         });
     }
   };
+
+  const closeStart = () => {
+    setBntOpen((bntOpen) => !bntOpen);
+    setMenu((isOpen) => !isOpen);
+  }
+
+  const closeRank = () => {
+    setBntOpen((bntOpen) => !bntOpen);
+    setMenu2((isOpen2) => !isOpen2);
+  }
 
   useEffect(() => {
     axios.get('http://localhost:8080/api/word')
@@ -69,7 +83,7 @@ const MainPage = () => {
     <div className={styles.parents}>
       <div className={styles.GridItemR}>
         <Button onClick={() => toggleMenu2()}
-          className={isOpen ? styles.bnt : styles.bntHide}>랭킹보기</Button>
+          className={bntOpen ? styles.bnt : styles.rankBntHide}>랭킹보기</Button>
       </div>
       <div className={styles.GridItemM}>
         <div className={styles.img}>
@@ -84,17 +98,20 @@ const MainPage = () => {
         </div>
       </div>
       <div className={styles.GridItemL}>
-        <Button onClick={() => toggleMenu()} className={isOpen2 ? styles.bnt : styles.bntHide}>플레이</Button>
+        <Button onClick={() => toggleMenu()} className={bntOpen ? styles.bnt : styles.rankBntHide}>플레이</Button>
       </div>
       <div>
 
       </div>
-
       <div className={isOpen ? styles['show-menu3'] : styles['hide-menu3']}>
         <StartBar></StartBar>
+        <Button onClick={() => closeStart()} className={styles.closeBnt}>X</Button>
       </div>
+      
       <div className={isOpen2 ? styles['show-menu2'] : styles['hide-menu2']}>
         <Ranking rank={rank}></Ranking>
+        <Button onClick={() => closeRank()} className={styles.closeBnt}>X</Button>
+      
       </div>
 
 
