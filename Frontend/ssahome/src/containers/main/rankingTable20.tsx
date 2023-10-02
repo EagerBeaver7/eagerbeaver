@@ -21,7 +21,7 @@ export default function BasicTable(props: RankingPageProps) {
   return (
     <TableContainer component={Paper}>
       <Table
-        sx={{ width: "400px", height: "20%", spacing: 10 }}
+        sx={{ width: "300px", height: "20%", spacing: 10 }}
         aria-label="simple table"
       >
         <TableBody>
