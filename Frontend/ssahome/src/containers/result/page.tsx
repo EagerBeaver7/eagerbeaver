@@ -8,15 +8,45 @@ import Graph from './graph';
 import History from './history';
 import winner from '../../../public/images/free-icon-confetti-4525694.png';
 import party from '../../../public/images/free-icon-championship-award-4798145.png';
+import profit from '../../../public/images/image 39.png';
+import axios from 'axios';
 
 const ResultPage = () => {
   const [report, setReport] = React.useState(true);
+
+  const nickName = localStorage.getItem("nickname");
+
+  let tmp = localStorage.getItem("tmpAccessToken");
+  if (tmp) {
+    tmp = JSON.parse(tmp)
+  }
+  const accessToken = tmp;
+
+  const apiURl = process.env.apiUrl;
+
+  const handleRedis = () => {
+    axios.delete(apiURl + '/gameLog', {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    }).then(response => {
+      console.log(response.data);
+    })
+  }
+
+
+  axios.get(apiURl + 'api/gameLog', {
+    headers: { Authorization: `Bearer ${accessToken}` }
+  })
+    .then(response => {
+      console.log(response.data);
+      setReport(response.data);
+    })
+    .catch(error => console.log(error));
 
   return (
     <main>
       <div className={styles.title}>
         <Typography>
-          <Image src={winner} alt='winner' width={30} />님 총 수익<Image src={winner} alt='winner' className={styles.party} width={30} />
+          <Image src={winner} alt='winner' width={30} /> {nickName}님 총 수익<Image src={winner} alt='winner' className={styles.party} width={30} />
         </Typography>
       </div>
       <div className={styles.main}>
@@ -37,14 +67,14 @@ const ResultPage = () => {
       </div>
       <div className={styles.footer}>
         <Image
-          src={`https://images.unsplash.com/photo-1549388604-817d15aa0110`}
+          src={profit}
           alt='bed'
           width={600}
           height={130}
           className={styles.pic}
           loading="lazy">
         </Image>
-        <Button variant="outlined" className={styles.finish}>종료</Button>
+        <Button onClick={() => { handleRedis() }} variant="outlined" className={styles.finish}>종료</Button>
       </div>
 
     </main>

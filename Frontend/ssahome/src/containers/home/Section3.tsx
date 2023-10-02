@@ -4,37 +4,20 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 // Import your slide images here
-import slide1 from "../../../public/images/card_img3.png"; // Update with the actual file path
-import slide2 from "../../../public/images/card_img2.png"; // Update with the actual file path
+import slide1 from "../../../public/images/word.jpg"; // Update with the actual file path
 
-
-
-// const Button = styled.div`
-//   width: 17%;
-//   height: 50px;
-//   border: 1.5px solid black;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   cursor: pointer;
-// `;
-
-// const ButtonOnclick = styled(Button)`
-//   background-color: #e5c17b;
-// `;
-
-
-// const SlideElement = styled.div`
-//   width: 100%;
-//   height: 40vh;
-//   background-size: cover;
-//   background-repeat: no-repeat;
-// `;
 
 const Section3 = () => {
-  const slideElementList = [slide1, slide2, slide1, slide2, slide1]; // Updated with your slide images
-  const slideElementList2 = ["slide1", "slide2"]; // Updated with your slide images
+  const slideElementList = [slide1, slide1, slide1, slide1, slide1]; // Updated with your slide images
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slideTexts = [
+    "뉴스를 읽고 집 값을 예측하세요!",
+    "지역을 선택하고 집을 매매하세요!",
+    "모르는 용어는 검색해보세요!",
+    "아이템을 구매해 수익률을 높여보세요!",
+    "매매내역으로 게임 내용을 확인해보세요!",
+  ];
 
   const showSlide = (idx: number) => {
     const listLength = slideElementList.length - 1;
@@ -48,10 +31,6 @@ const Section3 = () => {
     }
   };
 
-  const showBtnSlide = (idx: number) => {
-    setCurrentSlide(idx);
-  };
-
   const onPrev = () => {
     showSlide(currentSlide - 1);
     console.log(currentSlide);
@@ -63,92 +42,49 @@ const Section3 = () => {
   };
 
   return (
-    
+    <div className={`${styles.bg} ${styles.section3} ${styles.background3}`}>
+      <div className={styles.textContainer3}>
+        <div className={`${styles.centerText3} `}>
+          게임 설명
+        </div>
+        <div className={`${styles.centerText4} `}>
+          옆으로 넘기면서 게임 방법을 알아보세요.
+        </div>
 
-<div className={`${styles.bg} ${styles.section3} ${styles.background3}`}>
-  <div >
-    <div className={`${styles.centerText3} `}>
-      게임 설명
-    </div>
-    <div className={`${styles.centerText4} `}>
-      옆으로 넘기면서 게임 방법을 알아보세요.
-    </div>
-    <div className="PlayUI">
-      <div className={`${styles.ButtonWrap} `}>
-        <div
-          className={`${
-            currentSlide === 0 ? styles.buttonOnclickStyle : styles.buttonStyle
-          }`}
-          onClick={() => {
-            showBtnSlide(0);
-          }}
-        >
-          1번(임시)
-        </div>
-        <div
-          className={`${
-            currentSlide === 1 ? styles.buttonOnclickStyle : styles.buttonStyle
-          }`}
-          onClick={() => {
-            showBtnSlide(1);
-          }}
-        >
-          2번(임시)
-        </div>
-        <div
-          className={`${
-            currentSlide === 2 ? styles.buttonOnclickStyle : styles.buttonStyle
-          }`}
-          onClick={() => {
-            showBtnSlide(2);
-          }}
-        >
-          3번(임시)
-        </div>
-        <div
-          className={`${
-            currentSlide === 3 ? styles.buttonOnclickStyle : styles.buttonStyle
-          }`}
-          onClick={() => {
-            showBtnSlide(3);
-          }}
-        >
-          4번(임시)
-        </div>
-        <div
-          className={`${
-            currentSlide === 4 ? styles.buttonOnclickStyle : styles.buttonStyle
-          }`}
-          onClick={() => {
-            showBtnSlide(4);
-          }}
-        >
-          5번(임시)
-        </div>
       </div>
-      <div className={`${styles.SlideShowWrap} `}>
-        <div></div>
-        <div style={{ zIndex: 1 }}>
-          <button className={`${styles.bnt} `} onClick={onPrev} > &lt; </button>
-        </div>
-        
-        <div className={`${styles.SlideWrap} `}>
-          <Image
-            src={slideElementList[currentSlide]}
-            alt="slide"
-            width={720}
-            height={350}
-          ></Image>
-        </div >
 
-        <div style={{ zIndex: 1 }}>
-          <button className={`${styles.bnt} `} onClick={onNext} > &gt; </button>
+      <div className={styles.slideContainer}>
+        <div>
+          <div className={`${styles.SlideShowWrap} `}>
+            <div></div>
+            <div style={{ zIndex: 1 }}>
+              <button className={`${styles.bnt} `} onClick={onPrev} > &lt; </button>
+            </div>
+
+            <div className={`${styles.SlideWrap} `}>
+              <Image
+                src={slideElementList[currentSlide]}
+                alt="slide"
+                width={600}
+                height={400}
+              ></Image>
+            </div >
+
+            <div style={{ zIndex: 1 }}>
+              <button className={`${styles.bnt} `} onClick={onNext} > &gt; </button>
+            </div>
+            <div></div>
+          </div>
         </div>
-        <div></div>
+
+        {/* 현재 슬라이드에 해당하는 텍스트 표시 */}
+        <div className={`${styles.slideTexts} `}>
+          {slideTexts[currentSlide]}
+        </div>
+
       </div>
+
     </div>
-  </div>
-</div>
   );
 };
 

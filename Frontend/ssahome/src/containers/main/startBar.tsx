@@ -1,23 +1,20 @@
-import React  , { useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import { Button } from "@mui/material";
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import beavor from "../../../public/images/beaver.gif"
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import beavor from "../../../public/images/beaver.gif";
 import Image from "next/image";
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-
-
+import { useRouter } from "next/navigation";
 
 const startBar = () => {
   const router = useRouter();
 
-  const [timer, setTimer] = useState<string>('90'); // 초기 선택 값을 설정
-  const [turns, setTurns] = useState<string>('10'); // 초기 선택 값을 설정
+  const [timer, setTimer] = useState<string>("90"); // 초기 선택 값을 설정
+  const [turns, setTurns] = useState<string>("10"); // 초기 선택 값을 설정
 
   // 페이지 로드 시 로컬 스토리지에서 값을 가져와서 초기화
   useEffect(() => {
@@ -38,29 +35,30 @@ const startBar = () => {
     setTurns(newValue);
   };
 
-  const gogoairplane = ()=>{
-    console.log( turns +" "+timer);
-    localStorage.setItem('Time', timer);;
-    localStorage.setItem('Turns', turns);
-    router.push('/game');
-  }
+  const gogoairplane = () => {
+    localStorage.setItem("Time", timer);
+    localStorage.setItem("Turns", turns);
+    router.push("/game");
+  };
 
   return (
     <div className={styles.StartBar1}>
       <div>
-
-      </div>
-      <div>
         <div className={styles.turn}>
           <FormControl>
-            <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check}>턴수</FormLabel>
+            <FormLabel
+              id="demo-row-radio-buttons-group-label"
+              className={styles.check}
+            >
+              턴수
+            </FormLabel>
             <RadioGroup
               onChange={turnsChange}
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
             >
-              <FormControlLabel value='10' control={<Radio />} label="10턴" />
+              <FormControlLabel value="10" control={<Radio />} label="10턴" />
               <FormControlLabel value="15" control={<Radio />} label="15턴" />
               <FormControlLabel value="20" control={<Radio />} label="20턴" />
             </RadioGroup>
@@ -69,32 +67,37 @@ const startBar = () => {
         <br></br>
         <div className={styles.time}>
           <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label" className={styles.check} >제한시간</FormLabel>
-              <RadioGroup
-                onChange={timerChange}
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-              >
-                <FormControlLabel value="90" control={<Radio />} label="90초" />
-                <FormControlLabel value="180" control={<Radio />} label="180초" />
-                <FormControlLabel value="300" control={<Radio />} label="300초" />
-              </RadioGroup>
-            </FormControl>
+            <FormLabel
+              id="demo-row-radio-buttons-group-label"
+              className={styles.check}
+            >
+              제한시간
+            </FormLabel>
+            <RadioGroup
+              onChange={timerChange}
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+            >
+              <FormControlLabel value="90" control={<Radio />} label="90초" />
+              <FormControlLabel value="180" control={<Radio />} label="180초" />
+              <FormControlLabel value="300" control={<Radio />} label="300초" />
+            </RadioGroup>
+          </FormControl>
         </div>
         <br></br>
         <div className={styles.bb}>
-          <Button onClick={gogoairplane} variant="outlined"  className={`${styles.stbnt} `} >시작</Button>
+          <Button
+            onClick={gogoairplane}
+            variant="outlined"
+            className={`${styles.stbnt} `}
+          >
+            시작
+          </Button>
         </div>
       </div>
       <div>
-
-      </div>
-      <div>
-          <Image src={beavor} alt="slide" width={300} height={300}></Image>
-      </div>
-      <div>
-        
+        <Image src={beavor} alt="slide" width={300} height={300}></Image>
       </div>
     </div>
   );

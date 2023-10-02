@@ -31,7 +31,7 @@ class RankServiceImplTest {
 	@Test
 	public void findTop10ByTurn() {
 		//given
-		User user = new User("th@naver.com", "태희", "nothing.jpg");
+		User user = new User("th@naver.com", "태희", 1);
 		entityManager.persist(user);
 
 		for(int i=0; i<100; i++) {
@@ -42,9 +42,9 @@ class RankServiceImplTest {
 		}
 
 		//when
-		List<Result> list10 = resultRepository.findTop10ByTurnOrderByRateDesc(10);
-		List<Result> list15 = resultRepository.findTop10ByTurnOrderByRateDesc(15);
-		List<Result> list20 = resultRepository.findTop10ByTurnOrderByRateDesc(20);
+		List<Result> list10 = resultRepository.findTop5ByTurnOrderByRateDesc(10);
+		List<Result> list15 = resultRepository.findTop5ByTurnOrderByRateDesc(15);
+		List<Result> list20 = resultRepository.findTop5ByTurnOrderByRateDesc(20);
 
 		//then
 		assertEquals(10, list10.size());

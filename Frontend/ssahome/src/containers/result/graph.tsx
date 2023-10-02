@@ -14,7 +14,8 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { faker } from '@faker-js/faker';
+// import { faker } from '@faker-js/faker';
+import axios from 'axios';
 
 ChartJS.register(
     CategoryScale,
@@ -35,25 +36,48 @@ export const options = {
     },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: '자산(씨드)',
-            data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-    ],
-};
-
 const Graph = () => {
+    const [graphData, setGraphData] = React.useState({
+        labels: [],
+        datasets: [
+            {
+                label: '수익률',
+                data: [],
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
+        ],
+    });
+
+    React.useEffect(() => {
+
+        const apiURl = process.env.apiUrl;
+
+        axios.get(apiURl + '/gameLog/list')
+            .then((response) => {
+                const gameLogs = response.data;
+                const labels = gameLogs.map((log) => log.region);
+                const data = gameLogs.map((log) => log.profit);
+
+                setGraphData({
+                    labels,
+                    datasets: [
+                        {
+                            label: '수익률',
+                            data,
+                            borderColor: 'rgb(255, 99, 132)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        },
+                    ],
+                });
+            })
+            .catch((error) => {
+                console.error('Error fetching graph data:', error);
+            });
+    }, []);
     return (
         <main className={styles.graph}>
-            <Line options={options} data={data} />
+            <Line options={options} data={graphData} />
         </main>
     );
 };

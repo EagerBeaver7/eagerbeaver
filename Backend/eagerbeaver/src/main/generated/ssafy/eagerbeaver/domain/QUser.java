@@ -26,7 +26,7 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath nickname = createString("nickname");
 
-    public final StringPath profileImg = createString("profileImg");
+    public final NumberPath<Integer> profileImg = createNumber("profileImg", Integer.class);
 
     public final ListPath<Result, QResult> resultList = this.<Result, QResult>createList("resultList", Result.class, QResult.class, PathInits.DIRECT2);
 

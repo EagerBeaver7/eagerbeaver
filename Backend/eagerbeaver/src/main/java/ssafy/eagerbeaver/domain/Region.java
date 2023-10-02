@@ -2,14 +2,18 @@ package ssafy.eagerbeaver.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import ssafy.eagerbeaver.dto.GameStartDto;
 import ssafy.eagerbeaver.dto.NewsDto;
@@ -35,12 +39,11 @@ public class Region {
 
 	//fetch 타입 eager 로 수정
 	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
-	private List<News> newsList = new ArrayList<>();
-
+	private final List<News> newsList = new ArrayList<>();
 
 	//fetch 타입 eager 로 수정
 	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
-	private List<Property> propertyList = new ArrayList<>();
+	private final List<Property> propertyList = new ArrayList<>();
 
 	public Region(String name, String city) {
 		this.name = name;

@@ -1,13 +1,13 @@
 package ssafy.eagerbeaver.service;
 
+import java.util.List;
+
 import ssafy.eagerbeaver.domain.User;
 import ssafy.eagerbeaver.dto.GameStartDto;
 
-import java.util.List;
-
 public interface GameService {
 
-    List<GameStartDto> gameStart() throws Exception;
+	List<GameStartDto> gameStart(int turn);
 
-    void gameOver(User user, int turn, double rate) throws Exception;
+	void gameOver(User user, int turn, double rate);
 }

@@ -1,26 +1,35 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import * as React from 'react';
 import styles from './page.module.css';
+import axios from 'axios';
 
-function createData(
-    region: string,
-    num: number,
-    buy: number,
-    sell: number,
-    profit: number,
-) {
-    return { region, num, buy, sell, profit };
+interface GameLog {
+    id: string;
+    region: string;
+    tradeNum: number;
+    buyPrice: number;
+    sellPrice: number;
+    rate: number;
 }
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
 const History = () => {
+    const [gameLogs, setGameLogs] = React.useState<GameLog[]>([]);
+
+    React.useEffect(() => {
+
+        const apiURl = process.env.apiUrl;
+
+        // API 요청을 보내고 데이터를 가져옵니다.
+        axios.get(apiURl + '/gameLog/list')
+            .then((response) => {
+                // API 응답 데이터를 gameLogs 상태로 설정합니다.
+                setGameLogs(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching game logs:', error);
+            });
+    }, []);
+
     return (
         <main className={styles.table}>
             <TableContainer component={Paper}>
@@ -36,19 +45,19 @@ const History = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                        {gameLogs.map((row, index) => (
                             <TableRow
-                                key={row.region}
+                                key={row.id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell align="center">1</TableCell>
+                                <TableCell align="center">{index + 1}</TableCell>
                                 <TableCell align="center" component="th" scope="row">
                                     {row.region}
                                 </TableCell>
-                                <TableCell align="center">{row.num}</TableCell>
-                                <TableCell align="center">{row.buy}</TableCell>
-                                <TableCell align="center">{row.sell}</TableCell>
-                                <TableCell align="center">{row.profit}</TableCell>
+                                <TableCell align="center">{row.tradeNum}</TableCell>
+                                <TableCell align="center">{row.buyPrice}</TableCell>
+                                <TableCell align="center">{row.sellPrice}</TableCell>
+                                <TableCell align="center">{row.rate}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
