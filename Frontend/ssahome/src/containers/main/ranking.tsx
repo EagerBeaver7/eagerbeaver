@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import styles from "./page.module.css";
-// import RankingTable10 from "@/containers/main/rankingTable10";
-// import RankingTable15 from "@/containers/main/rankingTable15";
-// import RankingTable20 from "@/containers/main/rankingTable20";
 import { Button } from "@mui/material";
 import Ranking15 from "@/containers/main/ranking15";
 import Ranking10 from "@/containers/main/ranking10";
