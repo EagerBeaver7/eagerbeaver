@@ -9,6 +9,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import beavor from "../../../public/images/beaver.gif";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { GiBirchTrees } from "react-icons/gi";
 
 const startBar = () => {
   const router = useRouter();
@@ -44,49 +45,124 @@ const startBar = () => {
 
   return (
     <div className={styles.StartBar1}>
-      <div>
-        <div className={styles.turn}>
-          <FormControl>
-            <FormLabel
-              id="demo-row-radio-buttons-group-label"
-              className={styles.check}
-            >
-              턴수
-            </FormLabel>
-            <RadioGroup
-              onChange={turnsChange}
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-            >
-              <FormControlLabel value="10" control={<Radio />} label="10턴" />
-              <FormControlLabel value="15" control={<Radio />} label="15턴" />
-              <FormControlLabel value="20" control={<Radio />} label="20턴" />
-            </RadioGroup>
-          </FormControl>
+      <div className={styles.setting}>
+        <div className={styles.turnTime}>
+          <div className={styles.turnTimeSetting}>
+            <FormControl>
+              <FormLabel
+                id="demo-row-radio-buttons-group-label"
+                className={styles.check}
+              >
+                턴수
+              </FormLabel>
+              <RadioGroup
+                onChange={turnsChange}
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="10"
+                  control={
+                    turns === "10" ? (
+                      <div className={styles.choiceRadio}>
+                        <GiBirchTrees size="25px" color="#9A6B4B" />
+                      </div>
+                    ) : (
+                      <Radio />
+                    )
+                  }
+                  label="10턴"
+                />
+                <FormControlLabel
+                  value="15"
+                  control={
+                    turns === "15" ? (
+                      <div className={styles.choiceRadio}>
+                        <GiBirchTrees size="25px" color="#9A6B4B" />
+                      </div>
+                    ) : (
+                      <Radio />
+                    )
+                  }
+                  label="15턴"
+                />
+                <FormControlLabel
+                  value="20"
+                  control={
+                    turns === "20" ? (
+                      <div className={styles.choiceRadio}>
+                        <GiBirchTrees size="25px" color="#9A6B4B" />
+                      </div>
+                    ) : (
+                      <Radio />
+                    )
+                  }
+                  label="20턴"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
         </div>
         <br></br>
-        <div className={styles.time}>
-          <FormControl>
-            <FormLabel
-              id="demo-row-radio-buttons-group-label"
-              className={styles.check}
-            >
-              제한시간
-            </FormLabel>
-            <RadioGroup
-              onChange={timerChange}
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-            >
-              <FormControlLabel value="90" control={<Radio />} label="90초" />
-              <FormControlLabel value="180" control={<Radio />} label="180초" />
-              <FormControlLabel value="300" control={<Radio />} label="300초" />
-            </RadioGroup>
-          </FormControl>
+        <div className={styles.turnTime}>
+          <div className={styles.turnTimeSetting}>
+            <FormControl>
+              <FormLabel
+                id="demo-row-radio-buttons-group-label"
+                className={styles.check}
+              >
+                제한시간
+              </FormLabel>
+              <RadioGroup
+                onChange={timerChange}
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="90"
+                  control={
+                    timer === "90" ? (
+                      <div className={styles.choiceRadio}>
+                        <GiBirchTrees size="25px" color="#9A6B4B" />
+                      </div>
+                    ) : (
+                      <Radio />
+                    )
+                  }
+                  label="90초"
+                />
+                <FormControlLabel
+                  value="180"
+                  control={
+                    timer === "180" ? (
+                      <div className={styles.choiceRadio}>
+                        <GiBirchTrees size="25px" color="#9A6B4B" />
+                      </div>
+                    ) : (
+                      <Radio />
+                    )
+                  }
+                  label="180초"
+                />
+                <FormControlLabel
+                  value="300"
+                  control={
+                    timer === "300" ? (
+                      <div className={styles.choiceRadio}>
+                        <GiBirchTrees size="25px" color="#9A6B4B" />
+                      </div>
+                    ) : (
+                      <Radio />
+                    )
+                  }
+                  label="300초"
+                />
+              </RadioGroup>
+            </FormControl>
+          </div>
         </div>
-        <br></br>
         <div className={styles.bb}>
           <Button
             onClick={gogoairplane}
