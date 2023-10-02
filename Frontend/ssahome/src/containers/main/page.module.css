@@ -72,12 +72,12 @@
 .rankContainer {
   gap: 10px; /* 컬럼 간격 설정 (원하는 크기로 조절) */
   /* height: 93vh; */
-  margin-top: 12%;
+  margin-top: 8%;
   display: flex;
 }
 .rankContainerTxt {
   position: relative;
-  top: 100px;
+  top: 90px;
   left: 38%;
   transform: translateY(-50%);
   font-size: 50px;
@@ -85,7 +85,7 @@
 }
 
 .rankCenter {
-  justify-content: center;
+  margin-top: 0px;
   font-family: "Dovemayo_gothic";
   align-items: center;
   width: max-content;
@@ -252,15 +252,15 @@
 
 .arrow::after {
   position: absolute;
-  top: 0px;
   content: "";
   width: 20px;
   height: 20px;
-  border-top: 5px solid #000;
-  border-right: 5px solid #000;
+  border-top: 5px solid #d1ab7d;
+  border-right: 5px solid #d1ab7d;
 }
 
 .arrowLeft {
+  top: 30%;
   left: 10%;
   transform: rotate(225deg);
 }
