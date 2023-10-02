@@ -70,16 +70,15 @@
 }
 
 .rankContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* 두 개의 컬럼으로 나눔 */
   gap: 10px; /* 컬럼 간격 설정 (원하는 크기로 조절) */
   /* height: 93vh; */
   margin-top: 12%;
+  display: flex;
 }
 .rankContainerTxt {
   position: relative;
   top: 100px;
-  left: 35%;
+  left: 38%;
   transform: translateY(-50%);
   font-size: 50px;
   font-family: "Dovemayo_gothic";
@@ -90,27 +89,16 @@
   font-family: "Dovemayo_gothic";
   align-items: center;
   width: max-content;
+  font-size: 35px;
 }
 
-.rankleftContent {
-  grid-column: 1; /* 왼5쪽 컬럼에 배치 */
-  /* margin-top: 5%; */
-  margin-left: 10px;
-  margin-right: 2px;
-}
 .rankmiddleContent {
-  grid-column: 2; /* 왼쪽 컬럼에 배치 */
-  /* margin-top: 5%; */
+  margin-top: 5px;
   margin-left: 2px;
   margin-right: 2px;
+  width: 70%;
 }
 
-.rankrightContent {
-  grid-column: 3; /* 오른쪽 컬럼에 배치 */
-  /* margin-top: 5%; */
-  margin-left: 2px;
-  margin-right: 10px;
-}
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 .StartBar1 {
   background-color: #ffffff;
@@ -255,22 +243,33 @@
 }
 
 /* 화살표 버튼 만들고 싶어요... */
-/* .arrow {
+.arrow {
   position: relative;
   float: left;
+  width: max-content;
+  height: max-content;
 }
 
 .arrow::after {
   position: absolute;
-  left: 35px;
-  top: 20px;
+  top: 0px;
   content: "";
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-top: 5px solid #000;
   border-right: 5px solid #000;
 }
 
 .arrowLeft {
+  left: 10%;
   transform: rotate(225deg);
-} */
+}
+
+.arrowRight {
+  right: 10%;
+  transform: rotate(45deg);
+}
+
+.changeTurn {
+  display: none;
+}
