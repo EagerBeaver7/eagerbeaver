@@ -3,31 +3,35 @@ package ssafy.eagerbeaver.aop;
 import lombok.extern.slf4j.Slf4j;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
 
 @Slf4j
 @Aspect
+@Component
 public class LogAspect {
 
-	@Before("@annotation(Log)")
+	@Pointcut("execution(* ssafy.eagerbeaver.controller.*.*(..)) || " +
+			"execution(* ssafy.eagerbeaver.service.*.*(..)) || " +
+			"execution(* ssafy.eagerbeaver.repository.*.*(..))")
+	public void pointcut() {}
+
+	@Before("pointcut()")
 	public void logBefore(JoinPoint joinPoint) {
 		Object[] args = joinPoint.getArgs();
 		String methodName = joinPoint.getSignature().toShortString();
-		log.info("[Before Log] {} args={}", methodName, args);
+		log.info("\n[Before Log] {} args={}", methodName, args);
 	}
 
-	@After("@annotation(Log)")
+	@After("pointcut()")
 	public void logAfter(JoinPoint joinPoint) {
 		String methodName = joinPoint.toLongString();
-		log.info("[After Log] {}", methodName);
+		log.info("\n[After Log] {}", methodName);
 	}
 
-	@AfterThrowing(pointcut = "@annotation(Log)", throwing = "exception")
+	@AfterThrowing(pointcut = "pointcut()", throwing = "exception")
 	public void logAfterThrowing(JoinPoint joinPoint, Exception exception) {
 		String methodName = joinPoint.getSignature().toShortString();
-		log.error("[Exception log] {} exception={}", methodName, exception.getMessage());
+		log.error("\n[Exception log] {} exception={}", methodName, exception.getMessage());
 	}
 }
