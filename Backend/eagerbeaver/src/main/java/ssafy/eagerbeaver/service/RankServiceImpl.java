@@ -23,12 +23,16 @@ public class RankServiceImpl implements RankService {
 		List<ResultDto> resultDtoList = new ArrayList<>();
 
 		for (int turn : TURN_ARR) {
-			List<RankDto> rankDtoList = resultRepository.findTop10ByTurnOrderByRateDesc(turn)
+			List<RankDto> rankDtoList = resultRepository.findTop5ByTurnOrderByRateDesc(turn)
 				.stream()
 				.map(Result::convertToRankDto)
 				.toList();
 
 			resultDtoList.add(ResultDto.builder().turn(turn).rankList(rankDtoList).build());
+		}
+
+		for(ResultDto r : resultDtoList){
+			System.out.println(r.getRankList());
 		}
 
 		return resultDtoList;

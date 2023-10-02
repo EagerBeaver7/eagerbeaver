@@ -42,9 +42,9 @@ class RankServiceImplTest {
 		}
 
 		//when
-		List<Result> list10 = resultRepository.findTop10ByTurnOrderByRateDesc(10);
-		List<Result> list15 = resultRepository.findTop10ByTurnOrderByRateDesc(15);
-		List<Result> list20 = resultRepository.findTop10ByTurnOrderByRateDesc(20);
+		List<Result> list10 = resultRepository.findTop5ByTurnOrderByRateDesc(10);
+		List<Result> list15 = resultRepository.findTop5ByTurnOrderByRateDesc(15);
+		List<Result> list20 = resultRepository.findTop5ByTurnOrderByRateDesc(20);
 
 		//then
 		assertEquals(10, list10.size());
