@@ -19,6 +19,7 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import SearchIcon from '@mui/icons-material/Search';
+import { useRouter } from "next/navigation";
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -216,7 +217,22 @@ const actions = [
   { icon: <SearchIcon />, name: '용어 검색' },
 ];
 
+
+
 const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
+  const router = useRouter();
+  let GameTurns: number = 10; // 기본값으로 0을 설정하거나, 다른 적절한 초기값으로 설정
+
+  const storedGameTurns = localStorage.getItem('Turns');
+  if (storedGameTurns !== null) {
+    GameTurns = parseInt(storedGameTurns, 10);
+  }
+  let GameTime: number = 60; // 기본값으로 0을 설정하거나, 다른 적절한 초기값으로 설정
+
+  const storedGameTime = localStorage.getItem('Time');
+  if (storedGameTime !== null) {
+    GameTime = parseInt(storedGameTime, 10);
+  }
   let tmp = localStorage.getItem("tmpAccessToken");
   if (tmp) {
     tmp = JSON.parse(tmp)
@@ -314,14 +330,14 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
 
 
   // 타이머 기능
-  const [timeSecond, setTimeSecond] = useState(60);
+  const [timeSecond, setTimeSecond] = useState(GameTime)
   const [turn, setTurn] = useState(1);
 
   const handleNextTurn = useCallback(() => {
-    if (turn < 10) {
+    if (turn < GameTurns) {
       setTurn(turn + 1);
       // 턴이 증가할 때 타이머 초기화
-      setTimeSecond(60);
+      setTimeSecond(GameTime);
       // purchasedRegions 배열의 각 항목의 nextprice 업데이트
       const updatedPurchasedRegions = purchasedRegions.map((regionItem) => {
         // gameData에서 해당 지역의 새로운 턴의 정보를 가져와서 nextprice 업데이트
@@ -338,6 +354,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
 
     } else {
       alert('게임 종료')
+      router.push("/result");
     }
   }, [turn, gameData, purchasedRegions]);
 
@@ -349,7 +366,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
 
   useEffect(() => {
     const countDown = setInterval(() => {
-      setTimeSecond((prevSecond) => {
+      setTimeSecond((prevSecond: number) => {
         if (prevSecond <= 1) {
           alert('턴 종료')
           // 타이머가 0이 되면 자동으로 다음 턴으로 넘기기
@@ -368,7 +385,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
   useEffect(() => {
     // 여기에 사용할 토큰을 변수로 정의합니다.
 
-    axios.get('api/games/10', {
+    axios.get(`api/games/${GameTurns}`, {
       headers: { Authorization: `Bearer ${accessToken}` }
     })
       .then(response => {
@@ -478,6 +495,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
       }
     }
   };
+
   return (
 
     <div>
@@ -559,7 +577,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           {/* 턴 */}
           <div className={styles.TurnWrap}>
             <button type="button" className={styles.button}>
-              {`${turn} / 10`}
+              {`${turn} / ${GameTurns}`}
             </button>
 
             <div className={styles.button_location}>
