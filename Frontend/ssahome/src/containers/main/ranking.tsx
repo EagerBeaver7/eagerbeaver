@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import RankingTable10 from "@/containers/main/rankingTable10";
 import RankingTable15 from "@/containers/main/rankingTable15";
 import RankingTable20 from "@/containers/main/rankingTable20";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 
 // Props 타입 정해주기
 // rankList에 들어갈 요소들
@@ -23,11 +23,11 @@ interface RankingPageProps {
 }
 
 const RankingPage = (props: RankingPageProps) => {
-  const [isPre, setIsPre] = useState(true);
+  // const [isPre, setIsPre] = useState(true);
 
-  const togglePre = () => {
-    setIsPre((isPre) => !isPre);
-  };
+  // const togglePre = () => {
+  //   setIsPre((isPre) => !isPre);
+  // };
 
   return (
     <div className={styles.rankbar}>
