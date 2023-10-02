@@ -14,7 +14,8 @@ import axios from 'axios';
 const ResultPage = () => {
   const [report, setReport] = React.useState(true);
 
-  let nickName = localStorage.getItem("nickname");
+  const nickName = localStorage.getItem("nickname");
+
   let tmp = localStorage.getItem("tmpAccessToken");
   if (tmp) {
     tmp = JSON.parse(tmp)
@@ -29,10 +30,6 @@ const ResultPage = () => {
     })
   }
 
-
-  const data = {
-    "nickname": nickName,
-  }
 
   axios.get('api/gameLog', {
     headers: { Authorization: `Bearer ${accessToken}` }
