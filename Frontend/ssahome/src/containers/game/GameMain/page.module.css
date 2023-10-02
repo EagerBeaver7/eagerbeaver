@@ -1,8 +1,304 @@
+.LeftSideBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18%;
+  height: 100%;
+  background-color: rgba(217, 217, 217, 0.58);
+  .News {
+    .wrap {
+      width: 90%;
+      height: 12vh;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
+      margin: 1.5vh auto;
+      font-family: 'Dovemayo_gothic';
+      font-size: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .wrap:hover {
+      border: 1px solid black;
+      transform: scale(1);
+    }
+    
+    .wrap:active {
+      transform: scale(1);
+    }
+  }
+
+  .Items {
+    .wrap {
+      width: 90%;
+      height: 43vh;
+      background-color: #fff;
+      border-radius: 10px;
+      padding-top: 1vh;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.22);
+      font-family: 'Dovemayo_gothic';
+      font-size: 20px;
+    }
+    .button {
+      width: 100%;
+      height: 10vh;
+    }
+  
+    .PriceWrap {
+      width: 95%;
+      height: 42vh;
+      border-radius: 10px;
+      background-color: rgba(217, 217, 217, 0.58);
+      
+      .PriceTitle {
+        font-size: 25px;
+        font-weight: bold;
+        padding-top: 1vh;
+        padding-left: 1vh;
+      }
+      .PriceContent {
+        font-size: 20px;
+        padding-top: 1vh;
+        padding-left: 1vh;
+      }
+      .PriceWon{
+        padding-left: 1vh;
+        font-size: 20px;
+        position: relative;
+        top: 20.5vh;
+        left: 3vh;
+      }
+      .ButtonWrap{
+        position: relative;
+        top: 16vh;
+        left: 17vh;
+        .Button{
+          color: black;
+          background-color: #fff;
+          font-weight: 600;
+          border-radius: 2rem;
+          font-size: 1rem;
+          line-height: 1rem;
+          padding-left: 2rem;
+          padding-right: 2rem;
+          padding-top: 0.7rem;
+          padding-bottom: 0.7rem;
+          text-align: center;
+          display: inline-flex;
+          align-items: center;
+          border: none;
+          border: 2px solid #222;
+        }
+        .Button:hover {
+          box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+        }
+        
+        .Button:active {
+          box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+        }
+      }
+    }
+  
+    .NewsWrap {
+      
+      .NewsContent {
+        width: 95%;
+        height: 42vh;
+        border-radius: 10px;
+        background-color: rgba(217, 217, 217, 0.58);
+        margin-bottom: 2vh;
+        font-size: 20px;
+        
+        .NewsWon{
+          padding-left: 1vh;
+          position: relative;
+          top: 24.5vh;
+          left: 3vh;
+        }
+        .NewsTitle1 {
+          font-size: 25px;
+          font-weight: bold;
+          padding-top: 1vh;
+          padding-left: 1vh;
+          padding-bottom: 1vh;
+        }
+  
+        .NewsTitle2 {
+          font-size: 18px;
+          padding-left: 1vh;
+        }
+        .NewsButtonWrap2{
+          position: relative;
+          left: 17vh;
+          bottom: 10vh;
+          .NewsButton {
+            color: black;
+            background-color: #fff;
+            font-weight: 600;
+            border-radius: 2rem;
+            font-size: 1rem;
+            line-height: 1rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-top: 0.7rem;
+            padding-bottom: 0.7rem;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            border: none;
+            border: 2px solid #222;
+          }
+          .NewsButton:hover {
+            box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+          }
+          
+          .NewsButton:active {
+            box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+          }
+  
+        }
+        .NewsButtonWrap{
+          position: relative;
+          left: 17vh;
+          top: 20vh;
+  
+          .NewsButton {
+            color: black;
+            background-color: #fff;
+            font-weight: 600;
+            border-radius: 2rem;
+            font-size: 1rem;
+            line-height: 1rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-top: 0.7rem;
+            padding-bottom: 0.7rem;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            border: none;
+            border: 2px solid #222;
+          }
+          .NewsButton:hover {
+            box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+          }
+          
+          .NewsButton:active {
+            box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+          }
+        }
+      }
+    }
+  
+    .SearchWrap {
+      .SearchButton {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        width: 93%; 
+        height: 5vh;
+        border-radius: 10px;
+        margin-bottom: 1vh;
+        padding-left: 1vh;
+        
+        .search_input {
+          font-family: inherit;
+          font-size: inherit;
+          background-color: rgba(217, 217, 217, 0.58);
+          border: none;
+          width: 93%;
+          padding: 0.5rem 0.7rem;
+          color: #646464;
+          border-radius: 10px;
+          transition: all ease-in-out .5s;
+          margin-left: -0.4rem;
+        }
+        .search_input:hover, .search_input:focus {
+          box-shadow: 0 0 1em #00000013;
+        }
+        .search_input:focus {
+          outline: none;
+          background-color: #f0eeee;
+        }
+        
+        .search_input::-webkit-input-placeholder {
+          font-weight: 100;
+          color: #ccc;
+        }
+        
+        .search_input:focus + .search_button {
+          background-color: #f0eeee;
+        }
+        
+        .search_button {
+          border: none;
+          border-radius: 50px;
+          background-color: rgba(217, 217, 217, 0.58);
+        }
+        
+        .search_button:hover {
+          cursor: pointer;
+        }
+        
+        .search_icon {
+          height: 2.5em;
+          width: 1.8em;
+          fill: #b4b4b4;
+        }
+      }
+      .SearchContent {
+        width: 93%;
+        height: 35vh;
+        border-radius: 10px;
+        background-color: rgba(217, 217, 217, 0.58);
+        padding-left: 1vh;
+        padding-top: 1vh;
+      }
+    }
+  
+  }
+}
+
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경색 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal_close_button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #007bff; /* 닫기 버튼의 색상 */
+  font-size: 16px;
+  margin-top: 10px;
+}
+
 .GameMain {
   position: absolute;
   top: 0;
-  left: 1%;
-  width: 80%;
+  left: 18%;
+  width: 64%;
   height: 100%;
   background-color: white;
 
