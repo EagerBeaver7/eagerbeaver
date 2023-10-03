@@ -752,10 +752,9 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
             </Typography>
             <Box sx={{ mt: 2, maxHeight: '500px', overflowY: 'auto' }}>
               {purchasedRegions.map((regionItem, index) => (
-                <div key={index}>
-                  <div>{regionItem.name}</div>
-                  <div>{regionItem.nextprice}</div>
-                  <div>----------------------------------------------------------</div>
+                <div key={index} style={{border: '1px solid #fdefd2', marginBottom:'10px', paddingTop:'5px', paddingLeft:'5px', backgroundColor:'#fdefd2', fontFamily: 'Dovemayo_gothic'}}>
+                  <div style={{fontSize:20}}>{regionItem.name}</div>
+                  <div style={{fontSize:20}}>{regionItem.nextprice}원</div>
                 </div>
               ))}
             </Box>
