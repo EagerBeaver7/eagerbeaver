@@ -20,6 +20,17 @@ import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import SearchIcon from '@mui/icons-material/Search';
 import { useRouter } from "next/navigation";
+import { createTheme, ThemeProvider } from '@mui/material';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Dovemayo_gothic', // 여기에 사용할 글꼴을 지정합니다.
+    fontSize: 30,
+  },
+});
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -463,8 +474,9 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           };
           setAcquisitionTax(acquisitionTax)
           const newSeedMoney = seedMoney - (currentprice * maxPuerchaseNum) - acquisitionTax;
-          setSeedMoney(newSeedMoney);
-          console.log('구매 완료');
+          if (newSeedMoney >= 0) {
+            setSeedMoney(newSeedMoney);
+            console.log('구매 완료');
           console.log('취득세', acquisitionTax)
           setPurchasedRegions((prevRegions) => [...prevRegions, newRegion]);
           ModalhandleOpen();
@@ -487,6 +499,11 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
               console.log('redis로 구매 로그 전송완료')
             })
             .catch(error => console.log(error));
+      
+          } else {
+            alert('잔액이 부족하여 구매할 수 없습니다.'); // 잔액이 부족할 때 알림창 띄우기
+          }
+      
         } else {
           console.log('가격 정보가 없습니다.');
         }
@@ -570,6 +587,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           {/* 타이머 */}
           <div className={styles.TimerWrap}>
             <div className={styles.Timer}>
+              <AccessAlarmIcon />
               {formatTime(timeSecond)}
             </div>
           </div>
@@ -577,6 +595,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           {/* 턴 */}
           <div className={styles.TurnWrap}>
             <button type="button" className={styles.button}>
+              <AutorenewIcon />
               {`${turn} / ${GameTurns}`}
             </button>
 
@@ -590,7 +609,8 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           {/* 시드머니 */}
           <div className={styles.Seed}>
             <button type="button" className={styles.button}>
-              {seedMoney}원
+              <AttachMoneyIcon />
+              {seedMoney.toLocaleString()}원
             </button>
           </div>
         </div>
@@ -675,155 +695,164 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           />
         </div>
       </div>
-      <Modal
-        open={Modalopen}
-        onClose={ModalhandleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            아파트 구매
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            성공적으로 지역에 아파트 구매가 완료되었습니다.
-          </Typography>
-        </Box>
-      </Modal>
-
-      <Modal
-        open={TaxModalopen}
-        onClose={TaxModalhandleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            세금 정책
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <div>
-              취득세 : 집을 구매할 당시 책정됩니다.
-            </div>
-            <div>
-              종합부동산세 : 보유한 집 가격에 따라 책정됩니다.
-            </div>
-            <div>
-              양도소득세 : 집을 팔았을 시 이익이 생길시 책정됩니다.
-            </div>
-          </Typography>
-        </Box>
-      </Modal>
-
-      <Modal
-        open={NextPriceModalopen}
-        onClose={NextPriceModalhandleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            다음 턴의 시세입니다.
-          </Typography>
-          <Box sx={{ mt: 2, maxHeight: '500px', overflowY: 'auto' }}>
-            {purchasedRegions.map((regionItem, index) => (
-              <div key={index}>
-                <div>{regionItem.name}</div>
-                <div>{regionItem.nextprice}</div>
-                <div>----------------------------------------------------------</div>
-              </div>
-            ))}
+      <ThemeProvider theme={theme}> 
+        <Modal
+          open={Modalopen}
+          onClose={ModalhandleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              아파트 구매
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              성공적으로 지역에 아파트 구매가 완료되었습니다.
+            </Typography>
           </Box>
-        </Box>
-      </Modal>
-
-      <Modal
-        open={NewsModalopen}
-        onClose={NewsModalhandleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={{ ...style, maxWidth: '800px' }}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {turn}번째 턴의 뉴스입니다.
-          </Typography>
-          <Box sx={{ mt: 2, maxHeight: '500px', overflowY: 'auto' }}>
-            {Object.keys(newsData).map((regionName) => (
-              <div key={regionName}>
-                <h3>{regionName} 지역 뉴스</h3>
-                {/* 지역별 첫 번째 뉴스만 선택하여 표시 */}
-                {newsData[regionName][0] && (
-                  <div>
-                    <div>{newsData[regionName][0].publishedDt}</div>
-                    <div>{newsData[regionName][0].title}</div>
-                    <div>{newsData[regionName][0].summary}</div>
-                    <div>--------------------------------------------------------------------------------------------------------</div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </Box>
-        </Box>
-      </Modal>
-
-      <Modal
-        open={AddNewsModalopen}
-        onClose={AddNewsModalhandleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            뉴스 추가 구매 모달
-          </Typography>
-          <Box sx={{ mt: 2, maxHeight: '500px', overflowY: 'auto' }}>
-            {Object.keys(newsData).map((regionName) => {
-              const secondNews = newsData[regionName][1];
-              // 두 번째 뉴스가 존재하는 경우에만 표시
-              if (secondNews) {
-                return (
-                  <div key={regionName}>
-                    <h3>{regionName} 지역 뉴스</h3>
-                    <div>
-                      <div>{secondNews.publishedDt}</div>
-                      <div>{secondNews.title}</div>
-                      <div>{secondNews.summary}</div>
-                      <div>--------------------------------------------------------------------------------------------------------</div>
-                    </div>
-                  </div>
-                );
-              }
-              // 두 번째 뉴스가 없는 경우에는 아무것도 표시하지 않음
-              return null;
-            })}
-          </Box>
-        </Box>
-      </Modal>
+        </Modal>
+      </ThemeProvider>
       
-      <Modal
-        open={MyTaxModalopen}
-        onClose={MyTaxModalhandleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            세금 정책
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <div>
-              취득세 : {acquisitionTax}
-            </div>
-            <div>
-              종합부동산세 : {comprehensiverRealEstateTax}
-            </div>
-            <div>
-              양도소득세 : {capitalGainsTax}
-            </div>
-          </Typography>
-        </Box>
-      </Modal>
+      <ThemeProvider theme={theme}>
+        <Modal
+          open={TaxModalopen}
+          onClose={TaxModalhandleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              세금 정책
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <div>
+                취득세 : 집을 구매할 당시 책정됩니다.
+              </div>
+              <div>
+                종합부동산세 : 보유한 집 가격에 따라 책정됩니다.
+              </div>
+              <div>
+                양도소득세 : 집을 팔았을 시 이익이 생길시 책정됩니다.
+              </div>
+            </Typography>
+          </Box>
+        </Modal>
+      </ThemeProvider> 
 
+      <ThemeProvider theme={theme}>    
+        <Modal
+          open={NextPriceModalopen}
+          onClose={NextPriceModalhandleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              다음 턴의 시세입니다.
+            </Typography>
+            <Box sx={{ mt: 2, maxHeight: '500px', overflowY: 'auto' }}>
+              {purchasedRegions.map((regionItem, index) => (
+                <div key={index}>
+                  <div>{regionItem.name}</div>
+                  <div>{regionItem.nextprice}</div>
+                  <div>----------------------------------------------------------</div>
+                </div>
+              ))}
+            </Box>
+          </Box>
+        </Modal>
+      </ThemeProvider> 
+
+      <ThemeProvider theme={theme}>       
+        <Modal
+          open={NewsModalopen}
+          onClose={NewsModalhandleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={{ ...style, maxWidth: '800px' }}>
+            <Typography variant="h6" component="h2">
+              {turn}번째 턴의 뉴스 스크랩
+            </Typography>
+            <Box sx={{ mt: 2, maxHeight: '500px', overflowY: 'auto', fontFamily: 'Dovemayo_gothic' }}>
+              {Object.keys(newsData).map((regionName) => (
+                <div key={regionName} style={{border: '1px solid #fdefd2', marginBottom:'10px', paddingTop:'5px', paddingLeft:'5px', backgroundColor:'#fdefd2'}}>
+                  <h3 style={{fontSize:25}}>{regionName}</h3>
+                  {/* 지역별 첫 번째 뉴스만 선택하여 표시 */}
+                  {newsData[regionName][0] && (
+                    <div style={{fontSize:20}}>
+                      <div>{newsData[regionName][0].publishedDt}</div>
+                      <div>{newsData[regionName][0].title}</div>
+                      <div>{newsData[regionName][0].summary}</div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </Box>
+          </Box>
+        </Modal>
+      </ThemeProvider> 
+
+      <ThemeProvider theme={theme}>             
+        <Modal
+          open={AddNewsModalopen}
+          onClose={AddNewsModalhandleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography variant="h6" component="h2">
+              뉴스 추가 스크랩
+            </Typography>
+            <Box sx={{ mt: 2, maxHeight: '500px', overflowY: 'auto', fontFamily: 'Dovemayo_gothic' }}>
+              {Object.keys(newsData).map((regionName) => {
+                const secondNews = newsData[regionName][1];
+                // 두 번째 뉴스가 존재하는 경우에만 표시
+                if (secondNews) {
+                  return (
+                    <div key={regionName} style={{border: '1px solid #fdefd2', marginBottom:'10px', paddingTop:'5px', paddingLeft:'5px', backgroundColor:'#fdefd2'}}>
+                      <h3 style={{fontSize:25}}>{regionName}</h3>
+                      <div style={{fontSize:20}}> 
+                        <div>{secondNews.publishedDt}</div>
+                        <div>{secondNews.title}</div>
+                        <div>{secondNews.summary}</div>
+                      </div>
+                    </div>
+                  );
+                }
+                // 두 번째 뉴스가 없는 경우에는 아무것도 표시하지 않음
+                return null;
+              })}
+            </Box>
+          </Box>
+        </Modal>
+      </ThemeProvider>
+
+      <ThemeProvider theme={theme}>
+        <Modal
+          open={MyTaxModalopen}
+          onClose={MyTaxModalhandleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              세금 정책
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <div>
+                취득세 : {acquisitionTax}
+              </div>
+              <div>
+                종합부동산세 : {comprehensiverRealEstateTax}
+              </div>
+              <div>
+                양도소득세 : {capitalGainsTax}
+              </div>
+            </Typography>
+          </Box>
+        </Modal>
+      </ThemeProvider>
     </div>
   );
 };
