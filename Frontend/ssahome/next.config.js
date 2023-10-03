@@ -24,7 +24,7 @@ const nextConfig = {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: "*", // 모든 출처 허용
+            value: "http://localhost:8080/api/:path*", // 모든 출처 허용
           },
         ],
       },
