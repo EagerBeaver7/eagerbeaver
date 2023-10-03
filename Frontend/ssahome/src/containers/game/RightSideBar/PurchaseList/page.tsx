@@ -59,17 +59,17 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
       }, 0);
 
       if (totalprice <= 1000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.1);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.01);
       } else if (totalprice > 1000 && totalprice <= 2000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.15);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.015);
       } else if (totalprice > 2000 && totalprice <= 4000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.2);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.02);
       } else if (totalprice > 4000 && totalprice <= 20000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.3);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.03);
       } else if (totalprice > 20000 && totalprice <= 30000){
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.4);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.04);
       } else {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.55);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.055);
       }
 
     } else {
@@ -79,17 +79,17 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
       }, 0);
 
       if (totalprice <= 1000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.15);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.015);
       } else if (totalprice > 1000 && totalprice <= 2000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.2);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.02);
       } else if (totalprice > 2000 && totalprice <= 4000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.25);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.025);
       } else if (totalprice > 4000 && totalprice <= 20000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.35);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.035);
       } else if (totalprice > 20000 && totalprice <= 30000){
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.5);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.05);
       } else {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.65);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.065);
       }
 
     }
