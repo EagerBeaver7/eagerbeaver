@@ -42,10 +42,10 @@ const MainPage = () => {
   const toggleMenu2 = () => {
     setBntOpen((bntOpen) => !bntOpen);
     setMenu2((isOpen2) => !isOpen2); // on, off 개념 boolean
-    
-    
+
+
     if (isOpen2) {
-      axios.get( apiUrl + '/rank')
+      axios.get(apiUrl + '/rank')
         .then(response => {
           setRank(response.data); // 데이터 업데이트
         })
@@ -108,11 +108,11 @@ const MainPage = () => {
         <StartBar></StartBar>
         <Button onClick={() => closeStart()} className={styles.closeBnt}>X</Button>
       </div>
-      
+
       <div className={isOpen2 ? styles['show-menu2'] : styles['hide-menu2']}>
         <Ranking rank={rank}></Ranking>
         <Button onClick={() => closeRank()} className={styles.closeBnt}>X</Button>
-      
+
       </div>
 
 

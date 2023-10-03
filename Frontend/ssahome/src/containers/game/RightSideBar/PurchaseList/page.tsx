@@ -41,11 +41,11 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
   const [displayedQuantities, setDisplayedQuantities] = useState<number[]>([]);
   const [totalMaxPurchaseNum, setTotalMaxPurchaseNum] = useState<number>(0);
 
-  
+
   // purchasedRegions가 변경될 때마다 displayedQuantities 업데이트
   useEffect(() => {
     setDisplayedQuantities(purchasedRegions.map(region => region.maxPurchaseNum));
-    
+
     let ComprehensiverRealEstateTax = 0 // 종합부동산세
     const total = purchasedRegions.reduce((total, region) => total + region.maxPurchaseNum, 0);
     setTotalMaxPurchaseNum(total);
@@ -59,17 +59,17 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
       }, 0);
 
       if (totalprice <= 1000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.1);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.01);
       } else if (totalprice > 1000 && totalprice <= 2000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.15);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.015);
       } else if (totalprice > 2000 && totalprice <= 4000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.2);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.02);
       } else if (totalprice > 4000 && totalprice <= 20000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.3);
-      } else if (totalprice > 20000 && totalprice <= 30000){
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.4);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.03);
+      } else if (totalprice > 20000 && totalprice <= 30000) {
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.04);
       } else {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.55);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.055);
       }
 
     } else {
@@ -79,31 +79,31 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
       }, 0);
 
       if (totalprice <= 1000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.15);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.015);
       } else if (totalprice > 1000 && totalprice <= 2000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.2);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.02);
       } else if (totalprice > 2000 && totalprice <= 4000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.25);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.025);
       } else if (totalprice > 4000 && totalprice <= 20000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.35);
-      } else if (totalprice > 20000 && totalprice <= 30000){
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.5);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.035);
+      } else if (totalprice > 20000 && totalprice <= 30000) {
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.05);
       } else {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.65);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.065);
       }
 
     }
 
     console.log('내가 가진 아파트 수:', totalMaxPurchaseNum);
-    
+
     onComprehensiverRealEstateTaxUpdate(ComprehensiverRealEstateTax); // 부모 컴포넌트로 데이터 전달
   }, [purchasedRegions]);
 
   const incrementQuantity = (id: number) => {
     // id에 해당하는 지역의 현재 수량을 가져옴
     const currentQuantity = displayedQuantities[id - 1];
-    const maxQuantity = purchasedRegions[id-1].maxPurchaseNum; // 최대 수량은 해당 지역의 maxPurchaseNum
-  
+    const maxQuantity = purchasedRegions[id - 1].maxPurchaseNum; // 최대 수량은 해당 지역의 maxPurchaseNum
+
     // 현재 수량이 최대 수량보다 작을 때만 증가
     if (currentQuantity < maxQuantity) {
       // 증가한 수량을 설정하고 displayedQuantities를 업데이트
@@ -114,11 +114,11 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
       });
     }
   };
-  
+
   const decrementQuantity = (id: number) => {
     // id에 해당하는 지역의 현재 수량을 가져옴
     const currentQuantity = displayedQuantities[id - 1];
-  
+
     // 현재 수량이 1보다 큰 경우에만 감소
     if (currentQuantity > 1) {
       // 감소한 수량을 설정하고 displayedQuantities를 업데이트
@@ -129,8 +129,8 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
       });
     }
   };
-  
-  const handleIncreaseHomePurchase = (id: number, currentPrice:number, maxPurchaseNum: number, currentprice: number) => {
+
+  const handleIncreaseHomePurchase = (id: number, currentPrice: number, maxPurchaseNum: number, currentprice: number) => {
     // id에 해당하는 지역의 현재 수량 (maxPurchaseNum)
 
     // Item box 안에 있는 판매하고 싶은 수량
@@ -139,7 +139,7 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
     if (currentQuantity > 0) {
       const remainingQuantity = maxPurchaseNum - currentQuantity; // 남은 개수
       let capitalGainsTax = 0 // 양도소득세
-      
+
       // 양도소득세 계산
       if (currentPrice > currentprice) {
         // 현재 가격이 구매 가격보다 높을 때만 양도소득세 계산
@@ -148,15 +148,15 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
         if (totalMaxPurchaseNum <= 2) {
           if (gain <= 120) {
             capitalGainsTax = Math.floor(gain * 0.06); // 양도소득세 계산 및 저장
-          } else if (gain > 120 && gain <= 460){
+          } else if (gain > 120 && gain <= 460) {
             capitalGainsTax = Math.floor(gain * 0.15);
-          } else if (gain > 460 && gain <= 880){
+          } else if (gain > 460 && gain <= 880) {
             capitalGainsTax = Math.floor(gain * 0.24);
-          } else if (gain > 880 && gain <= 1500){
+          } else if (gain > 880 && gain <= 1500) {
             capitalGainsTax = Math.floor(gain * 0.35);
-          } else if (gain > 1500 && gain <= 3000){
+          } else if (gain > 1500 && gain <= 3000) {
             capitalGainsTax = Math.floor(gain * 0.38);
-          } else if (gain > 3000 && gain <= 5000){
+          } else if (gain > 3000 && gain <= 5000) {
             capitalGainsTax = Math.floor(gain * 0.40);
           } else {
             capitalGainsTax = Math.floor(gain * 0.42);
@@ -164,15 +164,15 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
         } else if (totalMaxPurchaseNum > 2 && totalMaxPurchaseNum <= 5) {
           if (gain <= 120) {
             capitalGainsTax = Math.floor(gain * 0.06); // 양도소득세 계산 및 저장
-          } else if (gain > 120 && gain <= 460){
+          } else if (gain > 120 && gain <= 460) {
             capitalGainsTax = Math.floor(gain * 0.25);
-          } else if (gain > 460 && gain <= 880){
+          } else if (gain > 460 && gain <= 880) {
             capitalGainsTax = Math.floor(gain * 0.34);
-          } else if (gain > 880 && gain <= 1500){
+          } else if (gain > 880 && gain <= 1500) {
             capitalGainsTax = Math.floor(gain * 0.45);
-          } else if (gain > 1500 && gain <= 3000){
+          } else if (gain > 1500 && gain <= 3000) {
             capitalGainsTax = Math.floor(gain * 0.48);
-          } else if (gain > 3000 && gain <= 5000){
+          } else if (gain > 3000 && gain <= 5000) {
             capitalGainsTax = Math.floor(gain * 0.50);
           } else {
             capitalGainsTax = Math.floor(gain * 0.52);
@@ -180,15 +180,15 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
         } else {
           if (gain <= 120) {
             capitalGainsTax = Math.floor(gain * 0.06); // 양도소득세 계산 및 저장
-          } else if (gain > 120 && gain <= 460){
+          } else if (gain > 120 && gain <= 460) {
             capitalGainsTax = Math.floor(gain * 0.35);
-          } else if (gain > 460 && gain <= 880){
+          } else if (gain > 460 && gain <= 880) {
             capitalGainsTax = Math.floor(gain * 0.44);
-          } else if (gain > 880 && gain <= 1500){
+          } else if (gain > 880 && gain <= 1500) {
             capitalGainsTax = Math.floor(gain * 0.55);
-          } else if (gain > 1500 && gain <= 3000){
+          } else if (gain > 1500 && gain <= 3000) {
             capitalGainsTax = Math.floor(gain * 0.58);
-          } else if (gain > 3000 && gain <= 5000){
+          } else if (gain > 3000 && gain <= 5000) {
             capitalGainsTax = Math.floor(gain * 0.60);
           } else {
             capitalGainsTax = Math.floor(gain * 0.62);
@@ -217,7 +217,7 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
           console.log(id)
           return newRegions.map((region, index) => ({ ...region, id: index + 1 }));
         });
-          
+
       } else {
         // 남은 개수가 0이 아니면 purchasedRegions를 업데이트하여 남은 개수를 반영
         setPurchasedRegions((prevRegions) => {
@@ -226,10 +226,10 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
           return newRegions;
         });
       }
-    } 
+    }
 
   };
-  
+
   return (
     <div className={styles.PurchaseList}>
       <div className={styles.wrap}>
@@ -246,7 +246,7 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
                   <h4>현재 가격: {currentPrice}원</h4>
                   <h4>수익률: {calculateProfitRate(region.currentprice, currentPrice)}</h4>
                 </div>
-                <h4>개수: {region.maxPurchaseNum}</h4>  
+                <h4>개수: {region.maxPurchaseNum}</h4>
               </div>
               <div className={styles.ButtonWrap}>
                 <Item>{displayedQuantities[index]}</Item>
@@ -254,16 +254,16 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
                   <IconButton
                     aria-label="plus"
                     onClick={() => incrementQuantity(region.id)}
-                    sx={{padding: 0}}
+                    sx={{ padding: 0 }}
                   >
-                    <ArrowDropUpIcon fontSize="large"/>
+                    <ArrowDropUpIcon fontSize="large" />
                   </IconButton>
                   <IconButton
                     aria-label="minus"
                     onClick={() => decrementQuantity(region.id)}
-                    sx={{padding: 0}}
+                    sx={{ padding: 0 }}
                   >
-                    <ArrowDropDownIcon fontSize="large"/>
+                    <ArrowDropDownIcon fontSize="large" />
                   </IconButton>
                 </div>
                 <button type="button" className={styles.button} onClick={() => handleIncreaseHomePurchase(region.id, currentPrice, region.maxPurchaseNum, region.currentprice)}>
@@ -286,7 +286,7 @@ function calculateProfitRate(purchasePrice: number, currentPrice: number) {
   if (purchasePrice === 0) {
     return '0.00%'; // 구매 가격이 0일 경우 수익률은 0.00%
   }
-  
+
   const profitRate = ((currentPrice - purchasePrice) / purchasePrice) * 100;
   return profitRate.toFixed(2) + '%'; // 소수점 2자리까지 반올림하여 문자열로 반환
 }
