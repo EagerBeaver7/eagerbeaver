@@ -11,7 +11,35 @@ import party from '../../../public/images/free-icon-championship-award-4798145.p
 import profit from '../../../public/images/image 39.png';
 import axios from 'axios';
 
-const ResultPage = () => {
+const turns = localStorage.getItem("Turns");
+let turnNumber: number;
+
+if (turns === "10") {
+  turnNumber = 0;
+} else if (turns === "15") {
+  turnNumber = 1;
+} else if (turns === "20") {
+  turnNumber = 2;
+}
+
+// Props 타입 정해주기
+// rankList에 들어갈 요소들
+interface ranking {
+  userName: string;
+  rate: number;
+}
+
+// props type 지정
+interface Props {
+  turn: number;
+  rankList: ranking[];
+}
+
+interface RankingPageProps {
+  rank: Props[]; // Props 타입의 배열을 data 속성으로 받음
+}
+
+const ResultPage = (props: RankingPageProps) => {
   const [report, setReport] = React.useState(true);
 
   const nickName = localStorage.getItem("nickname");
@@ -33,7 +61,7 @@ const ResultPage = () => {
   }
 
 
-  axios.get(apiURl + 'api/gameLog', {
+  axios.get(apiURl + '/gameLog', {
     headers: { Authorization: `Bearer ${accessToken}` }
   })
     .then(response => {
@@ -41,6 +69,9 @@ const ResultPage = () => {
       setReport(response.data);
     })
     .catch(error => console.log(error));
+
+  const hasRankData = props.rank && Array.isArray(props.rank) && props.rank.length > turnNumber;
+  const rankData = hasRankData ? props.rank[turnNumber] : null;
 
   return (
     <main>
@@ -62,7 +93,7 @@ const ResultPage = () => {
           <CardContent className={styles.rankTitle}>
             <Typography><Image src={party} alt='party' width={30} />랭킹</Typography>
           </CardContent>
-          <RankList />
+          <RankList rank={rankData} />
         </Card>
       </div>
       <div className={styles.footer}>

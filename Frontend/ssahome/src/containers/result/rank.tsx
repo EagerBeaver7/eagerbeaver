@@ -3,41 +3,44 @@ import Image from 'next/image';
 import * as React from 'react';
 import styles from './page.module.css';
 
-const turns = localStorage.getItem("Turns");
-
-interface ranking {
-    userName: string;
-    rate: number;
+interface RankingPageProps {
+    rank: {
+        turn: number;
+        rankList: {
+            userName: string;
+            rate: number;
+        }[];
+    }; // Props 타입의 배열을 data 속성으로 받음
 }
 
-// props type 지정
-interface Props {
-    turn: number;
-    rankList: ranking[];
-}
-
-function RankList(props: Props) {
-    const { turn, rankList } = props;
-
-    const filteredRank = rankList?.filter((item) => item.rate === turn) || [];
-
+function RankList(props: RankingPageProps) {
     return (
         <main className={styles.rank}>
             <TableContainer component={Paper}>
                 <Table sx={{ width: '100%', height: '20%', spacing: 10 }} aria-label="simple table">
                     <TableBody >
-                        {filteredRank && filteredRank.length > 0 ? (
-                            filteredRank.map((row, idx) => (
+                        {props.rank && props.rank.rankList ? (
+                            props.rank.rankList.map((row, idx) => (
                                 <TableRow
                                     key={idx + 1}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                    <TableCell align="right" className={styles.check2}>{row.userName}&nbsp;(님)</TableCell>
-                                    <TableCell align="right" className={styles.check2}>{row.rate}&nbsp;(%)</TableCell>
+                                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                                >
+                                    <TableCell align="right" className={styles.check2}>
+                                        {idx + 1}위
+                                    </TableCell>
+                                    <TableCell align="right" className={styles.check2}>
+                                        {row.userName}&nbsp;(님)
+                                    </TableCell>
+                                    <TableCell align="right" className={styles.check2}>
+                                        {row.rate}&nbsp;(%)
+                                    </TableCell>
                                 </TableRow>
                             ))
                         ) : (
                             <TableRow>
-                                <TableCell colSpan={2}>데이터가 로드 중이거나 없습니다.</TableCell>
+                                <TableCell colSpan={2}>
+                                    데이터가 로드 중이거나 없습니다.
+                                </TableCell>
                             </TableRow>
                         )}
                     </TableBody>
