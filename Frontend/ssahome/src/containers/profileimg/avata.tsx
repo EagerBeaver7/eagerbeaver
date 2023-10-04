@@ -30,12 +30,27 @@ const BeaverAvata = () => {
     }
 
     // 사진을 선택했을 때 userId, NickName, profileimg가 같이 넘어가게! JSON 형식으로 주자
-    axios.put('api/user',
-      data,
+    axios.put('http://localhost:8080/api/user', data, {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    })
+      .then(response => {
+        // 성공적인 응답
+        const accessToken = localStorage.getItem('tmpAccessToken');
+        localStorage.removeItem('tmpAccessToken');
+        localStorage.removeItem('nickname');
+        if (accessToken !== null) {
+          localStorage.setItem(
+            "accessToken",
+            accessToken
+          );
+        }
 
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-
-    );
+      })
+      .catch(error => {
+        // 에러 발생
+        console.error('에러 발생:', error);
+        // 에러 처리 로직을 작성하세요.
+      });
   }
 
   return (

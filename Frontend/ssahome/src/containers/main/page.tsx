@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 import StartBar from "./startBar";
 import Ranking from '@/containers/main/ranking';
 import axios from 'axios';
-import home from "../../../public/img/sweethome.png"
+import home from "/public/images/mainPic.jpg"
 import Image from "next/image";
 
 // Props 타입 정해주기
@@ -41,8 +41,8 @@ const MainPage = () => {
   const toggleMenu2 = () => {
     setBntOpen((bntOpen) => !bntOpen);
     setMenu2((isOpen2) => !isOpen2); // on, off 개념 boolean
-    
-    
+
+
     if (isOpen2) {
       axios.get('api/rank')
         .then(response => {
@@ -67,8 +67,10 @@ const MainPage = () => {
   useEffect(() => {
     axios.get('http://localhost:8080/api/word')
       .then(response => {
+        console.log("단어 가져옴" + response);
+
         setWord(response.data[1].content);
-        // console.log("ans "+response);
+        console.log("ans " + response);
         setContent(response.data[1].meaning);
       }
       )
@@ -82,12 +84,12 @@ const MainPage = () => {
   return (
     <div className={styles.parents}>
       <div className={styles.GridItemR}>
-        <Button onClick={() => toggleMenu2()}
-          className={bntOpen ? styles.bnt : styles.rankBntHide}>랭킹보기</Button>
+        <Button onClick={() => toggleMenu()}
+          className={bntOpen ? styles.bnt : styles.rankBntHide}>플레이</Button>
       </div>
       <div className={styles.GridItemM}>
         <div className={styles.img}>
-          <Image src={home} alt="slide" width={500} height={400}></Image>
+          <Image className={styles.homeImg} src={home} alt="slide" ></Image>
         </div>
         <div className={styles.wordTitle}>
           {word}
@@ -98,24 +100,22 @@ const MainPage = () => {
         </div>
       </div>
       <div className={styles.GridItemL}>
-        <Button onClick={() => toggleMenu()} className={bntOpen ? styles.bnt : styles.rankBntHide}>플레이</Button>
+        <Button onClick={() => toggleMenu2()} className={bntOpen ? styles.bnt : styles.rankBntHide}>랭킹보기</Button>
       </div>
       <div>
 
       </div>
       <div className={isOpen ? styles['show-menu3'] : styles['hide-menu3']}>
         <StartBar></StartBar>
-        <Button onClick={() => closeStart()} className={styles.closeBnt}>X</Button>
+        <Button onClick={() => closeStart()} className={styles.playCloseBnt}>X</Button>
       </div>
-      
+
       <div className={isOpen2 ? styles['show-menu2'] : styles['hide-menu2']}>
         <Ranking rank={rank}></Ranking>
-        <Button onClick={() => closeRank()} className={styles.closeBnt}>X</Button>
-      
+        <Button onClick={() => closeRank()} className={styles.rankCloseBnt}>X</Button>
+
       </div>
-
-
-    </div>
+    </div >
   );
 };
 

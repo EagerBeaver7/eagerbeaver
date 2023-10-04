@@ -59,7 +59,9 @@ const RankingPage = (props: RankingPageProps) => {
         <div>
           <div className={styles.rankContainerTxt}>누가누가 잘하나</div>
         </div>
-        <BsTrophy size="50px" color="#ffbf00" />
+        <div className={styles.empty}>
+
+        </div>
       </div>
       <div className={styles.rankContainer}>
         <Button
