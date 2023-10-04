@@ -17,19 +17,19 @@ const nextConfig = {
   images: {
     domains: ["images.unsplash.com"], // 이미지 호스트 추가
   },
-  async headers() {
-    return [
-      {
-        source: "/api/:path*", // API 엔드포인트에 따라 조정
-        headers: [
-          {
-            key: "Access-Control-Allow-Origin",
-            value: "http://localhost:8080/api/:path*", // 모든 출처 허용
-          },
-        ],
-      },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       source: "/api/:path*", // API 엔드포인트에 따라 조정
+  //       headers: [
+  //         {
+  //           key: "Access-Control-Allow-Origin",
+  //           value: "*", // 모든 출처 허용
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;

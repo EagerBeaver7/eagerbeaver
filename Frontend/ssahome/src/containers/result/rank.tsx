@@ -3,17 +3,16 @@ import Image from 'next/image';
 import * as React from 'react';
 import styles from './page.module.css';
 
-interface RankingPageProps {
-    rank: {
-        turn: number;
-        rankList: {
-            userName: string;
-            rate: number;
-        }[];
-    }; // Props 타입의 배열을 data 속성으로 받음
+interface ranking {
+    userName: string;
+    rate: number;
 }
 
-function RankList(props: RankingPageProps) {
+interface RankListProps {
+    rank: ranking[];
+}
+
+function RankList(props: RankListProps) {
     return (
         <main className={styles.rank}>
             <TableContainer component={Paper}>

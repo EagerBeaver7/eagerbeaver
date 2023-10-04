@@ -70,9 +70,6 @@ const ResultPage = (props: RankingPageProps) => {
     })
     .catch(error => console.log(error));
 
-  const hasRankData = props.rank && Array.isArray(props.rank) && props.rank.length > turnNumber;
-  const rankData = hasRankData ? props.rank[turnNumber] : null;
-
   return (
     <main>
       <div className={styles.title}>
@@ -93,7 +90,7 @@ const ResultPage = (props: RankingPageProps) => {
           <CardContent className={styles.rankTitle}>
             <Typography><Image src={party} alt='party' width={30} />랭킹</Typography>
           </CardContent>
-          <RankList rank={rankData} />
+          <RankList rank={props.rank[turnNumber]} />
         </Card>
       </div>
       <div className={styles.footer}>
