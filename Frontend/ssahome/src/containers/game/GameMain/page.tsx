@@ -477,29 +477,29 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           if (newSeedMoney >= 0) {
             setSeedMoney(newSeedMoney);
             console.log('구매 완료');
-          console.log('취득세', acquisitionTax)
-          setPurchasedRegions((prevRegions) => [...prevRegions, newRegion]);
-          ModalhandleOpen();
+            console.log('취득세', acquisitionTax)
+            setPurchasedRegions((prevRegions) => [...prevRegions, newRegion]);
+            ModalhandleOpen();
 
-          // maxPuerchaseNum 초기화
-          setMaxPurchaseNum(1);
+            // maxPuerchaseNum 초기화
+            setMaxPurchaseNum(1);
 
-          // 이 부분에서 currentprice를 buyPrice로 사용
-          axios.post('http://localhost:8080/api/gameLog', {
-            id: purchasedRegions.length + 1,
-            region: selectedRegion,
-            tradeNum: maxPuerchaseNum,
-            buyPrice: currentprice, // 여기서 buyPrice로 사용
-            sellPrice: -1,
-            rate: -1,
-            turn: turn,
-          })
-            .then(response => {
-              console.log(response.data);
-              console.log('redis로 구매 로그 전송완료')
+            // 이 부분에서 currentprice를 buyPrice로 사용
+            axios.post('/api/gameLog', {
+              id: purchasedRegions.length + 1,
+              region: selectedRegion,
+              tradeNum: maxPuerchaseNum,
+              buyPrice: currentprice, // 여기서 buyPrice로 사용
+              sellPrice: -1,
+              rate: -1,
+              turn: turn,
             })
-            .catch(error => console.log(error));
-      
+              .then(response => {
+                console.log(response.data);
+                console.log('redis로 구매 로그 전송완료')
+              })
+              .catch(error => console.log(error));
+        
           } else {
             alert('잔액이 부족하여 구매할 수 없습니다.'); // 잔액이 부족할 때 알림창 띄우기
           }
@@ -692,6 +692,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
             setSeedMoney={setSeedMoney} // setSeedMoney를 PurchaseList로 전달
             onComprehensiverRealEstateTaxUpdate={handleComprehensiverRealEstateTaxUpdate} // 콜백함수
             onsetcapitalGainsTaxUpdate={handlecapitalGainsTaxUpdate}
+            turn={turn}
           />
         </div>
       </div>
