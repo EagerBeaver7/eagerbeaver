@@ -14,7 +14,6 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { faker } from '@faker-js/faker';
 import axios from 'axios';
 
 ChartJS.register(
@@ -50,7 +49,7 @@ const Graph = () => {
     });
 
     React.useEffect(() => {
-        axios.get('/api/gameLog/list')
+        axios.get('http://localhost:8080/api/gameLog/list')
             .then((response) => {
                 const gameLogs = response.data;
                 const labels = gameLogs.map((log) => log.region);

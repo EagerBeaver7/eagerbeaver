@@ -5,62 +5,49 @@
 .title{
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .table{
-    margin: 20px;
-    height: 370px;
-    width: 700px;
+    margin: 15px;
+    height: 340px;
+    width: 610px;
 }
 
 .main{
     text-align: center;
-    margin-top: 10px;
     display: flex;
-    flex-direction: row;
-    margin-left: 15%;
-    margin-right: 15%;
+    flex-direction: column;
+    margin-top: 1%;
+    margin-left: 17%;
 }
 
 .pic{
-    width: 650px;
-    margin-left: 15px;
+    width: 600px;
     margin-top: 5px;
 }
 
 .footer{
     margin-top: 0.5%;
-    margin-left: 16%;
 }
 
 .finish{
-    position: absolute;
-    width: auto;
-    bottom: 6%;
-    right: 23%;
+    bottom: 20%;
 }
 
 .graph{
-    margin: 20px;
-    height: 370px;
-    width: 700px;
-}
-
-.rankTitle{
-    display: flex;
-    justify-content: center;
+    margin: 15px;
+    height: 340px;
+    width: 610px;
 }
 
 .rank{
-    display: flex;  
-    flex-direction: row;
-    height: 405px;
-    width: 300px;
+    height: 480px;
 }
 
-.profile{
-    width: 100px;
-    height: 120px;
-    margin: 0;
+.body{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    margin-right: 15%;
 }

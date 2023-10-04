@@ -17,7 +17,7 @@ const History = () => {
 
     React.useEffect(() => {
         // API 요청을 보내고 데이터를 가져옵니다.
-        axios.get('api/gameLog/list')
+        axios.get('http://localhost:8080/api/gameLog/list')
             .then((response) => {
                 // API 응답 데이터를 gameLogs 상태로 설정합니다.
                 setGameLogs(response.data);
@@ -30,7 +30,7 @@ const History = () => {
     return (
         <main className={styles.table}>
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <Table sx={{ minWidth: 50 }} aria-label="simple table">
                     <TableHead>
                         <TableRow sx={{ backgroundColor: '#C2C3C5', opacity: 0.5 }}>
                             <TableCell align="center">No</TableCell>
