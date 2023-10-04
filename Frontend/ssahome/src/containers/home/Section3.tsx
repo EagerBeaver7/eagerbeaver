@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import styles from "./page.module.css";
+import news_read from "../../../public/images/news_read.gif";
+import region_buy from "../../../public/images/region_buy.gif";
+import item_use from "../../../public/images/item_use.gif";
+import search_word from "../../../public/images/search_word.gif";
+
 
 // Import your slide images here
 import slide1 from "../../../public/images/word.jpg"; // Update with the actual file path
 
 
 const Section3 = () => {
-  const slideElementList = [slide1, slide1, slide1, slide1, slide1]; // Updated with your slide images
+  const slideElementList = [news_read, region_buy, item_use, search_word, slide1]; // Updated with your slide images
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slideTexts = [
@@ -65,7 +70,7 @@ const Section3 = () => {
               <Image
                 src={slideElementList[currentSlide]}
                 alt="slide"
-                width={600}
+                width={700}
                 height={400}
               ></Image>
             </div >
