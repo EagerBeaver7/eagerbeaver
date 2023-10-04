@@ -7,6 +7,7 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Paper from "@mui/material/Paper";
 import { styled as muistyled } from "@mui/material/styles";
+import axios from 'axios'
 
 const Item = muistyled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -35,9 +36,10 @@ type PurchaseListProps = {
   setSeedMoney: (value: number) => void; // setSeedMoney 추가
   onComprehensiverRealEstateTaxUpdate: (newValue: number) => void; // 부모로 데이터를 전달할 콜백 함수 타입 정의
   onsetcapitalGainsTaxUpdate: (newValue: number) => void; // 부모로 데이터를 전달할 콜백 함수 타입 정의
+  turn:number;
 };
 
-const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurchasedRegions, selectedRegion, currentPrices, seedMoney, setSeedMoney, onComprehensiverRealEstateTaxUpdate, onsetcapitalGainsTaxUpdate }) => {
+const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurchasedRegions, selectedRegion, currentPrices, seedMoney, setSeedMoney, onComprehensiverRealEstateTaxUpdate, onsetcapitalGainsTaxUpdate, turn }) => {
   const [displayedQuantities, setDisplayedQuantities] = useState<number[]>([]);
   const [totalMaxPurchaseNum, setTotalMaxPurchaseNum] = useState<number>(0);
 
@@ -97,7 +99,7 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
     console.log('내가 가진 아파트 수:', totalMaxPurchaseNum);
     
     onComprehensiverRealEstateTaxUpdate(ComprehensiverRealEstateTax); // 부모 컴포넌트로 데이터 전달
-  }, [purchasedRegions]);
+  }, [purchasedRegions, turn]);
 
   const incrementQuantity = (id: number) => {
     // id에 해당하는 지역의 현재 수량을 가져옴
@@ -202,6 +204,23 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
       // 판매한 아이템 가격을 seedMoney에 추가
       setSeedMoney(totalPrice);
       onsetcapitalGainsTaxUpdate(capitalGainsTax)
+
+      // redis 로 판매한 로그 전송
+      axios.post('/api/gameLog', {
+        id: purchasedRegions.length + 1,
+        region: selectedRegion,
+        tradeNum: currentQuantity,
+        buyPrice: -1,
+        sellPrice: currentPrice,
+        rate: calculateProfitRate(currentprice,currentPrice),
+        turn: turn,
+      })
+        .then(response => {
+          console.log(response.data);
+          console.log('redis로 판매 로그 전송완료')
+        })
+        .catch(error => console.log(error));
+
       // 판매한 아이템의 수량을 0으로 설정  
       setDisplayedQuantities((prevQuantities) => {
         const newQuantities = [...prevQuantities];
@@ -244,7 +263,7 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
                 <h4>구매 가격: {region.currentprice}원</h4>
                 <div>
                   <h4>현재 가격: {currentPrice}원</h4>
-                  <h4>수익률: {calculateProfitRate(region.currentprice, currentPrice)}</h4>
+                  <h4>수익률: {calculateProfitRate(region.currentprice, currentPrice)}%</h4>
                 </div>
                 <h4>개수: {region.maxPurchaseNum}</h4>  
               </div>
@@ -288,5 +307,5 @@ function calculateProfitRate(purchasePrice: number, currentPrice: number) {
   }
   
   const profitRate = ((currentPrice - purchasePrice) / purchasePrice) * 100;
-  return profitRate.toFixed(2) + '%'; // 소수점 2자리까지 반올림하여 문자열로 반환
+  return profitRate.toFixed(2); // 소수점 2자리까지 반올림하여 문자열로 반환
 }
