@@ -6,7 +6,7 @@ import FormLabel from "@mui/material/FormLabel";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import beavor from "../../../public/images/beaver.gif";
+import beavor from "/public/images/beaver.gif";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { GiBirchTrees } from "react-icons/gi";
@@ -46,6 +46,11 @@ const startBar = () => {
   return (
     <div className={styles.StartBar1}>
       <div className={styles.setting}>
+        <div>
+          <Image className={styles.playBeaver} src={beavor} alt="slide"></Image>
+          <Image className={styles.playBeaver} src={beavor} alt="slide"></Image>
+          <Image className={styles.playBeaver} src={beavor} alt="slide"></Image>
+        </div>
         <div className={styles.turnTime}>
           <div className={styles.turnTimeSetting}>
             <FormControl>
@@ -53,7 +58,7 @@ const startBar = () => {
                 id="demo-row-radio-buttons-group-label"
                 className={styles.check}
               >
-                턴수
+                턴 수
               </FormLabel>
               <RadioGroup
                 onChange={turnsChange}
@@ -172,9 +177,6 @@ const startBar = () => {
             시작
           </Button>
         </div>
-      </div>
-      <div>
-        <Image src={beavor} alt="slide" width={300} height={300}></Image>
       </div>
     </div>
   );
