@@ -716,7 +716,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
             ModalhandleOpen();
 
             // 이 부분에서 currentprice를 buyPrice로 사용
-            axios.post('/api/gameLog', {
+            axios.post('api/gameLog', {
               id: purchasedRegions.length + 1,
               region: selectedRegion,
               tradeNum: maxPuerchaseNum,
