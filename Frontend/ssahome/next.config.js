@@ -9,7 +9,7 @@ const nextConfig = {
     return [
       {
         source: "/:path*",
-        destination: "http://j9a507.p.ssafy.io/:path*",
+        destination: "https://j9a507.p.ssafy.io/:path*",
       },
       {
         source: "/v1/:path*",
