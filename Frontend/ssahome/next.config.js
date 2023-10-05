@@ -1,5 +1,8 @@
 // next.config.js
 const nextConfig = {
+  experimental: {
+    forceSwcTransforms: true,
+  },
   reactStrictMode: false,
   swcMinify: true,
   async rewrites() {
