@@ -303,23 +303,34 @@ const actions = [
 
 const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
   const router = useRouter();
-  let GameTurns: number = 10; // 기본값으로 0을 설정하거나, 다른 적절한 초기값으로 설정
+  const [GameTurns, setGameTurns] = useState<number>(10);
+  const [GameTime, setGameTime] = useState<number>(60);
+  const [tmpAccessToken, setTmpAccessToken] = useState<string | null>(null);
 
-  const storedGameTurns = localStorage.getItem('Turns');
-  if (storedGameTurns !== null) {
-    GameTurns = parseInt(storedGameTurns, 10);
-  }
-  let GameTime: number = 60; // 기본값으로 0을 설정하거나, 다른 적절한 초기값으로 설정
+  useEffect(() => {
+    // localStorage에서 GameTurns 값을 가져옵니다.
+    const storedGameTurns = localStorage.getItem('Turns');
+    if (storedGameTurns !== null) {
+      setGameTurns(parseInt(storedGameTurns, 10));
+    }
 
-  const storedGameTime = localStorage.getItem('Time');
-  if (storedGameTime !== null) {
-    GameTime = parseInt(storedGameTime, 10);
-  }
-  let tmp = localStorage.getItem("tmpAccessToken");
-  if (tmp) {
-    tmp = JSON.parse(tmp)
-  }
-  const accessToken = tmp;
+    // localStorage에서 GameTime 값을 가져옵니다.
+    const storedGameTime = localStorage.getItem('Time');
+    if (storedGameTime !== null) {
+      setGameTime(parseInt(storedGameTime, 10));
+    }
+
+    // localStorage에서 tmpAccessToken 값을 가져와서 상태에 설정합니다.
+    const storedTmpAccessToken = localStorage.getItem('tmpAccessToken');
+    if (storedTmpAccessToken !== null) {
+      try {
+        setTmpAccessToken(JSON.parse(storedTmpAccessToken));
+      } catch (error) {
+        console.error("Error parsing tmpAccessToken JSON:", error);
+      }
+    }
+  }, []);
+  const accessToken = tmpAccessToken;
   const [gameData, setGameData] = useState<GameData[]>([]);
   const [Modalopen, setModalOpen] = React.useState(false);
   const ModalhandleOpen = () => setModalOpen(true);
