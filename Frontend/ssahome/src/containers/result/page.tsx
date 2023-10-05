@@ -25,7 +25,7 @@ const ResultPage = () => {
 
 
   React.useEffect(() => {
-    axios.get('http://localhost:8080/api/rank')
+    axios.get('https://j9a507.p.ssafy.io/api/rank')
       .then(response => {
         // axios로 데이터를 가져온 후, 해당 데이터를 rank 상태로 설정
         setRank(response.data);

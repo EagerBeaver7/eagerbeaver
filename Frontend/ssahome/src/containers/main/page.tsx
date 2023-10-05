@@ -65,7 +65,7 @@ const MainPage = () => {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/word')
+    axios.get('https://j9a507.p.ssafy.io/api/word')
       .then(response => {
         console.log("단어 가져옴" + response);
 

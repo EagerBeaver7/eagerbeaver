@@ -17,7 +17,7 @@ const History = () => {
 
     React.useEffect(() => {
         // API 요청을 보내고 데이터를 가져옵니다.
-        axios.get('http://localhost:8080/api/gameLog/list')
+        axios.get('https://j9a507.p.ssafy.io/api/gameLog/list')
             .then((response) => {
                 // API 응답 데이터를 gameLogs 상태로 설정합니다.
                 setGameLogs(response.data);
