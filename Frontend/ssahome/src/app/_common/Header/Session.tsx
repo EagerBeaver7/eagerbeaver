@@ -75,17 +75,9 @@ const Session = () => {
 
 
   return (
-
+    
     <div className={styles.session}>
-      {isLoggedIn ? (
-        <button onClick={Logout} type="button" className={styles.button}>
-          로그아웃
-        </button>
-      ) : (
-        <button onClick={handleLogin} type="button" className={styles.button}>
-          로그인
-        </button>
-      )}
+
     </div>
   );
 };
