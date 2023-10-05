@@ -15,43 +15,71 @@ import BasicTable from '../main/rankingTable10';
 
 const ResultPage = () => {
   const [report, setReport] = React.useState(true);
-  const nickName = localStorage.getItem("nickname");
   const [rank, setRank] = React.useState([]); // 랭크 데이터를 저장할 상태
 
-  let tmp = localStorage.getItem("tmpAccessToken");
-  if (tmp) {
-    tmp = JSON.parse(tmp);
-  }
-
+  const [nickName, setNickName] = React.useState<string>('');
+  const [GameTurns, setGameTurns] = React.useState<number>(10);
+  const [GameTime, setGameTime] = React.useState<number>(60);
+  const [tmpAccessToken, setTmpAccessToken] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    axios.get('https://j9a507.p.ssafy.io/api/rank')
+    // localStorage에서 GameTurns 값을 가져옵니다.
+    const storedGameTurns = localStorage.getItem('Turns');
+    if (storedGameTurns !== null) {
+      setGameTurns(parseInt(storedGameTurns, 10));
+    }
+
+    // localStorage에서 GameTime 값을 가져옵니다.
+    const storedGameTime = localStorage.getItem('Time');
+    if (storedGameTime !== null) {
+      setGameTime(parseInt(storedGameTime, 10));
+    }
+
+    // localStorage에서 tmpAccessToken 값을 가져와서 상태에 설정합니다.
+    const storedTmpAccessToken = localStorage.getItem('tmpAccessToken');
+    if (storedTmpAccessToken !== null) {
+      try {
+        setTmpAccessToken(JSON.parse(storedTmpAccessToken));
+      } catch (error) {
+        console.error("Error parsing tmpAccessToken JSON:", error);
+      }
+    }
+
+    const storedNickname = localStorage.getItem('nickname');
+    if (storedNickname !== null) {
+      try {
+        setNickName(JSON.parse(storedNickname));
+      } catch (error) {
+        console.error("Error parsing nickname:", error);
+      }
+    }
+  }, []);
+  const accessToken = tmpAccessToken;
+
+  React.useEffect(() => {
+    axios.get('http://localhost:8080/api/rank')
       .then(response => {
         // axios로 데이터를 가져온 후, 해당 데이터를 rank 상태로 설정
         setRank(response.data);
-        console.log(response.data)
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
 
-  // localStorage에서 Turns 값 가져오기
-  const turns = localStorage.getItem("Turns");
-
   // turns 값에 따라 랭킹 페이지 컴포넌트 선택
   let RankingPageComponent;
 
   if (rank && rank.length > 0) {
-    if (turns === "10") {
+    if (GameTurns === 10) {
       RankingPageComponent = rank.map((item, index) => (
         <BasicTable key={index} rank={item} />
       ));
-    } else if (turns === "15") {
+    } else if (GameTurns === 15) {
       RankingPageComponent = rank.map((item, index) => (
         <BasicTable key={index} rank={item} />
       ));
-    } else if (turns === "20") {
+    } else if (GameTurns === 20) {
       RankingPageComponent = rank.map((item, index) => (
         <BasicTable key={index} rank={item} />
       ));
@@ -93,7 +121,7 @@ const ResultPage = () => {
           <Card sx={{ boxShadow: 5 }}>
             <CardContent className={styles.rankTitle}>
               <Image src={party} alt='party' width={70} className={styles.win} />
-              <Typography sx={{ fontWeight: 'bold', fontFamily: "Dovemayo_gothic" }}>{turns} 턴</Typography>
+              <Typography sx={{ fontWeight: 'bold', fontFamily: "Dovemayo_gothic" }}>{GameTurns} 턴</Typography>
             </CardContent>
             <div className={styles.rank}>
               {RankingPageComponent}
