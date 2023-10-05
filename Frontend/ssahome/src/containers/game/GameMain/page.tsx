@@ -303,16 +303,24 @@ const actions = [
 
 const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
   const router = useRouter();
+  
   const [GameTurns, setGameTurns] = useState<number>(10);
   const [GameTime, setGameTime] = useState<number>(60);
   const [tmpAccessToken, setTmpAccessToken] = useState<string | null>(null);
 
   useEffect(() => {
-    // localStorage에서 GameTurns 값을 가져옵니다.
+    // // localStorage에서 GameTurns 값을 가져옵니다.
+    // const storedGameTurns = localStorage.getItem('Turns');
+    // if (storedGameTurns !== null) {
+    //   setGameTurns(parseInt(storedGameTurns, 10));
+    // }
+
+    // *****
     const storedGameTurns = localStorage.getItem('Turns');
     if (storedGameTurns !== null) {
       setGameTurns(parseInt(storedGameTurns, 10));
     }
+
 
     // localStorage에서 GameTime 값을 가져옵니다.
     const storedGameTime = localStorage.getItem('Time');
@@ -585,7 +593,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
         setGameData(response.data);
       })
       .catch(error => console.log(error));
-  }, [accessToken]);
+  }, [accessToken, GameTurns]);
 
   useEffect(() => {
     // 턴에 맞게 각 지역의 현재 가격 정보 가져와서 업데이트
