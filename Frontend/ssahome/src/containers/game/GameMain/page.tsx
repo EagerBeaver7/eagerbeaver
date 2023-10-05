@@ -25,6 +25,49 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+
+function createData(
+  range: string,
+  percent: number,
+) {
+  return { range, percent };
+}
+const rows = [
+  createData('3,000 시드 이하', 0.1),
+  createData('3,000 시드 ~ 8,000시드', 0.15),
+  createData('8,000 시드 ~ 15,000시드', 0.25),
+  createData('15,000 시드 ~ 30,000시드', 0.4),
+  createData('30,000 시드 초과', 0.4),
+];
+const rows1 = [
+  createData('10,000 시드 이하', 0.01),
+  createData('10,000 시드 ~ 20,000시드', 0.015),
+  createData('20,000 시드 ~ 40,000시드', 0.02),
+  createData('40,000 시드 ~ 200,000시드', 0.03),
+  createData('200,000 시드 ~ 300,000시드', 0.04),
+  createData('300,000 시드 초과', 0.055),
+];
+const rows2 = [
+  createData('1,200 시드 이하', 0.06),
+  createData('1,200 시드 ~ 4,600시드', 0.15),
+  createData('4,600 시드 ~ 8,800시드', 0.24),
+  createData('8,800 시드 ~ 15,000시드', 0.35),
+  createData('15,000 시드 ~ 30,000시드', 0.38),
+  createData('30,000 시드 ~ 50,000시드', 0.40),
+  createData('50,000 시드 초과', 0.42),
+];
+
 const theme = createTheme({
   typography: {
     fontFamily: 'Dovemayo_gothic', // 여기에 사용할 글꼴을 지정합니다.
@@ -42,6 +85,30 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+};
+const style2 = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+const style3 = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 550,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+  // backgroundImage: `url('/public/images/win.jpg')`, 
+  // backgroundSize: 'cover', 
 };
 
 const Item = muistyled(Paper)(({ theme }) => ({
@@ -275,6 +342,13 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
   const [SalaryModalopen, setSalaryModalOpen] = React.useState(false);
   const SalaryModalhandleOpen = () => setSalaryModalOpen(true);
   const SalaryModalhandleClose = () => setSalaryModalOpen(false);
+  const [GamesetModalopen, setGamesetModalOpen] = React.useState(false);
+  const [finalSeedMoney, setFinalSeedMoney] = React.useState(0); // State to hold final seed money value
+  const GamesetModalhandleOpen = (tmpSeedMoney: number) => {
+    setFinalSeedMoney(tmpSeedMoney); // Set the final seed money value when opening the modal
+    setGamesetModalOpen(true);
+  };
+  const GamesetModalhandleClose = () => setGamesetModalOpen(false);
   const [currentPrices, setCurrentPrices] = useState<Record<string, number>>({});
   const [newsData, setNewsData] = useState<Record<string, { title: string; summary: string; publishedDt: string }[]>>({});
 
@@ -362,7 +436,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
       setTurn(turn + 1);
       // 턴이 증가할 때 타이머 초기화
       setTimeSecond(GameTime);
-      setSeedMoney((prevSeedMoney) => prevSeedMoney + 500);
+      setSeedMoney((prevSeedMoney: number) => prevSeedMoney + 500);
       SalaryModalhandleOpen()
 
       // purchasedRegions 배열의 각 항목의 nextprice 업데이트
@@ -380,8 +454,89 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
       setPurchasedRegions(updatedPurchasedRegions);
 
     } else {
-      alert('게임 종료')
-      router.push("/result");
+
+      let tmpSeedMoney = seedMoney;
+      let totalPurchaseNum = 0;
+
+      purchasedRegions.map((curRegion) => {
+        totalPurchaseNum = totalPurchaseNum + curRegion.maxPurchaseNum;
+      })
+
+
+      if (purchasedRegions) { //구매 지역이 남아있으면
+        purchasedRegions.map((curRegion) => {
+          //시드머니에 추가
+          const newPrices: Record<string, number> = {};
+          gameData.forEach((regionData) => {
+            const currentprice = regionData.property[turn - 1]?.price || 0;
+            newPrices[regionData.region] = currentprice;
+          })
+          const currentPrice = (newPrices as Record<string, number>)[curRegion.name] || 0;
+
+          // 양도소득세 계산
+          if (currentPrice > curRegion.currentprice) {
+            // 현재 가격이 구매 가격보다 높을 때만 양도소득세 계산
+            let capitalGainsTax = 0; // 양도소득세
+            const gain = (currentPrice - curRegion.currentprice) * curRegion.maxPurchaseNum; // 이익 계산
+
+            // totalMaxPurchaseNum을 이용하여 조건 추가
+            if (totalPurchaseNum <= 2) {
+              if (gain <= 120) {
+                capitalGainsTax = Math.floor(gain * 0.06); // 양도소득세 계산 및 저장
+              } else if (gain > 120 && gain <= 460) {
+                capitalGainsTax = Math.floor(gain * 0.15);
+              } else if (gain > 460 && gain <= 880) {
+                capitalGainsTax = Math.floor(gain * 0.24);
+              } else if (gain > 880 && gain <= 1500) {
+                capitalGainsTax = Math.floor(gain * 0.35);
+              } else if (gain > 1500 && gain <= 3000) {
+                capitalGainsTax = Math.floor(gain * 0.38);
+              } else if (gain > 3000 && gain <= 5000) {
+                capitalGainsTax = Math.floor(gain * 0.40);
+              } else {
+                capitalGainsTax = Math.floor(gain * 0.42);
+              }
+            } else if (totalPurchaseNum > 2 && totalPurchaseNum <= 5) {
+              if (gain <= 120) {
+                capitalGainsTax = Math.floor(gain * 0.06); // 양도소득세 계산 및 저장
+              } else if (gain > 120 && gain <= 460) {
+                capitalGainsTax = Math.floor(gain * 0.25);
+              } else if (gain > 460 && gain <= 880) {
+                capitalGainsTax = Math.floor(gain * 0.34);
+              } else if (gain > 880 && gain <= 1500) {
+                capitalGainsTax = Math.floor(gain * 0.45);
+              } else if (gain > 1500 && gain <= 3000) {
+                capitalGainsTax = Math.floor(gain * 0.48);
+              } else if (gain > 3000 && gain <= 5000) {
+                capitalGainsTax = Math.floor(gain * 0.50);
+              } else {
+                capitalGainsTax = Math.floor(gain * 0.52);
+              }
+            } else {
+              if (gain <= 120) {
+                capitalGainsTax = Math.floor(gain * 0.06); // 양도소득세 계산 및 저장
+              } else if (gain > 120 && gain <= 460) {
+                capitalGainsTax = Math.floor(gain * 0.35);
+              } else if (gain > 460 && gain <= 880) {
+                capitalGainsTax = Math.floor(gain * 0.44);
+              } else if (gain > 880 && gain <= 1500) {
+                capitalGainsTax = Math.floor(gain * 0.55);
+              } else if (gain > 1500 && gain <= 3000) {
+                capitalGainsTax = Math.floor(gain * 0.58);
+              } else if (gain > 3000 && gain <= 5000) {
+                capitalGainsTax = Math.floor(gain * 0.60);
+              } else {
+                capitalGainsTax = Math.floor(gain * 0.62);
+              }
+            }
+          }
+
+          tmpSeedMoney = tmpSeedMoney + (currentPrice * curRegion.maxPurchaseNum) - capitalGainsTax;
+
+        });
+      }
+      //모달 띄우고 tmpSeedMoney 넘겨줌
+      GamesetModalhandleOpen(tmpSeedMoney);
     }
   }, [turn, gameData, purchasedRegions]);
 
@@ -416,7 +571,6 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
       headers: { Authorization: `Bearer ${accessToken}` }
     })
       .then(response => {
-        console.log(response.data)
         setGameData(response.data);
       })
       .catch(error => console.log(error));
@@ -464,11 +618,10 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
     // seedMoney를 하나의 useEffect 내에서 업데이트합니다.
     const updatedSeedMoney = seedMoney - comprehensiverRealEstateTax;
     setSeedMoney(updatedSeedMoney);
-    console.log('종합부동산세', comprehensiverRealEstateTax)
     setTotalComprehensiverRealEstateTax(totalComprehensiverRealEstateTax + comprehensiverRealEstateTax);
-    setCurrentPrices(newPrices);  
+    setCurrentPrices(newPrices);
     setNewsData(newNews);
-    NewsModalhandleOpen();  
+    NewsModalhandleOpen();
   }, [turn, gameData]);
 
 
@@ -490,16 +643,16 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
         if (currentprice > 0) {
           let acquisitionTax = 0;  // 취득세
 
-          if (currentprice <= 300) {
-            acquisitionTax = Math.floor(currentprice * 0.01);
-          } else if (currentprice > 300 && currentprice <= 800) {
-            acquisitionTax = Math.floor(currentprice * 0.015);
-          } else if (currentprice > 800 && currentprice <= 1500) {
-            acquisitionTax = Math.floor(currentprice * 0.025);
-          } else if (currentprice > 1500 && currentprice <= 3000) {
-            acquisitionTax = Math.floor(currentprice * 0.04);
+          if (currentprice <= 150) {
+            acquisitionTax = Math.floor(currentprice * 0.1);
+          } else if (currentprice > 150 && currentprice <= 400) {
+            acquisitionTax = Math.floor(currentprice * 0.15);
+          } else if (currentprice > 400 && currentprice <= 750) {
+            acquisitionTax = Math.floor(currentprice * 0.25);
+          } else if (currentprice > 750 && currentprice <= 1000) {
+            acquisitionTax = Math.floor(currentprice * 0.4);
           } else {
-            acquisitionTax = Math.floor(currentprice * 0.04);
+            acquisitionTax = Math.floor(currentprice * 0.4);
           }
 
           const regionName = selectedRegion; //구입한 지역명
@@ -528,8 +681,6 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           const newSeedMoney = seedMoney - pay;
           if (newSeedMoney >= 0) {
             setSeedMoney(newSeedMoney);
-            console.log('구매 완료');
-            console.log('취득세', acquisitionTax)
             setTotalAcquisitionTax(totalAcquisitionTax + acquisitionTax);
 
 
@@ -564,7 +715,6 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
               turn: turn,
             })
               .then(response => {
-                console.log(response.data);
                 console.log('redis로 구매 로그 전송완료')
               })
               .catch(error => console.log(error));
@@ -776,15 +926,15 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              아파트 구매
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              성공적으로 {selectedRegion}에 아파트 {maxPuerchaseNum}채 구매가 완료되었습니다.
-              <div style={{ fontSize: 30 }}>
+              <div style={{ fontSize: 35 }}>
+                <span className={styles.mark}>{selectedRegion}에 아파트 {maxPuerchaseNum}채 구매가 완료되었습니다.</span>
+              </div>
+              <div style={{ fontSize: 25, marginTop: 10 }}>
                 <div>구매가 : {total_currentPrice(currentPrices[selectedRegion], maxPuerchaseNum)}원</div>
                 <div>취득세 : {total_acquisitionTax(acquisitionTax, maxPuerchaseNum)}원</div>
-                <hr />
-                <div>총 가격: {all_pay(currentPrices[selectedRegion], maxPuerchaseNum, acquisitionTax)}원</div>
+                <div style={{ color: '#EB2C00' }}>총가격 : {all_pay(currentPrices[selectedRegion], maxPuerchaseNum, acquisitionTax)}원</div>
               </div>
             </Typography>
           </Box>
@@ -798,19 +948,119 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
+          <Box sx={{ ...style, maxWidth: '800px', maxHeight: '600px', overflowY: 'auto' }}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              세금 정책
+              <span>
+                세금 정책
+              </span>
+              <span style={{ fontFamily: 'Dovemayo_gothic', textAlign: 'right', fontSize: 20, marginLeft: 100, color: '#EB2C00' }}>
+                게임의 재미를 위하여 실제 세금 정책보다 감면하였습니다.
+              </span>
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               <div>
-                취득세 : 집을 구매할 당시 책정됩니다.
-              </div>
-              <div>
-                종합부동산세 : 보유한 집 가격에 따라 책정됩니다.
-              </div>
-              <div>
-                양도소득세 : 집을 팔았을 시 이익이 생길시 책정됩니다.
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography sx={{ fontSize: 30 }}>취득세 <span style={{ fontSize: 20 }}> - 집을 구매할 당시 책정됩니다.</span></Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <TableContainer component={Paper}>
+                      <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>과세 표준</TableCell>
+                            <TableCell align="right">표준 세율</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {rows.map((row) => (
+                            <TableRow
+                              key={row.range}
+                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                              <TableCell component="th" scope="row">
+                                {row.range}
+                              </TableCell>
+                              <TableCell align="right">{row.percent}%</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography sx={{ fontSize: 30 }}>종합부동산세 <span style={{ fontSize: 20 }}> - 보유한 집 가격에 따라 책정됩니다.</span></Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <TableContainer component={Paper}>
+                      <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>과세 표준</TableCell>
+                            <TableCell align="right">표준 세율</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {rows1.map((row) => (
+                            <TableRow
+                              key={row.range}
+                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                              <TableCell component="th" scope="row">
+                                {row.range}
+                              </TableCell>
+                              <TableCell align="right">{row.percent}%</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography sx={{ fontSize: 30 }}>양도소득세 <span style={{ fontSize: 20 }}> - 집을 팔았을 시 이익이 생길시 책정됩니다.</span></Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <TableContainer component={Paper}>
+                      <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>과세 표준</TableCell>
+                            <TableCell align="right">표준 세율</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {rows2.map((row) => (
+                            <TableRow
+                              key={row.range}
+                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                              <TableCell component="th" scope="row">
+                                {row.range}
+                              </TableCell>
+                              <TableCell align="right">{row.percent}%</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  </AccordionDetails>
+                </Accordion>
               </div>
             </Typography>
           </Box>
@@ -824,15 +1074,15 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
+          <Box sx={style2}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               다음 턴의 시세입니다.
             </Typography>
             <Box sx={{ mt: 2, maxHeight: '500px', overflowY: 'auto' }}>
               {purchasedRegions.map((regionItem, index) => (
-                <div key={index} style={{ border: '1px solid #fdefd2', marginBottom: '10px', paddingTop: '5px', paddingLeft: '5px', backgroundColor: '#fdefd2', fontFamily: 'Dovemayo_gothic' }}>
-                  <div style={{ fontSize: 20 }}>{regionItem.name}</div>
-                  <div style={{ fontSize: 20 }}>{regionItem.nextprice}원</div>
+                <div key={index} style={{ border: '1px solid #fdefd2', marginBottom: '10px', paddingTop: '5px', paddingLeft: '5px', backgroundColor: '#fdefd2', fontFamily: 'Dovemayo_gothic', display: 'flex' }}>
+                  <div style={{ fontSize: 28, width: '50%', paddingLeft: 40 }}>{regionItem.name}</div>
+                  <div style={{ fontSize: 25, width: '50%', textAlign: 'right', paddingRight: 40 }}>{regionItem.nextprice}원</div>
                 </div>
               ))}
             </Box>
@@ -854,13 +1104,13 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
             <Box sx={{ mt: 2, maxHeight: '500px', overflowY: 'auto', fontFamily: 'Dovemayo_gothic' }}>
               {Object.keys(newsData).map((regionName) => (
                 <div key={regionName} style={{ border: '1px solid #fdefd2', marginBottom: '10px', paddingTop: '5px', paddingLeft: '5px', backgroundColor: '#fdefd2' }}>
-                  <h3 style={{ fontSize: 25 }}>{regionName}</h3>
+                  <h3 style={{ fontSize: 28 }}>{regionName}</h3>
                   {/* 지역별 첫 번째 뉴스만 선택하여 표시 */}
                   {newsData[regionName][0] && (
-                    <div style={{ fontSize: 20 }}>
-                      <div>{newsData[regionName][0].publishedDt}</div>
-                      <div>{newsData[regionName][0].title}</div>
-                      <div>{newsData[regionName][0].summary}</div>
+                    <div>
+                      <div style={{ fontSize: 16 }}>{newsData[regionName][0].publishedDt}</div>
+                      <div style={{ fontSize: 22 }}>{newsData[regionName][0].title}</div>
+                      <div style={{ fontSize: 18 }}>{newsData[regionName][0].summary}</div>
                     </div>
                   )}
                 </div>
@@ -888,11 +1138,11 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
                 if (secondNews) {
                   return (
                     <div key={regionName} style={{ border: '1px solid #fdefd2', marginBottom: '10px', paddingTop: '5px', paddingLeft: '5px', backgroundColor: '#fdefd2' }}>
-                      <h3 style={{ fontSize: 25 }}>{regionName}</h3>
-                      <div style={{ fontSize: 20 }}>
-                        <div>{secondNews.publishedDt}</div>
-                        <div>{secondNews.title}</div>
-                        <div>{secondNews.summary}</div>
+                      <h3 style={{ fontSize: 28 }}>{regionName}</h3>
+                      <div>
+                        <div style={{ fontSize: 16 }}>{newsData[regionName][0].publishedDt}</div>
+                        <div style={{ fontSize: 22 }}>{newsData[regionName][0].title}</div>
+                        <div style={{ fontSize: 18 }}>{newsData[regionName][0].summary}</div>
                       </div>
                     </div>
                   );
@@ -912,19 +1162,24 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
+          <Box sx={style2}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               세금 정책
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <div>
-                취득세 : - {totalAcquisitionTax} 원
-              </div>
-              <div>
-                종합부동산세 : - {totalComprehensiverRealEstateTax} 원
-              </div>
-              <div>
-                양도소득세 : - {totalCapitalGainsTax} 원
+              <div style={{ backgroundColor: '#fdefd2' }}>
+                <div style={{ display: 'flex' }}>
+                  <div style={{ width: '50%', paddingLeft: 20 }}>취득세</div>
+                  <div style={{ width: '50%', paddingRight: 20, textAlign: 'right' }}>- {totalAcquisitionTax} 원</div>
+                </div>
+                <div style={{ display: 'flex' }}>
+                  <div style={{ width: '50%', paddingLeft: 20 }}>종합부동산세</div>
+                  <div style={{ width: '50%', paddingRight: 20, textAlign: 'right' }}>- {totalComprehensiverRealEstateTax} 원</div>
+                </div>
+                <div style={{ display: 'flex' }}>
+                  <div style={{ width: '50%', paddingLeft: 20 }}>양도소득세</div>
+                  <div style={{ width: '50%', paddingRight: 20, textAlign: 'right' }}>- {totalCapitalGainsTax} 원</div>
+                </div>
               </div>
             </Typography>
           </Box>
@@ -938,13 +1193,33 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
+          <Box sx={style2}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               알림
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <div>
+              <span className={styles.mark}>
                 월급(500원)이 들어왔습니다.
+              </span>
+            </Typography>
+          </Box>
+        </Modal>
+      </ThemeProvider>
+
+      <ThemeProvider theme={theme}>
+        <Modal
+          open={GamesetModalopen}
+          onClose={GamesetModalhandleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style3}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              게임종료
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <div>
+                {calculateProfitRate(GameTurns, finalSeedMoney)}
               </div>
             </Typography>
           </Box>
@@ -966,4 +1241,16 @@ function total_currentPrice(currentPrice: number, maxPuerchaseNum: number) {
 }
 function total_acquisitionTax(acquisitionTax: number, maxPuerchaseNum: number) {
   return (acquisitionTax * maxPuerchaseNum)
+}
+function calculateProfitRate(turn: number, endmoney: number) {
+  const profitRate = ((endmoney) - (5000 + ((turn - 1) * 500))) / (5000 + ((turn - 1) * 500)) * 100;
+  const formattedProfitRate = profitRate.toFixed(2); // 소수점 2자리까지 반올림하여 문자열로 반환
+
+  if (profitRate > 0) {
+    return <span className={`${styles.positive_profit}`}>수익률: {formattedProfitRate}%</span>;
+  } else if (profitRate < 0) {
+    return <span className={`${styles.negative_profit}`}>수익률: {formattedProfitRate}%</span>;
+  } else {
+    return <span>수익률: {formattedProfitRate}%</span>;
+  }
 }
