@@ -9,10 +9,10 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   redis:
     host: j9a507.p.ssafy.io
-    port: 4805
+    port: 6379
 
     properties:
       hibernate:
