@@ -1,14 +1,20 @@
 .appHeader {
+  padding-top: 15px;
+  height: 65px;
+
+  z-index: 1;
+
+  background-color: white;
+
+  box-shadow: 0 10px 20px rgba(0,0,0,0.13), 0 6px 6px rgba(0,0,0,0.16);
   .menu {
     display: flex;
-    height: 8vh;
   }
   
   .Logo {
     position: absolute;
     text-decoration: none;
-    padding: 5px 14px;
+    padding-left: 30px;
     left: 1vh;
-    top: 1vh;
   }
 }
