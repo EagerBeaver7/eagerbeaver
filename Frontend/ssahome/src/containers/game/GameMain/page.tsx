@@ -187,7 +187,7 @@ const NewsComponent: React.FC<NewsComponentProps> = ({ onBuyClick }) => (
 const SearchComponent = () => {
   // 검색 기능
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState<string>([]);
+  const [searchResults, setSearchResults] = useState<string>();
 
   const isEnter = (event: { key: string; }) => {
     if (event.key === 'Enter') {
@@ -436,7 +436,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
       setTurn(turn + 1);
       // 턴이 증가할 때 타이머 초기화
       setTimeSecond(GameTime);
-      setSeedMoney((prevSeedMoney: number) => prevSeedMoney + 500);
+      setSeedMoney(seedMoney + 500);
       SalaryModalhandleOpen()
 
       // purchasedRegions 배열의 각 항목의 nextprice 업데이트
