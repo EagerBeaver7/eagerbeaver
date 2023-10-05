@@ -283,7 +283,11 @@
   max-width: 400px;
   width: 100%;
   text-align: center;
+
 }
+  .mark{
+    background: linear-gradient(180deg,rgba(255,255,255,0) 75%, #FFD0AE 50%);
+  }
 
 .modal_close_button {
   background: none;
@@ -588,6 +592,4 @@
       }
     }
   }
-  
-
 }

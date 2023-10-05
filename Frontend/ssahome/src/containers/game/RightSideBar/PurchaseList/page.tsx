@@ -8,6 +8,29 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Paper from "@mui/material/Paper";
 import { styled as muistyled } from "@mui/material/styles";
 import axios from 'axios'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { createTheme, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Dovemayo_gothic', // 여기에 사용할 글꼴을 지정합니다.
+    fontSize: 30,
+  },
+});
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 700,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const Item = muistyled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -43,6 +66,9 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
   const [displayedQuantities, setDisplayedQuantities] = useState<number[]>([]);
   const [totalMaxPurchaseNum, setTotalMaxPurchaseNum] = useState<number>(0);
 
+  const [Modalopen, setModalOpen] = React.useState(false);
+  const ModalhandleOpen = () => setModalOpen(true);
+  const ModalhandleClose = () => setModalOpen(false);
 
   // purchasedRegions가 변경될 때마다 displayedQuantities 업데이트
   useEffect(() => {
@@ -61,17 +87,17 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
       }, 0);
 
       if (totalprice <= 1000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.01);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.005);
       } else if (totalprice > 1000 && totalprice <= 2000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.015);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.008);
       } else if (totalprice > 2000 && totalprice <= 4000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.02);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.01);
       } else if (totalprice > 4000 && totalprice <= 20000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.03);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.015);
       } else if (totalprice > 20000 && totalprice <= 30000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.04);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.02);
       } else {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.055);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.027);
       }
 
     } else {
@@ -81,22 +107,20 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
       }, 0);
 
       if (totalprice <= 1000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.015);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.008);
       } else if (totalprice > 1000 && totalprice <= 2000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.02);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.01);
       } else if (totalprice > 2000 && totalprice <= 4000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.025);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.0125);
       } else if (totalprice > 4000 && totalprice <= 20000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.035);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.0175);
       } else if (totalprice > 20000 && totalprice <= 30000) {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.05);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.025);
       } else {
-        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.065);
+        ComprehensiverRealEstateTax = Math.floor(totalprice * 0.0325);
       }
 
     }
-
-    console.log('내가 가진 아파트 수:', totalMaxPurchaseNum);
 
     onComprehensiverRealEstateTaxUpdate(ComprehensiverRealEstateTax); // 부모 컴포넌트로 데이터 전달
   }, [purchasedRegions, turn]);
@@ -204,7 +228,7 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
       // 판매한 아이템 가격을 seedMoney에 추가
       setSeedMoney(totalPrice);
       onsetcapitalGainsTaxUpdate(capitalGainsTax)
-
+      ModalhandleOpen()
       // redis 로 판매한 로그 전송
       axios.post('/api/gameLog', {
         id: purchasedRegions.length + 1,
@@ -262,7 +286,7 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
                 <h4>구매 가격: {region.currentprice}원</h4>
                 <div>
                   <h4>현재 가격: {currentPrice}원</h4>
-                  <h4>수익률: {calculateProfitRate(region.currentprice, currentPrice)}%</h4>
+                  <h4>{calculateProfitRate(region.currentprice, currentPrice)}</h4>
                 </div>
                 <h4>개수: {region.maxPurchaseNum}</h4>
               </div>
@@ -292,6 +316,26 @@ const PurchaseList: React.FC<PurchaseListProps> = ({ purchasedRegions, setPurcha
           );
         })}
       </div>
+      <ThemeProvider theme={theme}>
+        <Modal
+          open={Modalopen}
+          onClose={() => {
+            ModalhandleClose();
+          }}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <div style={{ fontSize: 35 }}>
+                <span className={styles.mark}>아파트 판매가 완료되었습니다.</span>
+              </div>
+            </Typography>
+          </Box>
+        </Modal>
+      </ThemeProvider>
     </div>
   );
 };
@@ -306,5 +350,13 @@ function calculateProfitRate(purchasePrice: number, currentPrice: number) {
   }
 
   const profitRate = ((currentPrice - purchasePrice) / purchasePrice) * 100;
-  return profitRate.toFixed(2); // 소수점 2자리까지 반올림하여 문자열로 반환
+  const formattedProfitRate = profitRate.toFixed(2); // 소수점 2자리까지 반올림하여 문자열로 반환
+
+  if (profitRate > 0) {
+    return <span className={`${styles.positive_profit}`}>수익률: {formattedProfitRate}%</span>;
+  } else if (profitRate < 0) {
+    return <span className={`${styles.negative_profit}`}>수익률: {formattedProfitRate}%</span>;
+  } else {
+    return <span>수익률: {formattedProfitRate}%</span>;
+  }
 }
