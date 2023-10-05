@@ -1,40 +1,30 @@
 .rankbar {
   background-color: #ffffff;
   border: 3px solid #fdefd2;
-  width: 80%; /* 원하는 가로 길이(예: 50%)로 설정하세요. */
+  width: 35%; /* 원하는 가로 길이(예: 50%)로 설정하세요. */
   height: 80vh; /* 페이지 높이와 같게 설정 */
-  z-index: 999;
+  /* z-index: 999; */
   position: absolute;
   top: 50%;
-  left: 51%;
+  left: 80%;
   transform: translate(-50%, -50%);
   border-radius: 10px; /* 원하는 둥근 정도(px)를 설정하세요. */
+
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .stbnt {
   font-size: 25px;
   border: 3px solid #fdefd2;
   color: #d1ab7d; /* 글자 색을 흰색(#fff)으로 변경 */
   background-color: white;
-  margin: 0;
   font-family: "Dovemayo_gothic";
   border-radius: 20px;
   width: max-content;
 }
 
-.bnt {
-  font-size: 40px;
-  border: 3px solid #fdefd2;
-  color: #d1ab7d; /* 글자 색을 흰색(#fff)으로 변경 */
-  background-color: white;
-  margin: 0;
-  z-index: 9999;
-  font-family: "Dovemayo_gothic";
-  border-radius: 20px;
-  transition: 1s;
-}
-
 .rankBntHide {
   display: none;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .bnt:hover {
@@ -43,17 +33,36 @@
   box-shadow: none; /* 마우스 호버 시 그림자 제거 */
 }
 
-.closeBnt {
+.empty {
+  width: 40px;
+}
+
+.rankCloseBnt {
   font-size: medium;
   border: 3px solid #fdefd2;
   color: #d1ab7d; /* 글자 색을 흰색(#fff)으로 변경 */
   background-color: white;
   margin: 0;
-  z-index: 9999;
+  /* z-index: 9999; */
   font-family: "Dovemayo_gothic";
   border-radius: 20px;
   left: 92%;
-  top: 30px;
+  top: 65px;
+
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.playCloseBnt {
+  font-size: medium;
+  border: 3px solid #fdefd2;
+  color: #d1ab7d; /* 글자 색을 흰색(#fff)으로 변경 */
+  background-color: white;
+  margin: 0;
+  /* z-index: 9999; */
+  font-family: "Dovemayo_gothic";
+  border-radius: 20px;
+  left: 28%;
+  top: 45px;
 }
 
 .settings {
@@ -103,15 +112,31 @@
 .StartBar1 {
   background-color: #ffffff;
   border: 3px solid #fdefd2;
-  width: 80%; /* 원하는 가로 길이(예: 50%)로 설정하세요. */
+
+  width: 30%; /* 원하는 가로 길이(예: 50%)로 설정하세요. */
   height: 80vh; /* 페이지 높이와 같게 설정 */
-  z-index: 999;
+  /* z-index: 999; */
+
   position: absolute;
   top: 50%;
-  left: 51%;
+  left: 18%;
+  
   transform: translate(-50%, -50%);
+
   border-radius: 10px;
-  display: flex;
+
+  display: flex-row;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.playBeaver {
+  width: 30%;
+  height: 30%;
 }
 
 .turnTime {
@@ -119,10 +144,13 @@
   width: 90%;
   border: 3px solid #d1ab7d;
   border-radius: 10px; /* 원하는 둥근 정도(px)를 설정하세요. */
+
 }
 
 .bb {
-  margin: 0% 0% 5% 5%;
+  margin-top: 10px;
+  margin-right: 35px;
+
   width: 15%;
   float: right;
 }
@@ -172,24 +200,37 @@
 
 .parents {
   position: relative;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: grid;
   grid-template-columns: 1fr 1fr 3fr 1fr 1fr; /* 다른 영역의 넓이를 설정합니다. */
   grid-gap: 5px; /*영역 간격 조정 (선택 사항) */
 
+  background-color: #C4D5E7;
+
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  height: 90vh;
+  height: 88.5%;
 
   overflow: hidden; /*스크롤 없애기 */
+  .bnt {
+    font-size: 40px;
+    border: 3px solid #fdefd2;
+    color: #d1ab7d; /* 글자 색을 흰색(#fff)으로 변경 */
+    background-color: white;
+    margin: 0;
+    /* z-index: 9999; */
+    font-family: "Dovemayo_gothic";
+    border-radius: 20px;
+    transition: 1s;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
 }
 
 .GridItemR {
-  background-color: white;
   padding: 20px;
   text-align: right;
   font-size: 18px;
@@ -203,11 +244,18 @@
 }
 
 .img {
-  width: 500px;
+  background-color: #C4D5E7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeImg {
+  width: 148%;
+  height: 148%;
 }
 
 .GridItemL {
-  background-color: white;
   padding: 20px;
   text-align: left;
   font-size: 18px;
@@ -224,6 +272,7 @@
 .wordContents {
   width: 500px;
   margin-left: 70px;
+  margin-bottom:100px;
   text-align: center;
   white-space: normal;
   font-family: "Dovemayo_gothic";
@@ -280,14 +329,20 @@
 
 /*StartBar*/
 .setting {
-  width: 50%;
-  margin: 8% 3% 8% 8%;
+  width: 80%;
+
+  display: flex-row;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 30px;
 }
 
 .choiceRadio {
   margin-right: 11px;
   margin-left: 5px;
   transform: rotate(20deg);
+  font-family: "Dovemayo_gothic";
 }
 
 .turnTimeSetting {
