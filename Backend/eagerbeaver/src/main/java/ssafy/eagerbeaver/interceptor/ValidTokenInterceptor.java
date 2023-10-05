@@ -21,16 +21,16 @@ public class ValidTokenInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object Handler) throws Exception {
-//		log.info("interceptor 호출");
-//
-//		if (isPreflightRequest(request)) {
-//			return true;
-//		}
-//
-//		String jwt = jwtUtil.getJwtFromHeader(request);
-//		jwtUtil.validateToken(jwt);
-//		// short id = jwtUtil.getIdFromJwt(jwt);
-//		UserContextHolder.userIdHolder.set(jwtUtil.getIdFromJwt(jwt));
+		log.info("interceptor 호출");
+
+		if (isPreflightRequest(request)) {
+			return true;
+		}
+
+		String jwt = jwtUtil.getJwtFromHeader(request);
+		jwtUtil.validateToken(jwt);
+		// short id = jwtUtil.getIdFromJwt(jwt);
+		UserContextHolder.userIdHolder.set(jwtUtil.getIdFromJwt(jwt));
 		return true;
 	}
 
