@@ -29,6 +29,7 @@ const ResultPage = () => {
       .then(response => {
         // axios로 데이터를 가져온 후, 해당 데이터를 rank 상태로 설정
         setRank(response.data);
+        console.log(response.data)
       })
       .catch(error => {
         console.error(error);

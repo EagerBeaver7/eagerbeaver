@@ -27,7 +27,13 @@
       background-color: white;
       margin-bottom: 1vh;
     }
+    .positive_profit {
+      color: red !important; /* 양수일 때의 텍스트 색상을 빨간색으로 지정 */
+    }
     
+    .negative_profit {
+      color: blue !important; /* 음수일 때의 텍스트 색상을 파란색으로 지정 */
+    }
     .ButtonWrap {
       width: 95%; 
       height: 8vh;
