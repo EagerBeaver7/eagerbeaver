@@ -42,7 +42,7 @@ const History = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {gameLogs.map((row, index) => (
+                        {/* {gameLogs.map((row, index) => (
                             <TableRow
                                 key={row.id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -56,7 +56,67 @@ const History = () => {
                                 <TableCell align="center">{row.sellPrice}</TableCell>
                                 <TableCell align="center">{row.rate}</TableCell>
                             </TableRow>
-                        ))}
+                        ))} */}
+                        <TableRow
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell align="center">1</TableCell>
+                            <TableCell align="center" component="th" scope="row">
+                                파주시
+                            </TableCell>
+                            <TableCell align="center">5</TableCell>
+                            <TableCell align="center">302</TableCell>
+                            <TableCell align="center">-</TableCell>
+                            <TableCell align="center">0</TableCell>
+                        </TableRow>
+                        <TableRow
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell align="center">2</TableCell>
+                            <TableCell align="center" component="th" scope="row">
+                                강남구
+                            </TableCell>
+                            <TableCell align="center">9</TableCell>
+                            <TableCell align="center">623</TableCell>
+                            <TableCell align="center">-</TableCell>
+                            <TableCell align="center">0</TableCell>
+                        </TableRow>
+                        <TableRow
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell align="center">3</TableCell>
+                            <TableCell align="center" component="th" scope="row">
+                                수연구
+                            </TableCell>
+                            <TableCell align="center">3</TableCell>
+                            <TableCell align="center">138</TableCell>
+                            <TableCell align="center">-</TableCell>
+                            <TableCell align="center">0</TableCell>
+                        </TableRow>
+                        <TableRow
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell align="center">4</TableCell>
+                            <TableCell align="center" component="th" scope="row">
+                                강남구
+                            </TableCell>
+                            <TableCell align="center">1</TableCell>
+                            <TableCell align="center">740</TableCell>
+                            <TableCell align="center">-</TableCell>
+                            <TableCell align="center">0</TableCell>
+                        </TableRow>
+                        <TableRow
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell align="center">5</TableCell>
+                            <TableCell align="center" component="th" scope="row">
+                                파주시
+                            </TableCell>
+                            <TableCell align="center">5</TableCell>
+                            <TableCell align="center">-</TableCell>
+                            <TableCell align="center">3020</TableCell>
+                            <TableCell align="center">10%</TableCell>
+                        </TableRow>
                     </TableBody>
                 </Table>
             </TableContainer>
