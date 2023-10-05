@@ -14,4 +14,5 @@ import lombok.ToString;
 public class RankDto {
 	private String userName;
 	private double rate;
+	private int profileImg;
 }
