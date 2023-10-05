@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Logo from '../../../../public/images/Logo.png'
 
 const Header = () => {
-  
+
 
   return (
     <header className={styles.appHeader}>
