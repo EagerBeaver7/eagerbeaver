@@ -8,8 +8,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
-        destination: "http://j9a507.p.ssafy.io/api/:path*",
+        source: "/:path*",
+        destination: "http://j9a507.p.ssafy.io/:path*",
       },
       {
         source: "/v1/:path*",
