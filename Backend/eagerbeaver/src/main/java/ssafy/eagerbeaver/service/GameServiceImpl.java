@@ -88,8 +88,8 @@ public class GameServiceImpl implements GameService {
 				List<NewsDto> filteredNewsDtoList = region.getNewsList()
 					.stream()
 					.filter(news -> { //뉴스마다 순회하면서 기간을 벗어난 뉴스 필터링
-						int newsDate = Integer.parseInt(news.getPublishedDt().substring(0, 4));
-						return newsDate >= startDate && newsDate <= lastDate;
+						int newsDate = Integer.parseInt(news.getPublishedDt().substring(0, 6));
+						return newsDate >= (startDate - 2) && newsDate <= lastDate;
 					})
 					.map(News::convertToDto)
 					.toList();
