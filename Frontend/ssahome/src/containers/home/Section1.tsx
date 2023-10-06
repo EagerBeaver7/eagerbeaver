@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import city from '/public/images/back1.jpg'
 
+
+
 const Section1: React.FC = () => (
 	<div className={`${styles.bg} ${styles.section1} `} >
 

@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styles from "./page.module.css";
+import { FaMedal } from "react-icons/fa";
 
 interface RankingPageProps {
   rank: {
@@ -18,6 +19,34 @@ interface RankingPageProps {
 }
 
 export default function BasicTable(props: RankingPageProps) {
+  const checkWinner = (idx: number) => {
+    if (idx === 1) {
+      return (
+        <TableCell align="right" className={styles.check2}>
+          <FaMedal size="20px" color="#ffbf00" />
+        </TableCell>
+      );
+    } else if (idx === 2) {
+      return (
+        <TableCell align="right" className={styles.check2}>
+          <FaMedal size="20px" color="#c0c0c0" />
+        </TableCell>
+      );
+    } else if (idx === 3) {
+      return (
+        <TableCell align="right" className={styles.check2}>
+          <FaMedal size="20px" color="#800000" />
+        </TableCell>
+      );
+    } else {
+      return (
+        <TableCell align="right" className={styles.check2}>
+          {idx}위
+        </TableCell>
+      );
+    }
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table
@@ -31,9 +60,7 @@ export default function BasicTable(props: RankingPageProps) {
                 key={idx + 1}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell align="right" className={styles.check2}>
-                  {idx + 1}위
-                </TableCell>
+                {checkWinner(idx + 1)}
                 <TableCell align="right" className={styles.check2}>
                   {row.userName}&nbsp;(님)
                 </TableCell>

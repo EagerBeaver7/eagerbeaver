@@ -1,12 +1,15 @@
 // next.config.js
 const nextConfig = {
+  experimental: {
+    forceSwcTransforms: true,
+  },
   reactStrictMode: false,
   swcMinify: true,
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
-        destination: "http://localhost:8080/api/:path*",
+        source: "/:path*",
+        destination: "https://j9a507.p.ssafy.io/:path*",
       },
       {
         source: "/v1/:path*",
@@ -24,7 +27,7 @@ const nextConfig = {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: "http://localhost:8080/api/:path*", // 모든 출처 허용
+            value: "*", // 모든 출처 허용
           },
         ],
       },
@@ -33,9 +36,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
-module.exports = {
-  env: {
-    apiUrl: 'http://localhost:8080/api'
-  }
-}

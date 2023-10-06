@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import Ranking15 from "@/containers/main/ranking15";
 import Ranking10 from "@/containers/main/ranking10";
 import Ranking20 from "@/containers/main/ranking20";
+import { BsTrophy } from "react-icons/bs";
 
 // Props 타입 정해주기
 // rankList에 들어갈 요소들
@@ -53,7 +54,15 @@ const RankingPage = (props: RankingPageProps) => {
 
   return (
     <div className={styles.rankbar}>
-      <div className={styles.rankContainerTxt}>누가누가 잘하나</div>
+      <div className={styles.rankTitle}>
+        <BsTrophy size="50px" color="#ffbf00" />
+        <div>
+          <div className={styles.rankContainerTxt}>누가누가 잘하나</div>
+        </div>
+        <div className={styles.empty}>
+
+        </div>
+      </div>
       <div className={styles.rankContainer}>
         <Button
           onClick={() => {
