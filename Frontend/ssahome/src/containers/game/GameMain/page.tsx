@@ -953,7 +953,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
               <div style={{ fontSize: 25, marginTop: 10 }}>
                 <div>구매가 : {total_currentPrice(currentPrices[selectedRegion], maxPuerchaseNum)}원</div>
                 <div>취득세 : {total_acquisitionTax(acquisitionTax, maxPuerchaseNum)}원</div>
-                <div style={{ color: '#EB2C00' }}>총가격 : {all_pay(currentPrices[selectedRegion], maxPuerchaseNum, acquisitionTax)}원</div>
+                <div style={{ color: '#EB2C00' }}>총가격 : {all_pay(total_currentPrice(currentPrices[selectedRegion], maxPuerchaseNum), total_acquisitionTax(acquisitionTax, maxPuerchaseNum))}원</div>
               </div>
             </Typography>
           </Box>
@@ -1252,8 +1252,8 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
 export default GameMain;
 
 // 구매 총 가격 구하기
-function all_pay(currentPrice: number, maxPuerchaseNum: number, acquisitionTax: number) {
-  return (currentPrice * maxPuerchaseNum) + acquisitionTax
+function all_pay(currentPrice: number, acquisitionTax: number) {
+  return currentPrice + acquisitionTax
 }
 function total_currentPrice(currentPrice: number, maxPuerchaseNum: number) {
   return (currentPrice * maxPuerchaseNum)
