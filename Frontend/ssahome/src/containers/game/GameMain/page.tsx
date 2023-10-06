@@ -501,35 +501,35 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
             // totalMaxPurchaseNum을 이용하여 조건 추가
             if (totalPurchaseNum <= 2) {
               if (gain <= 120) {
-                capitalGainsTax = Math.floor(gain * 0.06); // 양도소득세 계산 및 저장
+                capitalGainsTax = Math.floor(gain * 0.03); // 양도소득세 계산 및 저장
               } else if (gain > 120 && gain <= 460) {
-                capitalGainsTax = Math.floor(gain * 0.15);
+                capitalGainsTax = Math.floor(gain * 0.075);
               } else if (gain > 460 && gain <= 880) {
-                capitalGainsTax = Math.floor(gain * 0.24);
+                capitalGainsTax = Math.floor(gain * 0.12);
               } else if (gain > 880 && gain <= 1500) {
-                capitalGainsTax = Math.floor(gain * 0.35);
+                capitalGainsTax = Math.floor(gain * 0.175);
               } else if (gain > 1500 && gain <= 3000) {
-                capitalGainsTax = Math.floor(gain * 0.38);
+                capitalGainsTax = Math.floor(gain * 0.19);
               } else if (gain > 3000 && gain <= 5000) {
-                capitalGainsTax = Math.floor(gain * 0.40);
+                capitalGainsTax = Math.floor(gain * 0.20);
               } else {
-                capitalGainsTax = Math.floor(gain * 0.42);
+                capitalGainsTax = Math.floor(gain * 0.21);
               }
             } else if (totalPurchaseNum > 2 && totalPurchaseNum <= 5) {
               if (gain <= 120) {
-                capitalGainsTax = Math.floor(gain * 0.06); // 양도소득세 계산 및 저장
+                capitalGainsTax = Math.floor(gain * 0.03); // 양도소득세 계산 및 저장
               } else if (gain > 120 && gain <= 460) {
-                capitalGainsTax = Math.floor(gain * 0.25);
+                capitalGainsTax = Math.floor(gain * 0.125);
               } else if (gain > 460 && gain <= 880) {
-                capitalGainsTax = Math.floor(gain * 0.34);
+                capitalGainsTax = Math.floor(gain * 0.17);
               } else if (gain > 880 && gain <= 1500) {
-                capitalGainsTax = Math.floor(gain * 0.45);
+                capitalGainsTax = Math.floor(gain * 0.225);
               } else if (gain > 1500 && gain <= 3000) {
-                capitalGainsTax = Math.floor(gain * 0.48);
+                capitalGainsTax = Math.floor(gain * 0.24);
               } else if (gain > 3000 && gain <= 5000) {
-                capitalGainsTax = Math.floor(gain * 0.50);
+                capitalGainsTax = Math.floor(gain * 0.25);
               } else {
-                capitalGainsTax = Math.floor(gain * 0.52);
+                capitalGainsTax = Math.floor(gain * 0.27);
               }
             } else {
               if (gain <= 120) {
@@ -663,15 +663,15 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           let acquisitionTax = 0;  // 취득세
 
           if (currentprice <= 150) {
-            acquisitionTax = Math.floor(currentprice * 0.1);
+            acquisitionTax = Math.floor(currentprice * 0.02);
           } else if (currentprice > 150 && currentprice <= 400) {
-            acquisitionTax = Math.floor(currentprice * 0.15);
+            acquisitionTax = Math.floor(currentprice * 0.03);
           } else if (currentprice > 400 && currentprice <= 750) {
-            acquisitionTax = Math.floor(currentprice * 0.25);
+            acquisitionTax = Math.floor(currentprice * 0.05);
           } else if (currentprice > 750 && currentprice <= 1000) {
-            acquisitionTax = Math.floor(currentprice * 0.4);
+            acquisitionTax = Math.floor(currentprice * 0.08);
           } else {
-            acquisitionTax = Math.floor(currentprice * 0.4);
+            acquisitionTax = Math.floor(currentprice * 0.08);
           }
 
           const regionName = selectedRegion; //구입한 지역명
