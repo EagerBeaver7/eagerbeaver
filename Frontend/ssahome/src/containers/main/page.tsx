@@ -85,7 +85,7 @@ const MainPage = () => {
     <div className={styles.parents}>
       <div className={styles.GridItemR}>
         <Button onClick={() => toggleMenu()}
-          className={bntOpen ? styles.bnt : styles.rankBntHide}>플레이</Button>
+          className={bntOpen ? styles['bnt'] : styles['rankBntHide']}>플레이</Button>
       </div>
       <div className={styles.GridItemM}>
         <div className={styles.img}>
@@ -100,7 +100,7 @@ const MainPage = () => {
         </div>
       </div>
       <div className={styles.GridItemL}>
-        <Button onClick={() => toggleMenu2()} className={bntOpen ? styles.bnt : styles.rankBntHide}>랭킹보기</Button>
+        <Button onClick={() => toggleMenu2()} className={bntOpen ? styles['bnt'] : styles['rankBntHide']}>랭킹보기</Button>
       </div>
       <div>
 
