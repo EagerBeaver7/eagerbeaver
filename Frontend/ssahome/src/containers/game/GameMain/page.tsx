@@ -455,7 +455,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
       setTurn(turn + 1);
       // 턴이 증가할 때 타이머 초기화
       setTimeSecond(GameTime);
-      setSeedMoney(seedMoney + 500);
+      setSeedMoney((prevSeedMoney: number) => prevSeedMoney + 500);
       SalaryModalhandleOpen()
 
       // purchasedRegions 배열의 각 항목의 nextprice 업데이트
@@ -678,23 +678,6 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
 
           let tmpRegions = purchasedRegions;
 
-          //이미 구입한 지역인지 확인하는 메서드
-          let find = false;
-          for (let curRegion of tmpRegions) {
-            if (curRegion.name === regionName) {
-              let curTotalPrice = curRegion.currentprice * curRegion.maxPurchaseNum;
-              let buyTotalPrice = currentprice * maxPuerchaseNum;
-
-              let finalTotalPrice = curTotalPrice + buyTotalPrice;
-              let totalNum = curRegion.maxPurchaseNum + maxPuerchaseNum;
-
-              curRegion.currentprice = Math.floor(finalTotalPrice / totalNum);
-              curRegion.maxPurchaseNum = totalNum;
-
-              find = true;
-            }
-          }
-
           setAcquisitionTax(acquisitionTax)
           const pay = (currentprice * maxPuerchaseNum) + (acquisitionTax * maxPuerchaseNum);
           const newSeedMoney = seedMoney - pay;
@@ -702,6 +685,22 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
             setSeedMoney(newSeedMoney);
             setTotalAcquisitionTax(totalAcquisitionTax + acquisitionTax);
 
+            //이미 구입한 지역인지 확인하는 메서드
+            let find = false;
+            for (let curRegion of tmpRegions) {
+              if (curRegion.name === regionName) {
+                let curTotalPrice = curRegion.currentprice * curRegion.maxPurchaseNum;
+                let buyTotalPrice = currentprice * maxPuerchaseNum;
+
+                let finalTotalPrice = curTotalPrice + buyTotalPrice;
+                let totalNum = curRegion.maxPurchaseNum + maxPuerchaseNum;
+
+                curRegion.currentprice = Math.floor(finalTotalPrice / totalNum);
+                curRegion.maxPurchaseNum = totalNum;
+
+                find = true;
+              }
+            }
 
             if (find) { //이전에 구입했던 지역이면
               setPurchasedRegions(tmpRegions);
