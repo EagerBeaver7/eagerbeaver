@@ -696,7 +696,7 @@ const GameMain: React.FC<GameMainProps> = ({ seedMoney, setSeedMoney }) => {
           }
 
           setAcquisitionTax(acquisitionTax)
-          const pay = (currentprice * maxPuerchaseNum) - (acquisitionTax * maxPuerchaseNum);
+          const pay = (currentprice * maxPuerchaseNum) + (acquisitionTax * maxPuerchaseNum);
           const newSeedMoney = seedMoney - pay;
           if (newSeedMoney >= 0) {
             setSeedMoney(newSeedMoney);
