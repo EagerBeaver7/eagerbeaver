@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Dispatch, SetStateAction } from 'react';
 import styles from './page.module.css'
 import PurchaseList from '@/containers/game/RightSideBar/PurchaseList/page';
 import IconButton from "@mui/material/IconButton";
@@ -124,7 +124,7 @@ const Item = muistyled(Paper)(({ theme }) => ({
 // seedMoney prop을 타입으로 정의
 type GameMainProps = {
   seedMoney: number;
-  setSeedMoney: (value: number) => any;
+  setSeedMoney: Dispatch<SetStateAction<number>>;
 };
 
 type Region = {
