@@ -108,12 +108,12 @@ const MainPage = () => {
       <div className={isOpen ? styles['show-menu3'] : styles['hide-menu3']}>
         <StartBar></StartBar>
         <Button onClick={() => closeStart()} sx={{
-				font-size: 25px;
+				fontSize: 25px;
         border: 3px solid #fdefd2;
         color: #d1ab7d; /* 글자 색을 흰색(#fff)으로 변경 */
         background-color: white;
-        font-family: "Dovemayo_gothic";
-        border-radius: 20px;
+        fontFamily: "Dovemayo_gothic";
+        borderRadius: 20px;
         width: max-content;
 
 			}}>X</Button>
