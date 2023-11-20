@@ -116,7 +116,8 @@ const MainPage = () => {
         <Button onClick={() => closeRank()} className={styles.rankCloseBnt}>X</Button>
 
       </div>
-    </div >
+    </div>
+
   );
 };
 
