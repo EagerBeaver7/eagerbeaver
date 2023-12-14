@@ -195,12 +195,30 @@ front 와 back 으로 나누어 `faature`의 하위 브랜치를 사용하였으
 
 # 7. 개발 멤버
 
-| 이름 | 담당 | 
-| --- | --- |
-| 정태희 | 팀장, BE, Hadoop | 
-| 구민석 | FE, Hadoop |
-| 박대균 | FE, Hadoop | 
-| 서수정 | CI/CD, FE | 
-| 우찬희 | CI/CD, BE | 
-| 정예지 | BE, Hadoop | 
+  <table align="center">
+    <tr>
+      <td align="center"><a href="https://github.com/J-Heetae">정태희(팀장)</td>
+      <td align="center"><a href="https://github.com/9minseok">구민석</td>
+      <td align="center"><a href="https://github.com/daegyunpark">박대균</td>
+      <td align="center"><a href="https://github.com/ssj946">서수정</td>
+      <td align="center"><a href="https://github.com/dener8">우찬희</td>
+      <td align="center"><a href="https://github.com/ityeji">정예지</td>
+    </tr>
+    <tr>
+      <td align="center"><img src="./img/태희.png" width="160"></td>
+      <td align="center"><img src="./img/민석.png" width="160"></td>
+      <td align="center"><img src="./img/대균.png" width="160"></td>
+      <td align="center"><img src="./img/수정.png" width="160"></td>
+      <td align="center"><img src="./img/찬희.png" width="160"></td>
+      <td align="center"><img src="./img/예지.png" width="160"></td>
+    </tr>
+    <tr>
+      <td align="center">BE, Hadoop</td>
+      <td align="center">FE, Hadoop</td>
+      <td align="center">FE, Hadoop</td>
+      <td align="center">FE, CI/CD</td>
+      <td align="center">BE, CI/CD</td>
+      <td align="center">BE, Hadoop</td>
+    </tr>
+  </table>
 
