@@ -2,10 +2,12 @@ spring:
   config:
     activate:
       on-profile: local
+
   datasource:
     url: jdbc:mysql://localhost:3306/eagerbeaver
     username: root
     password: ssafy
+
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
@@ -13,9 +15,16 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    defer-datasource-initialization: true # [스키마 생성 -> data.sql 실행] 순서로 조작되도록 하는 설정
+
   redis:
     host: localhost
     port: 6379
+
+  sql:
+    init:
+      mode: always
+
 
 logging:
   level:
