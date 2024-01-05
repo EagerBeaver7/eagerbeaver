@@ -9,7 +9,7 @@ const nextConfig = {
     return [
       {
         source: "/:path*",
-        destination: "https://j9a507.p.ssafy.io/:path*",
+        destination: "https://eagerbeaver.store/:path*",
       },
       {
         source: "/v1/:path*",
