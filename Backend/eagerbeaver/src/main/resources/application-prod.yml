@@ -3,16 +3,16 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: jdbc:mysql://j9a507.p.ssafy.io:3426/eagerbeaver
-    username: EB
-    password: kbsw2jEB!
+    url: jdbc:mysql://eagerbeaver.store:3308/eagerbeaver
+    username: eb
+    password: root
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
-  redis:
-    host: j9a507.p.ssafy.io
-    port: 6379
+#  redis:
+#    host: j9a507.p.ssafy.io
+#    port: 6379
 
     properties:
       hibernate:
