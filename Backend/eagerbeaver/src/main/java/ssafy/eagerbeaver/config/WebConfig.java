@@ -12,10 +12,10 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new ValidTokenInterceptor())
-			.addPathPatterns("/**")
-			.excludePathPatterns("/auth/**", "/nickname/**", "/word");
-		//            .excludePathPatterns("/swagger-resources/**", "/swagger-ui/**", "/v3/api-docs", "/swagger-ui/index.html") // swagger 사용 미정
+//		registry.addInterceptor(new ValidTokenInterceptor())
+//			.addPathPatterns("/**")
+//			.excludePathPatterns("/auth/**", "/nickname/**", "/word");
+//		//            .excludePathPatterns("/swagger-resources/**", "/swagger-ui/**", "/v3/api-docs", "/swagger-ui/index.html") // swagger 사용 미정
 	}
 
 	@Override
